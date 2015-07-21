@@ -5,7 +5,7 @@
 
 ## Objetivo del documento                  
 
-### El objetivo de este documento es el de proporcionar aquellas funcionalidades o mejoras que se vayan a añadir en un futuro en la aplicación.
+El objetivo de este documento es el de proporcionar aquellas funcionalidades o mejoras que se vayan a añadir en un futuro en la aplicación.
 
 
 
