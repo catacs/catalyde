@@ -1,0 +1,20 @@
+{
+    "groups":
+    [
+        {     "description": "admin"
+            , "practices":  []
+        },
+        {
+              "description": "Teoria 1"
+            , "practices":  []
+        
+        },
+        {
+              "description": "Practicas 1"
+            , "practices":  []
+        }
+    ]
+   
+
+
+}

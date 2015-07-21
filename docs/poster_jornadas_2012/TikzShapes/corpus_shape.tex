@@ -1,0 +1,28 @@
+\makeatletter{}
+\pgfdeclareshape{corpus}{
+  \inheritsavedanchors[from=rectangle]
+  \inheritanchor[from=rectangle]{center}
+  \inheritanchor[from=rectangle]{west}
+  \inheritanchor[from=rectangle]{east}
+  \backgroundpath{
+     \southwest \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+     \northeast \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+     \setlength{\pgf@xc}{\pgf@xb-\pgf@xa}
+     \setlength{\pgf@yc}{\pgf@yb-\pgf@ya}
+     \addtolength{\pgf@yb}{0.4\pgf@yc}
+     % Outer border...
+     \pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@ya}}
+     \pgfpatharcaxes{180}{360}{\pgfpoint{0.5\pgf@xc}{0}}{\pgfpoint{0}{0.1\pgf@xc}}
+     \pgfpathlineto{\pgfpoint{\pgf@xb}{\pgf@yb}}
+     \pgfpatharcaxes{0}{180}{\pgfpoint{0.5\pgf@xc}{0}}{\pgfpoint{0}{0.1\pgf@xc}}
+     \pgfpathclose
+     % Ellipse completion...
+     \pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@yb}}
+     \pgfpatharcaxes{180}{360}{\pgfpoint{0.5\pgf@xc}{0}}{\pgfpoint{0}{0.1\pgf@xc}}
+     % As before, but slightly below...
+     \addtolength{\pgf@yb}{-0.1\pgf@yc}
+     \pgfpathmoveto{\pgfpoint{\pgf@xa}{\pgf@yb}}
+     \pgfpatharcaxes{180}{360}{\pgfpoint{0.5\pgf@xc}{0}}{\pgfpoint{0}{0.1\pgf@xc}}
+  }
+}
+\makeatother{}

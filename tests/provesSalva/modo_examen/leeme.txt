@@ -1,0 +1,44 @@
+Para implementar el modo examen basta con que la práctica tenga un
+flag que diga si se usa o no el fullscreen, en tal caso utilizar lo de
+esta demo:
+
+http://robnyman.github.com/fullscreen/
+
+que he sacado de aquí:
+
+https://hacks.mozilla.org/2012/01/using-the-fullscreen-api-in-web-browsers/
+
+la idea es anotar en un log (en la base de datos) cuándo el usuario ha
+dejado y vuelto a entrar en fullscreen mode ya que le podemos decir
+"si sales te suspendemos" pero podría pasar que en windows saliese una
+ventana pidiendo actualizar el sistema o algo así...
+
+este otro enlace no lo he visto porque el primero ya funciona...
+http://sorcery.smugmug.com/2012/06/06/using-html5s-fullscreen-api-for-fun-and-profit/
+
+----------------------------------------------------------------------
+
+31 agosto, issues :S :
+
+http://www.thefutureoftheweb.com/demo/2007-05-16-detect-browser-window-focus/
+
+http://stackoverflow.com/questions/4037212/html-canvas-full-screen
+
+window.onload = window.onresize = function() {
+  theCanvas.width = theCanvas.offsetWidth;
+  theCanvas.height = theCanvas.offsetHeight;
+}
+
+http://www.sitepoint.com/html5-full-screen-api/#fbid=XHb0zqbuyj5
+
+Standard	Chrome/Safari	Firefox
+.requestFullScreen()	.webkitRequestFullScreen()	.mozRequestFullScreen()
+.cancelFullScreen()	.webkitCancelFullScreen()	.mozCancelFullScreen()
+.fullScreen	.webkitIsFullScreen	.mozfullScreen
+:full-screen	:-webkit-full-screen	:-moz-full-screen
+
+http://blogs.sitepointstatic.com/examples/tech/full-screen/index.html
+
+bonito fondo!
+http://html5-demos.appspot.com/static/html5-whats-new/template/index.html#1
+http://html5wow.googlecode.com/hg-history/00e74c87bd8175e9a14fd2cbd02f692391673484/src/slides/index.html#slide1

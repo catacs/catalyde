@@ -1,0 +1,65 @@
+{?cuanto_ha_llovido}
+{#load blockid=id.cuanto_ha_llovido /}
+{:else}{~n}
+#include <stdio.h>
+#define NOMFICHERO "lluvias.txt"
+#define DESDE 2007
+#define HASTA 2011
+
+int pedir_anyo() {
+    int anyo;
+    do {
+      printf("Introduce un anyo entre %d y %d (inclusive): ",DESDE,HASTA);
+      scanf("%d",&anyo);
+      if (anyo<DESDE || anyo>HASTA)
+	printf("Anyo fuera de rango\n");
+    } while (anyo<DESDE || anyo>HASTA);
+    return anyo;
+}
+
+/*
+- Cuanto ha llovido en total a lo largo del anyo (en litros por metro cuadrado).
+- El mes que mas llovio ese anyo y cuanto llovio.
+- El mes en que llovio menos ese anyo y cuanto llovio.
+*/
+
+int main() {
+  FILE *fd;
+  int dia,mes,anyo,litros,anyoelijo,i,quienmax,quienmin;
+  float totallitros, lluevemes[12], max, min;
+  fd = fopen(NOMFICHERO,"r");
+  if (fd == NULL)
+    printf("Error al abrir fichero\n");
+  else {
+    anyoelijo = pedir_anyo();
+    totallitros = 0;
+    for (i=0; i<12; i=i+1)
+      lluevemes[i] = 0;
+    while (fscanf(fd,"%d%d%d%f",&anyo,&mes,&dia,&litros) == 4) {
+      /* printf("%4d %2d %2d %5.2f\n",anyo,mes,dia,litros); */
+      if (anyo == anyoelijo) {
+	totallitros = totallitros + litros;
+	lluevemes[mes-1] = lluevemes[mes-1] + litros;
+      }
+    }
+    fclose(fd);
+    quienmax = 0; quienmin = 0;
+    max = lluevemes[0]; min = lluevemes[0];
+    for (i=1; i<12; i=i+1) {
+      if (lluevemes[i] < min) {
+	min = lluevemes[i];
+	quienmin = i;
+      }
+      if (lluevemes[i] > max) {
+	max = lluevemes[i];
+	quienmax = i;
+      }
+    }
+    printf("En el anyo %d han caido en total %.2f litros por metro cuadrado\n"
+	   "El mes que mas ha llovido ha sido %d con %.2f litros\n"
+	   "El mes que menos ha llovido ha sido %d con %.2f litros\n",
+	   totallitros, quienmax+1, max, quienmin+1, min);
+  }
+  return 0;
+}
+{/cuanto_ha_llovido}

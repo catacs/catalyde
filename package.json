@@ -1,0 +1,40 @@
+{
+  "author": "Catalin Stanciu",
+  "name": "Catalyde",
+  "keywords": ["ide", "integrated", "development","programming", "environment", "editor", "coding", "tool"],
+  "description": "Catalyzer Development Environment",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=0.4.9 < 0.7.0"
+  },
+  "dependencies": {
+      "express":          "~2.5.1"
+    , "jade":             ">=0.25.0"
+    , "commander":        "~0.4.2"
+    , "dive":             ">=0.1.2"
+    , "socket.io":        "~0.8.7"
+    , "mongodb":          "0.9.7-3-5"
+    , "mongoose":         "2.5.7"
+    , "mongoose-ttl":     ">=0.0.3"
+    , "connect-mongodb":  ">=1.1.3"
+    , "connect":          "1.8.5"
+    , "bcrypt":           "0.5.0"
+    , "passport":         ">=0.0.0"
+    , "passport-local":   ">=0.0.0"
+    , "node-uuid":        "~1.3.0"
+    , "async":            ">=0.1.22"
+    , "marked":           ">=0.2.5"
+    , "highlight.js":     ">=7.2.0"
+    , "line-reader":      ">=0.2.1"
+    , "dustjs-linkedin":  ">=1.0.0"
+    , "pty.js":           "~0.1.2"
+    , "tmp":              ">=0.0.13"
+    , "fs-extra":         ">=0.1.3"
+    , "log4js":           ">=0.5.2"  
+    , "nodemailer":       ">=0.0.0"
+  },
+  "bin": {
+    "catalyde": "./main.js"
+  },
+  "devDependencies": {}
+}

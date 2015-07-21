@@ -1,0 +1,28 @@
+\begin{tikzpicture}[>=latex,thick]
+
+  \def\inputsize{72}
+  \def\hiddenAsize{128}
+  \def\hiddenBsize{64}
+  \def\outputsize{10}
+
+  \draw[->,line width=10,color=cflechaMLP] (0,-1.5) -- (0,+4.5);
+
+  \draw (-5,+4) node [right] {Pendigits MLP};
+ 
+  \draw (0,-1) node (input) {Input};
+
+  \draw (0,0) node [draw,shape=rectangle,fill=white,minimum width=2*\inputsize] (inputlayer)
+  {\inputsize{} units};
+
+  \draw (0,+0.667) node [draw,shape=rectangle,fill=white,minimum width=2*\hiddenAsize] (hiddenAlayer)
+  {\hiddenAsize{} units};
+
+  \draw (0,+1.333) node [draw,shape=rectangle,fill=white,minimum width=2*\hiddenBsize] (hiddenBlayer)
+  {\hiddenBsize{} units};
+
+  \draw (0,+2) node [draw,shape=rectangle,fill=white,minimum width=2*\outputsize] (outputlayer)
+  {\outputsize{} units};
+
+  \draw (0,+3) node (output) {Output};
+
+\end{tikzpicture}%

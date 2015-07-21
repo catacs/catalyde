@@ -1,0 +1,342 @@
+\documentclass[portrait]{a0poster}
+\setlength{\textwidth}{83cm} % Error en "a0poster": 87cm para esta dimensión
+                             % en la orientación "portrait"
+\usepackage{multicol}
+\setlength{\columnsep}{4cm}
+\newlength{\anchofiliacion}
+\setlength{\anchofiliacion}{39.5cm}
+
+\usepackage{tikz}
+\usepackage{calc}
+\input{TikzShapes/corpus_shape}
+
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{pifont}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{xspace}
+
+\graphicspath{{figures/}}
+
+% Algunos colores...
+\definecolor{ctextotit}{rgb}{0.00,0.00,1.00}
+\definecolor{cfondoparte}{rgb}{0.80,0.80,1.00}
+\definecolor{cbordeparte}{rgb}{0.00,0.00,1.00}
+\definecolor{cfondosubparte}{rgb}{0.80,0.80,0.80}
+\definecolor{cbordesubparte}{rgb}{0.20,0.20,0.20}
+\definecolor{cmarcado}{rgb}{0.90,0.90,0.90}
+\definecolor{cnota}{rgb}{0.60,0.60,0.60}
+\definecolor{ccarflecha}{rgb}{0.00,0.00,1.00}
+\definecolor{cflechaMLP}{rgb}{0.75,0.75,1.00}
+\definecolor{cenfasis}{rgb}{1.00,0.00,0.00}
+\definecolor{cmarcamiitem}{rgb}{1.00,0.00,0.00}
+\definecolor{cmarcaitemlista}{rgb}{0.00,0.00,1.00}
+\definecolor{cmarcaitemsublista}{rgb}{0.00,0.00,1.00}
+
+% Para poder conectar nodos en diferentes imágenes TikZ...
+\tikzstyle{every picture}+=[remember picture]
+
+% Para marcar una zona de texto con un color y luego poder dibujar líneas entre zonas marcadas... 
+\newsavebox{\cajamarcado}
+\newcommand{\nombreMarcado}{}
+\newenvironment{marcado}[2]{\renewcommand{\nombreMarcado}{#1}\begin{lrbox}{\cajamarcado}%
+\begin{minipage}{#2}}{\end{minipage}%
+\end{lrbox}\noindent%
+\tikz \node[fill=cmarcado, inner xsep=0pt] (\nombreMarcado) {\usebox{\cajamarcado}};}
+
+% Notas conectadas con una flecha a un punto del texto principal...
+\newcommand{\nota}[4][1ex]{\makebox[0pt][l]{%\hspace{0.1em}%
+\raisebox{#1}[0pt][0pt]{%
+\tikz \draw[<-, cnota, line width=3pt] (0,0)--(#2,#3) node
+[shape=rectangle, draw=cnota, right, inner sep=3pt, rounded corners]
+{\textrm{\strut\rule{0.5em}{0pt}#4\rule{0.5em}{0pt}}};}}}
+
+% Un carácter flecha...
+\newcommand{\flecha}{\textcolor{ccarflecha}{\ding{233}}}
+
+% Para dar títulos a partes del póster...
+\newcommand{\colapsacentra}[1]{\makebox[0pt]{%
+\begin{tabular}[c]{c}
+#1
+\end{tabular}}}
+\newcommand{\parte}[1]{\bigskip%
+\centerline{%
+\colapsacentra{\tikz \draw [top color=cfondoparte,
+                            rounded corners,
+                            shading=axis,
+                            shading angle=0,
+                            draw=cbordeparte] (0,0) rectangle(\columnwidth, 2cm);}%
+\colapsacentra{\textbf{\Large#1}}}%
+\bigskip}
+\newcommand{\subparte}[1]{\medskip%
+\centerline{%
+\colapsacentra{\tikz \draw [top color=cfondosubparte,
+                            rounded corners,
+                            shading=axis,
+                            shading angle=0,
+                            draw=cbordesubparte] (0,0) rectangle(0.75\columnwidth, 1.5cm);}%
+\colapsacentra{\textbf{\large#1}}}%
+\medskip}
+
+% Incluir una figura dando su anchura o altura...
+\newcommand{\figuraancho}[2]{\resizebox{#1}{!}{\includegraphics{#2}}}
+\newcommand{\figuraalto}[2]{\resizebox{!}{#1}{\includegraphics{#2}}}
+\newcommand{\figuratikzancho}[2]{\resizebox{#1}{!}{\input{TikzFigs/#2}}}
+\newcommand{\figuratikzalto}[2]{\resizebox{!}{#1}{\input{TikzFigs/#2}}}
+
+% Marca para ítems fuera de lista...
+\newcommand{\miitem}{\noindent\makebox[0pt][r]{\textcolor{cmarcamiitem}{$\rhd$} }\ignorespaces{}}
+
+% Lista con ítems, nivel 1...
+\newenvironment{lista}{\begin{list}%
+{\textcolor{cmarcaitemlista}{$\bullet$}}%
+{\setlength{\leftmargin}{3cm}}%
+}{
+\end{list}}
+
+% Lista con ítems, nivel 2...
+\newenvironment{sublista}{\begin{list}%
+{\textcolor{cmarcaitemsublista}{$\circ$}}%
+{\setlength{\leftmargin}{3cm}}%
+}{
+\end{list}}
+
+% Destacar coloreando... 
+\renewcommand{\emph}[1]{\textcolor{cenfasis}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\argmax}{\mathop{\mbox{argmax}}}
+\newcommand{\online}{online\xspace}
+\newcommand{\offline}{offline\xspace}
+\newcommand{\bimodal}{bimodal\xspace}
+\newcommand{\State}{\textsc{state}\xspace}
+
+\begin{document}
+\thispagestyle{empty}
+\sffamily{}\large
+%\ \vfill{}
+
+\newlength{\anchologo}
+\setlength{\anchologo}{8cm}
+
+\centerline{%
+\begin{tabular}[c]{c}
+\begin{tabular}[c]{c@{\protect\rule{\columnsep}{0cm}}c@{\protect\rule{\columnsep}{0cm}}c}
+\begin{tabular}{c}
+\figuraancho{\anchologo}{Logos/logoUPV.png}
+\end{tabular} &
+\begin{tabular}[b]{c}
+\Huge\textbf{\textcolor{ctextotit}{Adaptacion al grado de la asignatura}}\\\\
+\Huge\textbf{\textcolor{ctextotit}{de informática en otras titulaciones}}
+\end{tabular} &
+\begin{tabular}{c}
+\figuraancho{0.7\anchologo}{Logos/logoDSIC} \\
+\figuraancho{1.4\anchologo}{Logos/etsid}
+\end{tabular}
+\end{tabular}\bigskip
+\\
+\bigskip\bigskip
+\Large
+\begin{tabular}[b]{c}
+\textbf{M.A.~Salido, D.~Segrelles, S.~Espa{\~n}a, D.~Guerrero,
+  J.~Martin, P~Ruiz}\\
+Departamento de Sistemas Informáticos y Computación \\
+Universidad Politécnica de Valencia 
+\\
+E-46071 Valencia, SPAIN 
+\end{tabular}
+\end{tabular}}
+
+\vspace{1.5cm}
+
+\begin{multicols}{2}
+
+\parte{En breve}
+
+\miitem La asignatura ``informática'' en otras titulaciones ajenas a esta materia presenta:
+\begin{lista}
+\item Distinta motivación: el objetivo es más de algoritmia que en la
+  programación en sí (saber modelar un problema y las pautas para
+  resolverlo),
+\item Distinto background: no hay asignaturas simultáneas ni previas,
+  ni prerequisitos.
+\item Distinta perspectiva: los conocimientos impartidos no se van a
+  afianzar ni utilizar de manera directa (aunque, desde nuestro punto
+  de vista, sí indirecta) en materias posteriores.
+\end{lista}
+\miitem Nos vamos a centrar en el caso de esta asignatura en la ETSID,
+donde la asignatura existía en la ingeniería, antes de la implantación
+del grado:
+\begin{lista}
+\item los contenidos no han variado, con lo que basta con adaptar la
+  asignatura a los nuevos títulos de grado
+\item se realizó un análisis de la situación de la asignatura,
+  destacando aquellos puntos sobre los cuales se pueden aplicar
+  acciones de innovación para la mejora del proceso de
+  enseñanza-aprendizaje
+\end{lista}
+
+\miitem Se describen aquellas acciones y metodologías aplicadas en el
+grado encaminadas a conseguir los objetivos marcados.
+
+\miitem Mostramos resultados comparativos entre ingeniería y grado
+\begin{lista}
+\item se implantó un curso piloto durante 2 años y ahora disponemos de
+  la experiencia de un curso con el grado, por lo que es posible
+  comparar los resultados antes y después de la implantación del grado
+\end{lista}
+
+\miitem Finalmente se presentan los resultados obtenidos por la
+aplicación de las distintas acciones de innovación aplicadas.
+
+\begin{center}
+\includegraphics[scale=2.2]{etsid_foto2.png}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parte{Motivación}
+
+La materia de la asignatura Informática (INF), en titulaciones
+diferentes al grado de Ingeniería Informática, tales como las
+impartidas en la Escuela Técnica Superior de Ingeniería del Diseño
+(ETSID), tienen como objetivo de aprendizaje, que los alumnos sean
+capaces de diseñar algoritmos que resuelvan problemas presentes en su
+futura vida profesional, a través de una metodología de trabajo.
+
+En los planes antiguos, la materia de la asignatura de INF estaba
+incluida en la asignatura de Fundamentos de Informática (FIN), cuyos
+contenidos eran prácticamente los mismos. En los nuevos títulos de
+grado la asignatura se integra en el modulo básico dentro de la
+materia de Informática, siendo esta la única asignatura asignada a
+dicha materia. Disponiendo de 6 ECTS, su impartición se realiza en el
+primer curso en el primer o segundo cuatrimestre según el grado, no
+siendo necesario ningún prerrequisito específico para ser cursada.
+
+La motivación de este trabajo es el análisis de resultados de la
+adaptación de la asignatura de FIN, incluida en los planes de estudio
+de las ingenierías técnicas que ofrecía ETSID, a los nuevos títulos de
+Grado que se imparten desde el cursos 2010/2011, en sus diferentes
+titulaciones de Grado (mecánicos, eléctricos, electrónica y
+automática, NO SE SI HAY MAS). En el curso 2009/2010 se puso en marcha
+un curso piloto en las especialidades de electrónica y de mecánicos, con el
+objetivo de testear las innovaciones diseñadas en la nueva guía
+docente de la asignatura INF. Para ello se realizó un análisis de la
+situación de la asignatura FIN, detectando aquellos puntos sobre los
+cuales se podían aplicar acciones de innovación acorde a Bolonia y que
+permitieran la mejora del proceso de enseñanza aprendizaje. % citar [1].
+
+El análisis de resultados se plantea en base a los dos cursos docentes
+en los que ya se han implantado los grados (2010/2011 –- 2011/2012) en
+las diferentes especialidades de la ETSID y los X cursos anteriores en
+los que se impartía FIN. El análisis muestra los aspectos positivos y
+negativos de la adaptación de la asignatura FIN a INF en términos de
+asistencia a clase, alumnos evaluados, alumnos aprobados y coste en
+horas por parte del profesor.
+
+%% [1] J. Damian Segrelles, Miguel Angel Salido Gregorio, Adriana Susana
+%% Giret Boggin. METODOLOGÍAS ACTIVAS PARA LA ADECUACIÓN DE LA ASIGNATURA
+%% FUNDAMENTOS DE INFORMÁTICA AL PLAN BOLÓNIA. Actas del CUIEET 2010
+%% (2010).
+
+\miitem extender esta parte La asignatura ``informática'' en otras titulaciones ajenas a esta materia presenta:
+\begin{lista}
+\item Distinta motivación: el objetivo es más de algoritmia que en la programación en sí (saber modelar un problema y las pautas para resolverlo),
+\item Distinto background: no hay asignaturas simultáneas ni previas, ni prerequisitos
+\end{lista}
+
+\miitem extender esta parte contando los detalles (primer curso, crétidos, especialidades, normas) Nos vamos a centrar en el caso de esta asignatura en la ETSID, donde la asignatura existía en la ingeniería, antes de la implantación del grado:
+\begin{lista}
+\item los contenidos no han variado, con lo que basta con adaptar la asignatura a los nuevos títulos de grado
+\item se realizó un análisis de la situación de la asignatura,
+  destacando aquellos puntos sobre los cuales se pueden aplicar
+  acciones de innovación para la mejora del proceso de
+  enseñanza-aprendizaje
+\item se implantó un curso piloto durante 2 años
+\item es posible comparar los resultados antes y después de la implantación del grado
+\end{lista}
+
+
+\begin{center}
+\includegraphics[scale=0.75]{devcpp1.png}
+\end{center}
+
+
+
+\bigskip
+\bigskip
+\parte{Objetivos}
+
+El objetivo de este trabajo es determinar si la asignatura INF ha
+mejorado respecto a FIN, en términos de:
+
+\begin{lista}
+\item Asistencia a clase por parte de los alumnos, 
+\item Número de alumnos evaluados al final del cuatrimestre
+\item Número de aprobados respecto a los alumnos evaluados    
+\item Coste en horas de trabajo  por parte del profesor  
+\end{lista}
+
+
+
+\bigskip
+\bigskip
+\parte{Resultados}
+
+\miitem tasas de asistencia y aprobado antes y después de implantar el grado
+
+
+\miitem Número de alumnos matriculados en grupos de teoría y de prácticas
+
+\begin{center}
+\begin{tabular}{llcccc} \toprule
+\multicolumn{2}{c}{} & \multicolumn{2}{c}{Unimodal} & 	\multicolumn{2}{c}{Bimodal} \\  \midrule
+\multicolumn{2}{c}{System} & ~Offline & Online~ & ~Combination &	Relative improv.~\\  \midrule
+
+~Validation   & Baseline & 27.6 & 6.6 & 4.0 & 39\% \\
+             & HMM/ANN & 12.7 & 2.9 & 1.9 & 34\% \\  \midrule
+~(Hidden) Test& HMM/ANN & 12.7 & 3.7 & 1.5 & 59\% \\ 
+\bottomrule
+\end{tabular}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parte{Conclusiones}
+
+\miitem Los resultados son mejores pero no se ponen los medios necesarios para alcanzarlos.
+
+\miitem Las mejoras son evidentes, pero a costa de un sobreesfuerzo por parte del personal docente, ya que los
+grupos siguen siendo numerosos con más de 110 alumnos en algunos de ellos.
+
+El número de exámenes a preparar de dispara no solamente por el
+aumento de actos de evaluación, sino por el hecho de realizar dichas
+evaluaciones de manera individual para cada grupo de teoría y/o de
+prácticas. La consecuencia de esto es que el profesorado consume un
+gran parte de sus recursos preparando exámenes y corrigiéndolos. Esto
+proporciona una realimentación al profesor, si bien pensamos que la
+realimentación ofrecida al alumno es escasa si ésta se limita a
+recibir la nota de la evaluación. Pensamos que sería más productivo
+que el alumno estudiase los fallos cometidos, si bien esto incrementa
+mucho más (si cabe) el tiempo invertido tanto por el alumno como por
+el profesor, y ese esfuerzo extra debe ser sustraido a otros aspectos
+importantes de la asignatura \emph{a menos que} se apliquen medidas
+como la reducción del número de alumnos por grupo.
+
+Menos importante desde el punto de vista docente, pero sí interesante
+mencionar, es el aumento significativo del consumo de papel con el
+incremento del número de evaluaciones. Con un parcial el alumno puede
+contestar múltiples preguntas en una misma página, ahora cada minute
+paper consume un mínimo de una página aunque solamente requiera media
+cara.
+
+
+\end{multicols}
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% ispell-local-dictionary: "american"
+%%% TeX-master: t
+%%% End: 

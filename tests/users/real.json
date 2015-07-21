@@ -1,0 +1,15 @@
+{
+    "users":
+    [
+        {     "fname": "catalin"
+            , "lname": "stanciu"
+            , "type":  "admin"
+            , "groups": []
+            , "email": "ktalin605@gmail.com"
+            , "password": "123456"
+        }
+    ]
+
+
+
+}

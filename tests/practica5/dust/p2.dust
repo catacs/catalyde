@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+{?func_precio }
+	{#load blockid=id.func_precio /}
+{:else}
+		float precio(int min)
+		{
+			float precio =0;
+
+			if(min/60 > 0)
+			{
+				//mas de 1 hora;
+				precio =  (float)min*5;
+			}
+			else if(min/60 == 0)
+			{
+				//mas de 1 hora;
+				precio =  (float)min*10;
+			}
+
+			if (precio < 200)
+			{
+				precio = 200;
+			}
+			else if(precio > 1000)
+			{
+				precio= 1000;
+			}
+
+			return precio/100;
+
+
+			
+		}
+{/func_precio}
+
+{?prog_parking }
+	{#load blockid=id.prog_parking /}
+{:else}
+		int main()
+		{
+			int minutos;
+			minutos=0;
+			printf("Dime los minutos estacionados:\n");
+			scanf("%d", &minutos);
+
+			printf("Tarfia: %f", precio(minutos));
+			return 0;
+		} 
+{/prog_parking}
+

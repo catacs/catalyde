@@ -1,0 +1,13 @@
+{	
+  "status": {
+    "cuerpo_funcion_es_vocal": false,
+    "cuerpo_funcion_contar_vocales": false,
+    "funcion_iguales": false,
+    "condicional_iguales": false,
+    "funcion_creciente": false,
+    "funcion_progresion": false,
+    "programa_progresion": false,
+    "cuanto_ha_llovido": false,
+    "anyo_llovio_mas": false
+  }
+}

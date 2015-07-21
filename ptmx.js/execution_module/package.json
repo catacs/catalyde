@@ -1,0 +1,16 @@
+{
+    "name": "ptmx.js",
+    "description": "Pseudo terminals master slave for node.",
+    "author": "Joan Pastor, Catalin Stanciu",
+    "version": "0.0.1",
+    "main": "./index.js",
+    "keywords": [ "pty", "tty", "terminal", "ptmx" ],
+    "scripts": {
+        "test": "node test"
+    },
+    "dependencies": {
+
+
+    },
+    "tags": [ "pty", "tty", "terminal", "ptmx" ]
+}

@@ -1,0 +1,370 @@
+\documentclass[portrait]{a0poster}
+\setlength{\textwidth}{83cm} % Error en "a0poster": 87cm para esta dimensión
+                             % en la orientación "portrait"
+%\setlength{\textheight}{105cm}
+\usepackage{multicol}
+\setlength{\columnsep}{4cm}
+\newlength{\anchofiliacion}
+\setlength{\anchofiliacion}{39.5cm}
+
+\usepackage{tikz}
+\usepackage{calc}
+\input{TikzShapes/corpus_shape}
+
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{pifont}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{xspace}
+
+\graphicspath{{figures/}}
+
+% Algunos colores...
+\definecolor{ctextotit}{rgb}{0.00,0.00,1.00}
+\definecolor{cfondoparte}{rgb}{0.80,0.80,1.00}
+\definecolor{cbordeparte}{rgb}{0.00,0.00,1.00}
+\definecolor{cfondosubparte}{rgb}{0.80,0.80,0.80}
+\definecolor{cbordesubparte}{rgb}{0.20,0.20,0.20}
+\definecolor{cmarcado}{rgb}{0.90,0.90,0.90}
+\definecolor{cnota}{rgb}{0.60,0.60,0.60}
+\definecolor{ccarflecha}{rgb}{0.00,0.00,1.00}
+\definecolor{cflechaMLP}{rgb}{0.75,0.75,1.00}
+\definecolor{cenfasis}{rgb}{1.00,0.00,0.00}
+\definecolor{cmarcamiitem}{rgb}{1.00,0.00,0.00}
+\definecolor{cmarcaitemlista}{rgb}{0.00,0.00,1.00}
+\definecolor{cmarcaitemsublista}{rgb}{0.00,0.00,1.00}
+
+% Para poder conectar nodos en diferentes imágenes TikZ...
+\tikzstyle{every picture}+=[remember picture]
+
+% Para marcar una zona de texto con un color y luego poder dibujar líneas entre zonas marcadas... 
+\newsavebox{\cajamarcado}
+\newcommand{\nombreMarcado}{}
+\newenvironment{marcado}[2]{\renewcommand{\nombreMarcado}{#1}\begin{lrbox}{\cajamarcado}%
+\begin{minipage}{#2}}{\end{minipage}%
+\end{lrbox}\noindent%
+\tikz \node[fill=cmarcado, inner xsep=0pt] (\nombreMarcado) {\usebox{\cajamarcado}};}
+
+% Notas conectadas con una flecha a un punto del texto principal...
+\newcommand{\nota}[4][1ex]{\makebox[0pt][l]{%\hspace{0.1em}%
+\raisebox{#1}[0pt][0pt]{%
+\tikz \draw[<-, cnota, line width=3pt] (0,0)--(#2,#3) node
+[shape=rectangle, draw=cnota, right, inner sep=3pt, rounded corners]
+{\textrm{\strut\rule{0.5em}{0pt}#4\rule{0.5em}{0pt}}};}}}
+
+% Un carácter flecha...
+\newcommand{\flecha}{\textcolor{ccarflecha}{\ding{233}}}
+
+% Para dar títulos a partes del póster...
+\newcommand{\colapsacentra}[1]{\makebox[0pt]{%
+\begin{tabular}[c]{c}
+#1
+\end{tabular}}}
+\newcommand{\parte}[1]{\bigskip%
+\centerline{%
+\colapsacentra{\tikz \draw [top color=cfondoparte,
+                            rounded corners,
+                            shading=axis,
+                            shading angle=0,
+                            draw=cbordeparte] (0,0) rectangle(\columnwidth, 2cm);}%
+\colapsacentra{\textbf{\Large#1}}}%
+\bigskip}
+\newcommand{\subparte}[1]{\medskip%
+\centerline{%
+\colapsacentra{\tikz \draw [top color=cfondosubparte,
+                            rounded corners,
+                            shading=axis,
+                            shading angle=0,
+                            draw=cbordesubparte] (0,0) rectangle(0.75\columnwidth, 1.5cm);}%
+\colapsacentra{\textbf{\large#1}}}%
+\medskip}
+
+% Incluir una figura dando su anchura o altura...
+\newcommand{\figuraancho}[2]{\resizebox{#1}{!}{\includegraphics{#2}}}
+\newcommand{\figuraalto}[2]{\resizebox{!}{#1}{\includegraphics{#2}}}
+\newcommand{\figuratikzancho}[2]{\resizebox{#1}{!}{\input{TikzFigs/#2}}}
+\newcommand{\figuratikzalto}[2]{\resizebox{!}{#1}{\input{TikzFigs/#2}}}
+
+% Marca para ítems fuera de lista...
+\newcommand{\miitem}{\noindent\makebox[0pt][r]{\textcolor{cmarcamiitem}{$\rhd$} }\ignorespaces{}}
+
+% Lista con ítems, nivel 1...
+\newenvironment{lista}{\begin{list}%
+{\textcolor{cmarcaitemlista}{$\bullet$}}%
+{\setlength{\leftmargin}{3cm}}%
+}{
+\end{list}}
+
+% Lista con ítems, nivel 2...
+\newenvironment{sublista}{\begin{list}%
+{\textcolor{cmarcaitemsublista}{$\circ$}}%
+{\setlength{\leftmargin}{3cm}}%
+}{
+\end{list}}
+
+% Destacar coloreando... 
+\renewcommand{\emph}[1]{\textcolor{cenfasis}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\thispagestyle{empty}
+\sffamily{}\large
+%\vfill{}
+
+\newlength{\anchologo}
+\setlength{\anchologo}{7cm}
+
+\begin{center}
+\   \\
+\   \\
+\   \\
+
+%\centerline{%
+\begin{tabular}[c]{c@{\protect\rule{0.5\columnsep}{0cm}}c@{\protect\rule{\columnsep}{0cm}}c@{\protect\rule{\columnsep}{0cm}}c@{\protect\rule{0.5\columnsep}{0cm}}c}
+\begin{tabular}{c}
+\figuraancho{\anchologo}{Logos/logoUPV.png}
+\end{tabular} &
+\begin{tabular}{c}
+\figuraancho{\anchologo}{Logos/logoDSIC.png}
+\end{tabular} &
+\begin{tabular}[b]{c}
+\Huge\textbf{\textcolor{ctextotit}{Adaptación al grado de la asignatura}}\\\\
+\Huge\textbf{\textcolor{ctextotit}{``Informática'' en otras titulaciones}}
+\end{tabular} &
+\begin{tabular}{c}
+\figuraancho{0.9\anchologo}{Logos/logo_etsinf}
+\end{tabular} &
+\begin{tabular}{c}
+\figuraancho{1.1\anchologo}{Logos/etsid}
+\end{tabular}
+\end{tabular}\\
+% }
+\end{center}
+
+\vspace{-3cm}
+
+\centerline{%
+\Large
+\begin{tabular}[b]{c}
+% ORDEN ALFABETIC
+\textbf{S.~Espa{\~n}a, D.~Guerrero, M.A.~Salido, D.~Segrelles}\\
+Departamento de Sistemas Informáticos y Computación \\
+Universidad Politécnica de Valencia 
+%\\
+%E-46071 Valencia, SPAIN 
+\end{tabular}}
+
+\vspace{4cm}
+
+\begin{multicols}{2}
+
+\parte{En breve}
+
+\miitem La asignatura ``Informática'' (INF) en otras titulaciones
+ajenas a esta materia presenta:
+\begin{lista}
+\item \textbf{Distinta motivación:} el objetivo es más de algoritmia
+  que en la programación en sí (saber modelar un problema y las pautas
+  para resolverlo).
+\item \textbf{Distinto background:} no hay asignaturas simultáneas ni
+  previas, ni prerrequisitos.
+\item \textbf{Distinta perspectiva:} los conocimientos impartidos no
+  se van a complementar en materias posteriores, de ahí el interés en
+  la parte algorítmica que, en la ETSINF se estudia en asignaturas
+  posteriores.
+\end{lista}
+\miitem Nos centramos en la asignatura de la Escuela Técnica Superior
+de Ingeniería del Diseño (ETSID), aunque pensamos que se puede
+extrapolar a otras titulaciones distintas del grado de Ingeniería
+Informática.
+
+\begin{center}
+\includegraphics[scale=1.9]{etsid_foto2.png}
+\end{center}
+
+\miitem Se describen aquellas acciones y metodologías aplicadas en el
+grado encaminadas a conseguir los objetivos marcados.
+
+\miitem Esta asignatura ya existía antes de la implantación del grado,
+así que podemos comparar la misma asignatura en ingeniería y en grado:
+\begin{lista}
+\item Los contenidos no han variado, basta con adaptar la
+  asignatura a los nuevos títulos.
+%% \item Un análisis de la situación de la asignatura ayuda a aplicar de
+%%   manera más efectiva las acciones de innovación para la mejora del
+%%   proceso de enseñanza-aprendizaje.
+\item Se implantó un curso piloto durante 1 año y ahora disponemos de
+  la experiencia de un curso con el grado, por lo que es posible
+  comparar los resultados antes y después de la implantación del grado.
+\end{lista}
+
+\miitem Finalmente, se analizan los resultados obtenidos por la
+aplicación de las distintas acciones de innovación realizadas.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parte{Motivación}
+
+\miitem La materia de la asignatura ``Informática'' (INF), en
+titulaciones diferentes al grado de Ingeniería Informática tales como
+las impartidas en la ETSID, tienen como objetivo de aprendizaje que
+los alumnos sean capaces de diseñar algoritmos que resuelvan problemas
+presentes en su futura vida profesional, a través de una metodología
+de trabajo.
+
+\miitem En los planes antiguos, la materia de la asignatura de INF
+estaba incluida en la asignatura de Fundamentos de Informática (FIN),
+cuyos contenidos eran prácticamente los mismos. En los nuevos títulos
+de grado la asignatura se integra en el modulo básico dentro de la
+materia de Informática, siendo ésta la única asignatura asignada a
+dicha materia. Con 6 ECTS, su impartición se realiza en el primer
+curso, no siendo necesario ningún prerrequisito específico para ser
+cursada.
+
+\miitem A diferencia de la ETSINF, donde los alumnos empiezan
+aprendiendo Java, los alumnos de INF aprenden a programar en C
+llegando a utilizar estructuras de control, funciones, ficheros,
+vectores, cadenas de caracteres y matrices. La resolución de problemas
+incluye el cálculo de medias, máximos, operaciones con vectores,
+etc. La elección de C viene dada por la importancia de este lenguaje
+en la ingeniería.
+
+% http://upload.wikimedia.org/wikipedia/commons/4/41/BinarySearch.Flowchart.png
+
+\begin{center}
+\begin{tabular}{c@{\protect\rule{\columnsep}{0cm}}c}
+\includegraphics[scale=0.51]{flowchart.png} &
+\includegraphics[scale=0.5]{devcpp1.png}
+\end{tabular}
+\end{center}
+
+\miitem Se ha reemplazado un parcial (30\% de la nota final) y un
+examen final por hasta 11 actos de evaluación que incluyen (+recuperaciones):
+\begin{lista}
+\item 3 (+1) ``Minute papers'' en clase de teoría.
+\item 2 (+1) ``Trabajos académicos'' en clase de prácticas.
+\item 2 (+2) Exámenes parciales.
+\end{lista}
+
+\miitem La motivación de este trabajo es el análisis de resultados de
+la adaptación de la asignatura de FIN, incluida en los planes de
+estudio de las ingenierías técnicas, a los nuevos títulos de Grado que
+se imparten desde el curso 2010/2011, en sus diferentes titulaciones
+de Grado (mecánicos, eléctricos, electrónica y diseño).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\parte{Objetivos}
+
+\miitem El objetivo de este trabajo es determinar si la asignatura INF
+ha mejorado respecto a FIN, en términos de:
+\begin{lista}
+\item asistencia a clase por parte de los alumnos, 
+\item número de alumnos evaluados al final del cuatrimestre,
+\item número de aprobados respecto a los alumnos matriculados,
+\item coste en horas de trabajo  por parte del profesor.
+\end{lista}
+
+\parte{Resultados}
+
+\miitem En el curso 2009/2010 se puso en marcha un curso piloto en las
+especialidades de electrónica y de mecánicos, con el objetivo de
+testear las innovaciones diseñadas en la nueva guía docente de la
+asignatura INF. Para ello se realizó un análisis de la situación de la
+asignatura FIN, detectando aquellos puntos sobre los cuales se podían
+aplicar acciones de innovación acorde a Bolonia y que permitieran la
+mejora del proceso de enseñanza aprendizaje.\footnote{J. Damian
+  Segrelles, Miguel Angel Salido, Adriana Susana Giret. METODOLOGÍAS
+  ACTIVAS PARA LA ADECUACIÓN DE LA ASIGNATURA FUNDAMENTOS DE
+  INFORMÁTICA AL PLAN BOLÓNIA. Actas del CUIEET 2010 (2010).  }
+
+
+
+%% [1]  J. Damian Segrelles, Miguel Angel Salido, Adriana Susana Giret. METODOLOGÍAS ACTIVAS PARA LA ADECUACIÓN DE LA ASIGNATURA
+%% FUNDAMENTOS DE INFORMÁTICA AL PLAN BOLÓNIA. Actas del CUIEET 2010 (2010).
+	
+%% Metodologías Activas en la Enseñanza de Informática en la
+%% Licenciatura en Matemáticas. Miguel A. Salido, Adriana Giret,
+%% Montserrat Abril. IEEE-RITA (Latin-American Learning Technologies
+%% Journal), ISSN: 1932-8540, vol 2, nº 2, pp 73-78, 2007.
+
+\miitem Número de alumnos matriculados en grupos de teoría y de
+prácticas, tasas de asistencia y de aprobado antes y después de
+implantar el grado.
+
+%% \begin{center}
+%% \begin{tabular}{|l|c|c|c|c|} \toprule
+%%  & \multicolumn{2}{|c|}{Ingeniería Industrial} & 	\multicolumn{2}{c|}{Grado} \\  \midrule
+%%  & ~Matriculados & Aptos~ & ~Matriculados &	Aptos~\\  \midrule
+%% ~Electrónicos & 1 & 2 & 3 & 4 \\
+%% ~Mecánicos & 1 & 2 & 3 & 4 \\
+%% ~Eléctricos & 1 & 2 & 3 & 4 \\
+%% \bottomrule
+%% \end{tabular}
+%% \end{center}
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|} \cline{2-5}
+\multicolumn{1}{c|}{} & \multicolumn{2}{c|}{Ingeniería Industrial} & 	\multicolumn{2}{c|}{Grado} \\  \cline{2-5}
+\multicolumn{1}{c|}{} & ~Matriculados & Aptos~ & ~Matriculados &	Aptos~\\  \hline
+~Electrónicos & 1 & 2 & 3 & 4 \\
+~Mecánicos    & 1 & 2 & 3 & 4 \\
+~Eléctricos   & 1 & 2 & 3 & 4 \\
+\hline
+\end{tabular}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parte{Conclusiones}
+
+\miitem Las mejoras son evidentes, pero a costa de un esfuerzo
+excesivo por parte del personal docente:
+\begin{lista}
+\item Los grupos siguen siendo numerosos con alrededor de 70 alumnos en
+  algunos de ellos.
+\item El número de exámenes \emph{a preparar} de forma individual se
+  dispara no solamente por el aumento de actos de evaluación, sino por
+  el hecho de realizar dichas evaluaciones de manera individual para
+  cada grupo de teoría y/o de prácticas. Además, como cada grupo
+  realiza exámenes diferentes, se pierde equidad entre personas de
+  grupos diferentes.
+\item El profesorado emplea más tiempo preparando exámenes. Esto
+  proporciona una realimentación al profesor, aunque la realimentación
+  del alumno es escasa si ésta se limita a conocer la nota de la
+  evaluación: es necesario que el alumno es\-tu\-diase los fallos
+  cometidos, esto requeriría un esfuerzo adicional.
+\end{lista}
+
+\miitem Los resultados son mejores pero no se ponen los medios
+necesarios para alcanzarlos:
+\begin{lista}
+\item La docencia sería mejor tanto para alumnos como para profesores
+  con grupos más reducidos.
+\item Si el centro ofreciese mecanismos para sincronizar las
+  evaluaciones de diferentes grupos y especialidades, se podría
+  reducir de forma significativa el esfuerzo, recursos y logística en
+  preparar y ejecutar las pruebas de evaluación. Por ejemplo, en la
+  ETSINF se dedica un día para estos menesteres.
+\end{lista}
+
+%% \miitem Aunque no es relevante desde el punto de vista docente, el
+%% incremento del número de evaluaciones ha producido un aumento
+%% significativo del consumo de papel, ya que antes se podían contestar
+%% múltiples preguntas en una misma página y ahora cada ``minute paper''
+%% consume un mínimo de una página aunque solamente requiera unas pocas
+%% líneas.
+
+
+\end{multicols}
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% ispell-local-dictionary: "american"
+%%% TeX-master: t
+%%% End: 

@@ -1,0 +1,8 @@
+{
+	"title" : "Práctica 0",
+	"longtitle": "Práctica inicial",
+	"practice": "pract.md",
+	"jadeTemplate": "jade/practice.jade",
+	"dustTemplates" : ["p1.dust"]
+
+}

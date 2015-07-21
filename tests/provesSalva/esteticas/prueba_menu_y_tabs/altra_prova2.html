@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSS3 & jQuery folder tabs - demo</title>
+<style>
+body
+{
+    width: 95%;
+    margin: 10px auto 0 auto;
+    font-family: Arial, Helvetica;
+    font-size: small;
+    background: url('http://www.webdesignshock.com/demos/css3-boxes/img/background_1.png');
+}
+
+/* ------------------------------------------------- */
+
+#tabs{
+    margin: 0;
+    padding: 0 10px;
+    overflow: hidden;
+    margin-bottom: -1px;
+    height: 2.25em;
+}
+
+#tabs li{
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: .25em .25em 0;
+    height: 2em;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid #FFF;
+}
+
+
+#tabs a{
+    float: left;
+    height: 2em;
+    line-height: 2em;
+    -webkit-border-radius: 8px 8px 0 0;
+    -moz-border-radius: 8px 8px 0 0;
+    border-radius: 8px 8px 0 0;
+    background: #EEE;
+    border: 1px solid #CCC;
+    border-bottom: 0;
+    padding: 0 10px;
+    color: #000;
+    text-decoration: none;
+}
+
+#tabs #current {
+    z-index: 3;
+}
+
+#tabs #current a {
+    background: #FFF;
+    -webkit-box-shadow: #CCC 0 0 .25em;
+    -moz-box-shadow: #CCC 0 0 .25em;
+    box-shadow: #CCC 0 0 .25em;
+}
+
+/* ------------------------------------------------- */
+
+#content
+{
+    background: #FFF;
+    clear: left;
+    position: relative;
+    z-index: 2;
+    padding: 2em 1em;
+    border: 1px solid #CCC;
+    -moz-border-radius: 0 5px 5px 5px;
+    -webkit-border-radius: 0 5px 5px 5px;
+    border-radius: 0 5px 5px 5px;
+    -webkit-box-shadow: #CCC 0 0 .25em;
+    -moz-box-shadow: #CCC 0 0 .25em;
+    box-shadow: #CCC 0 0 .25em;
+}
+
+#content h2, #content h3, #content p
+{
+    margin: 0 0 15px 0;
+}
+
+/* ------------------------------------------------- */
+
+#about
+{
+    color: #999;
+}
+
+#about a
+{
+    color: #eee;
+}
+
+/* Main menu */
+
+#menu
+{
+    width: 100%;
+    margin: 0;
+    padding: 10px 0 0 0;
+    list-style: none;  
+    background: url('http://www.webdesignshock.com/demos/css3-boxes/img/background_1.png');
+    background: -moz-linear-gradient(#444, #111); 
+    background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #111),color-stop(1, #444));	
+    background: -webkit-linear-gradient(#444, #111);	
+    background: -o-linear-gradient(#444, #111);
+    background: -ms-linear-gradient(#444, #111);
+    background: linear-gradient(#444, #111);
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    -moz-box-shadow: 0 2px 1px #9c9c9c;
+    -webkit-box-shadow: 0 2px 1px #9c9c9c;
+    box-shadow: 0 2px 1px #9c9c9c;
+}
+
+#menu li
+{
+	float: left;
+	padding: 0 0 10px 0;
+	position: relative;
+	line-height: 0;
+}
+
+#menu a 
+{
+	float: left;
+	height: 25px;
+	padding: 0 25px;
+	color: #999;
+	text-transform: uppercase;
+	font: bold 12px/25px Arial, Helvetica;
+	text-decoration: none;
+	text-shadow: 0 1px 0 #000;
+}
+
+#menu li:hover > a
+{
+	color: #fafafa;
+}
+
+*html #menu li a:hover /* IE6 */
+{
+	color: #fafafa;
+}
+
+#menu li:hover > ul
+{
+	display: block;
+}
+
+/* Sub-menu */
+
+#menu ul
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;    
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: 0;
+    z-index: 99999;    
+    background: #444;
+    background: -moz-linear-gradient(#444, #111);
+    background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #111),color-stop(1, #444));
+    background: -webkit-linear-gradient(#444, #111);    
+    background: -o-linear-gradient(#444, #111);	
+    background: -ms-linear-gradient(#444, #111);	
+    background: linear-gradient(#444, #111);
+    -moz-box-shadow: 0 0 2px rgba(255,255,255,.5);
+    -webkit-box-shadow: 0 0 2px rgba(255,255,255,.5);
+    box-shadow: 0 0 2px rgba(255,255,255,.5);	
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#menu ul ul
+{
+  top: 0;
+  left: 150px;
+}
+
+#menu ul li
+{
+    float: none;
+    margin: 0;
+    padding: 0;
+    display: block;  
+    -moz-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+    -webkit-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+    box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+}
+
+#menu ul li:last-child
+{   
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;    
+}
+
+#menu ul a
+{    
+    padding: 10px;
+	height: 10px;
+	width: 130px;
+	height: auto;
+    line-height: 1;
+    display: block;
+    white-space: nowrap;
+    float: none;
+	text-transform: none;
+}
+
+*html #menu ul a /* IE6 */
+{    
+	height: 10px;
+}
+
+*:first-child+html #menu ul a /* IE7 */
+{    
+	height: 10px;
+}
+
+#menu ul a:hover
+{
+    background: #0186ba;
+	background: -moz-linear-gradient(#04acec,  #0186ba);	
+	background: -webkit-gradient(linear, left top, left bottom, from(#04acec), to(#0186ba));
+	background: -webkit-linear-gradient(#04acec,  #0186ba);
+	background: -o-linear-gradient(#04acec,  #0186ba);
+	background: -ms-linear-gradient(#04acec,  #0186ba);
+	background: linear-gradient(#04acec,  #0186ba);
+}
+
+#menu ul li:first-child > a
+{
+    -moz-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+
+#menu ul li:first-child > a:after
+{
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: -8px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #444;
+}
+
+#menu ul ul li:first-child a:after
+{
+    left: -8px;
+    top: 12px;
+    width: 0;
+    height: 0;
+    border-left: 0;	
+    border-bottom: 5px solid transparent;
+    border-top: 5px solid transparent;
+    border-right: 8px solid #444;
+}
+
+#menu ul li:first-child a:hover:after
+{
+    border-bottom-color: #04acec; 
+}
+
+#menu ul ul li:first-child a:hover:after
+{
+    border-right-color: #04acec; 
+    border-bottom-color: transparent; 	
+}
+
+
+#menu ul li:last-child > a
+{
+    -moz-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+}
+
+/* Clear floated elements */
+#menu:after 
+{
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+* html #menu             { zoom: 1; } /* IE6 */
+*:first-child+html #menu { zoom: 1; } /* IE7 */
+
+
+</style>
+</head>
+
+<body>
+<ul id="menu">
+	<li><a href="http://www.red-team-design.com/">Home</a></li>
+	<li>
+		<a href="#">Categories</a>
+		<ul>
+			<li>
+				<a href="#">CSS</a>
+				<ul>
+					<li><a href="#">Item 11</a></li>
+					<li><a href="#">Item 12</a></li>
+					<li><a href="#">Item 13</a></li>
+					<li><a href="#">Item 14</a></li>
+				</ul>				
+			</li>
+			<li>
+				<a href="#">Graphic design</a>
+				<ul>
+					<li><a href="#">Item 21</a></li>
+					<li><a href="#">Item 22</a></li>
+					<li><a href="#">Item 23</a></li>
+					<li><a href="#">Item 24</a></li>
+				</ul>				
+			</li>
+			<li>
+				<a href="#">Development tools</a>
+				<ul>
+					<li><a href="#">Item 31</a></li>
+					<li><a href="#">Item 32</a></li>
+					<li><a href="#">Item 33</a></li>
+					<li><a href="#">Item 34</a></li>
+				</ul>				
+			</li>
+			<li>
+				<a href="#">Web design</a>				
+				<ul>
+					<li><a href="#">Item 41</a></li>
+					<li><a href="#">Item 42</a></li>
+					<li><a href="#">Item 43</a></li>
+					<li><a href="#">Item 44</a></li>
+				</ul>	
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a href="#">Work</a>
+		<ul>
+			<li>
+				<a href="#">Work 1</a>
+				<ul>
+					<li>
+						<a href="#">Work 11</a>		
+						<ul>
+							<li>
+								<a href="#">Work 111</a>						
+							</li>
+							<li>
+								<a href="#">Work 112</a>
+							</li>
+							<li>
+								<a href="#">Work 113</a>
+							</li>
+						</ul>							
+					</li>
+					<li>
+						<a href="#">Work 12</a>
+						<ul>
+							<li>
+								<a href="#">Work 121</a>						
+							</li>
+							<li>
+								<a href="#">Work 122</a>
+							</li>
+							<li>
+								<a href="#">Work 123</a>
+							</li>
+						</ul>							
+					</li>
+					<li>
+						<a href="#">Work 13</a>
+						<ul>
+							<li>
+								<a href="#">Work 131</a>						
+							</li>
+							<li>
+								<a href="#">Work 132</a>
+							</li>
+							<li>
+								<a href="#">Work 133</a>
+							</li>
+						</ul>							
+					</li>
+				</ul>					
+			</li>
+			<li>
+				<a href="#">Work 2</a>
+				<ul>
+					<li>
+						<a href="#">Work 21</a>
+						<ul>
+							<li>
+								<a href="#">Work 211</a>						
+							</li>
+							<li>
+								<a href="#">Work 212</a>
+							</li>
+							<li>
+								<a href="#">Work 213</a>
+							</li>
+						</ul>							
+					</li>
+					<li>
+						<a href="#">Work 22</a>
+						<ul>
+							<li>
+								<a href="#">Work 221</a>						
+							</li>
+							<li>
+								<a href="#">Work 222</a>
+							</li>
+							<li>
+								<a href="#">Work 223</a>
+							</li>
+						</ul>							
+					</li>
+					<li>
+						<a href="#">Work 23</a>
+						<ul>
+							<li>
+								<a href="#">Work 231</a>						
+							</li>
+							<li>
+								<a href="#">Work 232</a>
+							</li>
+							<li>
+								<a href="#">Work 233</a>
+							</li>
+						</ul>							
+					</li>
+				</ul>					
+			</li>
+			<li>
+				<a href="#">Work 3</a>
+				<ul>
+					<li>
+						<a href="#">Work 31</a>
+						<ul>
+							<li>
+								<a href="#">Work 311</a>						
+							</li>
+							<li>
+								<a href="#">Work 312</a>
+							</li>
+							<li>
+								<a href="#">Work 313</a>
+							</li>
+						</ul>							
+					</li>
+					<li>
+						<a href="#">Work 32</a>
+						<ul>
+							<li>
+								<a href="#">Work 321</a>						
+							</li>
+							<li>
+								<a href="#">Work 322</a>
+							</li>
+							<li>
+								<a href="#">Work 323</a>
+							</li>
+						</ul>							
+					</li>
+					<li>
+						<a href="#">Work 33</a>
+						<ul>
+							<li>
+								<a href="#">Work 331</a>						
+							</li>
+							<li>
+								<a href="#">Work 332</a>
+							</li>
+							<li>
+								<a href="#">Work 333</a>
+							</li>
+						</ul>							
+					</li>
+				</ul>					
+			</li>
+		</ul>		
+	</li>
+	<li>
+		<a href="#">About</a>	
+	</li>
+	<li>
+		<a href="#">Contact</a>	
+	</li>
+</ul>
+
+<br>
+
+<ul id="tabs">
+    <li><a href="#" name="tab1">One</a></li>
+    <li><a href="#" name="tab2">Two</a></li>
+    <li><a href="#" name="tab3">Three</a></li>
+    <li><a href="#" name="tab4">Four</a></li>    
+</ul>
+
+<div id="content"> 
+    <div id="tab1">
+        <h2>Lorem ipsum sit amet</h2>
+        <p>Praesent risus nisi, iaculis nec condimentum vel, rhoncus vel dolor. Aenean nisi lectus, varius nec tempus id, dapibus non quam.</p>
+        <p>Suspendisse ac libero mauris. Cras lacinia porttitor urna, vitae molestie libero posuere et. Mauris turpis tortor, mollis non vulputate sit amet, rhoncus vitae purus.</p>
+
+        <h3>Pellentesque habitant</h3>
+        <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.</p>    
+    </div>
+    <div id="tab2">
+        <h2>Vivamus fringilla suscipit justo</h2>
+        <p>Aenean dui nulla, egestas sit amet auctor vitae, facilisis id odio. Donec dictum gravida feugiat.</p>
+        <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras pretium elit et erat condimentum et volutpat lorem vehicula</p>
+
+        <p>Morbi tincidunt pharetra orci commodo molestie. Praesent ut leo nec dolor tempor eleifend.</p>    
+    </div>
+    <div id="tab3">
+        <h2>Phasellus non nibh</h2>
+        <p>Non erat laoreet ullamcorper. Pellentesque magna metus, feugiat eu elementum sit amet, cursus sed diam. Curabitur posuere porttitor lorem, eu malesuada tortor faucibus sed.</p>
+        <h3>Duis pulvinar nibh vel urna</h3>
+        <p>Donec purus leo, porttitor eu molestie quis, porttitor sit amet ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec accumsan ornare elit id imperdiet. </p>
+
+        <p>Suspendisse ac libero mauris. Cras lacinia porttitor urna, vitae molestie libero posuere et. </p>
+    </div>
+    <div id="tab4">
+        <h2>Cum sociis natoque penatibus</h2>
+        <p>Magnis dis parturient montes, nascetur ridiculus mus. Nullam ac massa quis nisi porta mollis venenatis sit amet urna. Ut in mauris velit, sed bibendum turpis.</p>
+        <p>Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent bibendum sagittis libero.</p>
+        <h3>Imperdiet sem interdum nec</h3>
+
+        <p>Mauris rhoncus tincidunt libero quis fringilla.</p>    
+    </div>
+</div>
+
+<br><br>
+
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $("#content div").hide(); // Initially hide all content
+    $("#tabs li:first").attr("id","current"); // Activate first tab
+    $("#content div:first").fadeIn(); // Show first tab content
+    
+    $('#tabs a').click(function(e) {
+        e.preventDefault();
+        if ($(this).closest("li").attr("id") == "current"){ //detection for current tab
+         return       
+        }
+        else{             
+        $("#content div").hide(); //Hide all content
+        $("#tabs li").attr("id",""); //Reset id's
+        $(this).parent().attr("id","current"); // Activate this
+        $('#' + $(this).attr('name')).fadeIn(); // Show content for current tab
+        }
+    });
+});
+</script>
+
+</body>
+</html>

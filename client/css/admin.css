@@ -1,0 +1,53 @@
+body{
+
+}
+/*#tabs .ui-widget-header {
+    
+    border: 1px solid #000000;
+    background:#999999
+}*/
+#users-list, #gu, #ug-list, #groups-list, #pg, #gp-list
+{
+   float: left;
+   width: 27%;
+   height: auto;
+   overflow: visible;
+   margin-right: 3%;
+   color: black;
+   padding: 1%;
+   
+}
+#tabs-ga
+{
+    background: none;
+    
+}
+#tabs
+{
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    /*          background: #333;*/
+    
+}
+.title
+{
+    background-color: transparent;
+}
+#feedback { font-size: 1.4em; }
+
+.list .ui-selected { 
+    background-color: rgba(55,120,194,0.3);
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2) inset, 0 1px 0 rgba(255,255,255,0.5);
+    color: #3d5979;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+ }
+.list { list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 60%;
+        
+        }
+.list li { margin: 3px; padding: 0.4em; font-size: medium; height: 18px; }
+    

@@ -1,0 +1,12 @@
+{
+          "status": {
+			  "nota_parcial" : "true"
+			, "func_precio": "true"
+			, "prog_parking": "true"
+	  }
+	, "dusts":{
+			  "nota_parcial" : "p1.dust"
+			, "func_precio":   "p2.dust"
+			, "prog_parking":  "p2.dust"
+	  }
+}

@@ -1,0 +1,10 @@
+  1 bocadillo  de chorizo a  1.50 euros son   1.50 euros
+  2 bocadillos de tortilla a     1.20 euros son   2.40 euros
+  3 botellas de agua a       0.50 euros son   1.50 euros
+  2 refrescos de cola a      0.60 euros son   1.20 euros
+  3 refrescos de tercio a   0.75 euros son   2.25 euros
+                                           --------
+                                    TOTAL:    8.85 euros
+                                  Entrega:   10.00 euros
+                               Devolucion:    1.15 euros
+

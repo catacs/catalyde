@@ -1,0 +1,12 @@
+{
+  "status": {
+    "codi" : "true"
+  }
+  , "dusts":{
+    "codi1":  "p1.dust",
+    "codi2":  "p1.dust",
+    "codi3":  "p1.dust",
+    "codi4":  "p1.dust",
+    "codi5":  "p1.dust"
+  }
+}

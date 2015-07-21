@@ -1,0 +1,24 @@
+\begin{tikzpicture}[>=latex,thick]
+
+  \def\inputsize{128}
+  \def\hiddensize{128}
+  \def\outputsize{35}
+
+  \draw[->,line width=10,color=cflechaMLP] (0,-1.5) -- (0,+4.5);
+ 
+  \draw (-5,+4) node [right] {UJIpenchars2 MLP};
+ 
+  \draw (0,-1) node (input) {Input};
+
+  \draw (0,0) node [draw,shape=rectangle,fill=white,minimum width=2*\inputsize] (inputlayer)
+  {\inputsize{} units};
+
+  \draw (0,+1) node [draw,shape=rectangle,fill=white,minimum width=2*\hiddensize] (hiddenlayer)
+  {\hiddensize{} units};
+
+  \draw (0,+2) node [draw,shape=rectangle,fill=white,minimum width=2*\outputsize] (outputlayer)
+  {\outputsize{} units};
+
+  \draw (0,+3) node (output) {Output};
+
+\end{tikzpicture}%

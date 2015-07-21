@@ -1,0 +1,22 @@
+This file will show you how to create a practice:
+
+
+Files needed:
+
+FileName.md - the file wit markdown content
+pract.json - configuration to upload practice practice
+conf.json - configuration file for build the source code
+actions.js - functions in javascript
+
+
+Directories needed:
+
+./jade - here you can put the jade template (we give one by default but you can modify it)
+./dust - dust templates for building practice
+./content -  content like images used to put into practice
+
+
+You have to use html comments to enclose the blocks into *.md file and some options that I will explain next.
+
+
+

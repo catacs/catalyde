@@ -1,0 +1,56 @@
+\begin{tikzpicture}[>=latex,thick]
+
+  \draw (0,0) node [draw,shape=corpus] (corpus1)
+  {\begin{tabular}{c}System\\prototypes\end{tabular}};
+
+  \draw (5,0) node [draw,shape=rectangle,color=cenfasis] (mlp)
+  {\begin{tabular}{c}MLP-based\\class\\screener\end{tabular}};
+  
+  \draw (10,+1.5) node [draw,shape=rectangle] (histogram)
+  {\begin{tabular}{c}Histogram-based\\prototype\\screener\end{tabular}};
+
+  \draw (10,-1.5) node [draw,shape=rectangle] (vector)
+  {\begin{tabular}{c}Vector-based\\prototype\\screener\end{tabular}};
+
+  \draw (16,0) node [draw,shape=rectangle] (dtw)
+  {\begin{tabular}{c}DTW-based\\classifier\end{tabular}};
+
+  \draw (12.5,0) node [draw,shape=circle] (join1) {$+$};
+
+  \draw (16,+4.5) node [shape=rectangle] (glyph)
+  {New glyph};
+
+  \draw (16,-2.5) node [shape=rectangle] (class)
+  {Guessed class};
+
+  \tikzstyle{pointnode}=[shape=circle,draw=black,fill=black,thick,inner sep=0pt,minimum size=2pt]
+
+  \def\pBx{7.5}
+  \draw (16,+3.5) node [pointnode] (pointA) {};
+  \draw (\pBx,+2.7) node [pointnode] (pointB) {};
+  \draw (7,0) node [pointnode] (pointC) {};
+
+  \draw     (glyph.south) -- (pointA.north);
+  \draw[->] (pointA.south) -- (dtw.north);
+  \draw     (pointA.west) -| (pointB.north);
+  \draw[->] (pointB.west) -| (mlp.north);
+  \draw[->] (pointB.east) -| (histogram.north);
+  \draw[->] (pointB.south) -- (\pBx,-0.3) -| (vector.north);
+  
+  \draw[->] (corpus1.east) -- (mlp.west);
+  \draw     (mlp.east) -- (pointC.west);
+  \draw[->] (pointC.north) |- (histogram.west);
+  \draw[->] (pointC.south) |- (vector.west);
+  \draw[->] (histogram.east) -| (join1.north);
+  \draw[->] (vector.east) -| (join1.south);
+  \draw[->] (join1.east) -- (dtw.west);
+  \draw[->] (dtw.south) -- (class.north);
+
+  \def\minRx{2.5}
+  \def\minRy{+3.0}
+  \def\maxRx{13.5}
+  \def\maxRy{-2.6}
+  \draw (\minRx,\minRy) node [below right]{\begin{tabular}{l}Composite\\screener\end{tabular}};
+  \draw[dashed] (\minRx,\minRy) rectangle (\maxRx,\maxRy);
+
+\end{tikzpicture}%

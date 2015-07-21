@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+{?funcion_perimetro_rectangulo}
+{#load blockid=id.funcion_perimetro_rectangulo /}
+{:else}{~n}
+float perimetro_rectangulo(float base, float altura) {
+  return 2*(base+altura);
+}  
+{/funcion_perimetro_rectangulo}
+
+int main() {
+  float base, altura, perimetro;
+  fprintf(stdout,"Introduce la base: ");
+  fscanf(stdin,"%f",&base);
+
+{?pedir_altura}
+{#load blockid=id.pedir_altura /}
+{:else}{~n}
+  fprintf(stdout,"Introduce la altura: ");
+  fscanf(stdin,"%f",&altura);
+{/pedir_altura}
+  
+  perimetro = perimetro_rectangulo(base,altura);
+  fprintf(stdout,"El perimetro es: %f\n",perimetro);
+  return 0;
+}
+
+

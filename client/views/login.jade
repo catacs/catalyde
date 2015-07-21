@@ -1,0 +1,35 @@
+!!! 5
+html(lang="en")
+  head
+     link(rel='stylesheet', href='css/ui-smoothness-custom/jquery-ui-1.8.22.custom.css')
+     script(src='js/external/jquery-1.7.2.min.js')
+     script(src='js/external/jquery-ui-1.8.22.custom.min.js')
+     link(rel='stylesheet', href='/css/login.css')
+     script(src='/js/login.js')
+  body
+    title #{title}
+    b.vignette
+
+    #heading
+      //img(src="../img/aceditor.png")
+      h1 #{title}
+    div#box  
+       div#login
+        //
+            p
+                a(href="/register") Registrar
+        
+        - if (message != "")
+            p#error #{message}
+        - else
+           p
+            | Por favor inicie sesión  
+        form(method="post", action="/login")
+         p
+           label Usuario:
+             input(type='text', name='email')
+         p
+           label Contraseña:
+             input(type='password', name='password')
+         P
+           input(type='submit', id="login-button", value='Iniciar Sesión')

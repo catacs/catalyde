@@ -1,0 +1,23 @@
+!!! 5
+html  
+    head
+    link(rel='stylesheet', href='/css/practice.css')
+    link(rel='stylesheet', href='/codemirror/lib/codemirror.css')
+    script(src='/codemirror/lib/codemirror.js')
+    script(src='/codemirror/mode/clike/clike.js')
+     
+    body
+     title= title  
+     h1=title
+     include ex1.jade
+     div#codeBox
+      textarea#code1 
+       include code1.h
+      
+      script
+          var mycodemirror= CodeMirror.fromTextArea(document.getElementById('code1'),{lineNumbers: true,mode: "text/x-csrc"});
+      canvas#image
+ 
+ 
+   
+   

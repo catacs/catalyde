@@ -1,0 +1,11 @@
+{
+  "status": {
+    "funcion_area_rectangulo" : false,
+    "pedir_altura": false,
+    "funcion_perimetro_rectangulo" : false,
+    "cuerpo_funcion_volumen_cilindro" : false,
+    "cuerpo_funcion_segundos_dia" : false,
+    "funcion_pedir_int" : false,
+    "programa_intervalo" : false
+  }
+}

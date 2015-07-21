@@ -1,0 +1,16 @@
+sudo aptitude install python-pip
+pip install landslide
+
+si no va, igual hace falta instalar:
+sudo aptitude install python-markdow
+y otras cosas que explica en el repositorio git
+https://github.com/adamzap/landslide
+
+tras eso, dentro de cada directorio hay un makefile, basta hacer make
+para generar el correspondiente html
+
+como mejor se ve es con chrome, he instalado una impresora pdf virtual
+e imprimo en ella...
+
+S.
+

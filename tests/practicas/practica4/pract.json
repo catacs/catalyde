@@ -1,0 +1,6 @@
+{
+  "title" : "Práctica 4",
+  "longtitle" : "Ejercicios de funciones",
+  "practice": "pract.md",
+  "dustTemplates" : ["area_rectangulo.dust", "perimetro.dust", "volumen_cilindro.dust", "segundos_dia.dust", "intervalo.dust","leer_numero.dust"]
+}

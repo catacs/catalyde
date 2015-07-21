@@ -1,0 +1,42 @@
+{?anyo_llovio_mas}
+{#load blockid=id.anyo_llovio_mas /}
+{:else}{~n}
+#include <stdio.h>
+#define NOMLEO "lluvias.txt"
+#define NOMESCRIBO "poranyo.txt"
+#define DESDE 2007
+#define HASTA 2011
+
+int main() {
+  FILE *fleo,*fescribo;
+  int dia,mes,anyo,maxanyo;
+  float litros,totales[HASTA-DESDE+1],maxlitros;
+  fleo = fopen(NOMLEO,"r");
+  if (fleo == NULL)
+    printf("Error al abrir fichero\n");
+  else {
+    for (anyo = DESDE; anyo <= HASTA; anyo = anyo+1)
+      totales[anyo-DESDE] = 0;
+    while (fscanf(fleo,"%d%d%d%f",&anyo,&mes,&dia,&litros) == 4) {
+      totales[anyo-DESDE] = totales[anyo-DESDE] + litros;
+    }
+    fclose(fleo);
+    /* calcular el maximo y mostrar resultados */
+    maxlitros = totales[0];
+    maxanyo   = DESDE;
+    fescribo = fopen(NOMESCRIBO,"w");
+    for (anyo = DESDE; anyo <= HASTA; anyo = anyo+1) {
+      if (totales[anyo-DESDE] > maxanyo) {
+	maxanyo = totales[anyo-DESDE];
+	maxanyo = anyo;
+      }
+      fprintf(fescribo,"Anyo %d litros totales: %.2f\n",anyo,totales[anyo-DESDE]);
+    }
+    fclose(fescribo);
+    printf("%d fue el anyo que llovio mas con un total de %.2f litros\n",
+	   maxanyo,maxlitros);
+  }
+  return 0;
+}
+{/anyo_llovio_mas}
+

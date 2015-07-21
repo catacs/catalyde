@@ -1,0 +1,6 @@
+{
+  "title" : "Práctica 8",
+  "longtitle" : "Ejercicios de cadenas y vectores",
+  "practice": "pract.md",
+  "dustTemplates" : ["contar_vocales.dust", "creciente.dust", "iguales.dust", "llovido.dust", "llovio_mas.dust", "progresion.dust","ver_fichero.dust"]
+}

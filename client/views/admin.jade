@@ -1,0 +1,84 @@
+!!! 5
+html
+  head
+    title #{title}
+    link(rel='stylesheet', href='css/style.css')
+    link(rel='stylesheet', href='css/admin.css')
+    link(rel='stylesheet', href='css/ui-custom-theme/jquery-ui-1.8.23.custom.css')
+    //
+       External Dependencies 
+    script(src='socket.io/socket.io.js')
+    //
+       we can load jquery from google CDN because it's better () 
+    script(src='js/external/jquery-1.7.2.min.js')
+    script(src='js/external/jquery-ui-1.8.22.custom.min.js')
+    script(src='js/external/ui.tabs.closable.min.js')
+    script(src='js/external/modernizr-2.0.6.js')
+    script(src='js/external/transformjs.1.0.beta.2.js')
+    script(src='js/external/jquery.easydate-0.2.4.js')
+    
+    script(src='js/admin.js')
+
+  body
+    // b.vignette
+    div#err-message
+    #tabs
+        ul
+            li 
+                a(href="#tabs-ga") 
+                    | Grupos - Alumnos
+            li 
+                a(href="#tabs-pg") 
+                    | Practicas - Grupos
+        div#tabs-ga
+            
+            #users-list.dialog.drop-shadow.curved.curved-vt2
+                div.title Lista Usuarios
+                ul#ul-users-list.list
+                div#act-users.button
+                    span Actualizar
+                div#add-user.button
+                    span Añadir
+                //
+                    div#del-user.button
+                    span Borrar
+            #gu.dialog.drop-shadow.curved.curved-vt2
+                div.title Lista Grupos
+                ul#ul-gu.list
+                div#act-gu.button
+                    span Actualizar
+                //
+                    div#add-gu.button
+                    span Añadir
+                //
+                    div#del-gu.button
+                    span Borrar
+            #ug-list.dialog.drop-shadow.curved.curved-vt2
+                div.title Lista grupos de usuario
+                ul#ul-ug-list.list
+                div#act-ug.button
+                    span Actualizar
+                div#add-ug.button
+                    span Añadir
+                //
+                    div#add-ug.button
+                    span Borrar 
+        div#tabs-pg
+            #groups-list.dialog.drop-shadow.curved.curved-vt2
+                div.title  Lista grupos
+                ul#ul-groups-list.list
+                div#act-groups.button
+                    span Actualizar
+            #pg.dialog.drop-shadow.curved.curved-vt2
+                div.title Lista Practicas 
+                ul#ul-pg.list
+                div#act-pg.button
+                    span Actualizar
+            #gp-list.dialog.drop-shadow.curved.curved-vt2
+                div.title 
+                    p  Lista practicas del grupo
+                ul#ul-gp-list.list                    
+                div#act-gp.button
+                    span Actualizar
+                 div#add-pg.button
+                    span Añadir practica a grupo

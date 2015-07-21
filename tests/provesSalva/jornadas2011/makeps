@@ -1,0 +1,8 @@
+#!/bin/bash
+papel=icdar09-uji2
+latex ${papel}.tex &&
+bibtex ${papel} &&
+latex ${papel}.tex &&
+latex ${papel}.tex &&
+dvips ${papel}.dvi -o ${papel}.ps &&
+rm -f ${papel}.{aux,bbl,blg,dvi,log}

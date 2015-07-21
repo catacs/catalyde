@@ -1,0 +1,45 @@
+!!! 5
+html(lang="en")
+  head
+    link(rel='stylesheet', href='css/ui-smoothness-custom/jquery-ui-1.8.22.custom.css')
+    script(src='js/external/jquery-1.7.2.min.js')
+    script(src='js/external/jquery-ui-1.8.22.custom.min.js')
+    script(src='/js/login.js')
+    title Catalyde login
+  body
+    #heading
+      img(src="../img/aceditor.png")
+    div#box  
+      div#login
+      
+        form(action='/register', method='POST')
+          #loginform
+            label(for='email') Email
+            br
+            input(type='text', name='email')
+          br
+          #password
+            label(for='password') Contraseña
+            br
+            input(type='password', name='password')
+          br
+          #usedtype
+            label(for='usedtype') Tipo
+            br
+            select(name='usertype', type='usertype')
+                option(value='student') Estudiante
+                option(value='teacher') Profesor
+                option(value='admin') Administrador
+          br
+          #first-name
+            label(for='name.first') Nombre
+            br
+            input(type='text', name='name.first')
+          br
+          #last-name
+            label(for='name.last') Apellidos
+            br
+            input(type='text', name='name.last')
+          br
+          #submit
+           input(type='submit', value='Registrar')

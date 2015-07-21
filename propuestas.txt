@@ -1,0 +1,119 @@
+
+
+
+Password y seguridad:
+
+- Meter cifrado de password o ssl.( añadido cerificado ssl por tanto el servidor se conecta por https )
+- meter en el menu la opción de cambiar el password, esto es
+  importante si queremos que los alumnos lo utilicen (les daríamos un
+  primer password y leugo se lo cambian) entiendo que sería sacar una
+  ventana modal jquery que pida el password antiguo y el nuevo por
+  duplicado (puede que esto ya esté hecho por ahí!!!) (http://node-login.braitsch.io/signup  - https://github.com/lefthand/Node-JS-Bootstrap/blob/master/lib/user.js)
+- Poder cambiar la contraseña desde el administrador.
+
+Seguridad en ejecución:
+
+   - Bucles infinitos y Time Limit Exceeded. Siento decirlo, pero con pty.js
+     es un poco complicado controlar que el programa ha entrado en un bucle
+infinito. Quiero decir, a priori, no hay forma de diferenciar tiempo de
+computo del programa de tiempo de ejecución (poniendo entrada/salida). Con lo
+que un timeout desde javascript/node o incluso pty.js podría cargarse
+programas de usuarios "lentos"... Con childProcess sí que había un parámetro
+que era timelimit y en teoría sí que iba. Esto habria que mirarlo. Yo creo que
+la propuesta que puede dar menos quebraderos de cabeza es ejecutar un programa
+sobre el programa ejecutado, que se encargue de cortar el otro si se pasa del
+límite. Así tu a la hora de ejecutar no ejecutas el programa del alumno si no
+un programa padre que se encarga de lanzar el programa del alumno y controlar
+que no haga nada que no toca.
+
+  - Seguridad, rollo AppArmor. A raíz de lo que hemos dicho. Mi idea sería
+    pasarle el test de Leandro. Es decir, le decimos que intente hackear el la
+aplicación y si no puede es que es bastante seguro. ;)
+
+
+- Pruebas de ejecución y recuperación de errores
+
+
+===================================================================
+
+Otras cosas para hacer después de la versión 0:
+
+- preparar la acción "check" que ejecuta UN programa en modo no
+  interactivo y permite capturar la salida como cadena para comprobar
+  que cumple ciertas propiedades
+
+- Índice: al subir la práctica generar un índice o bien no al subirla pero sí
+  al cargarla, ya no sé si el índice:
+
+   * lo da el profesor con metadatos
+
+   * se genera automáticamente a partir de los h1, h2 del markdown, en
+     cuyo caso hay que estudiar lo que hace "marked"
+
+- Guardar a nivel de bloque y mostrar de alguna forma el last saved.
+
+Dust, jade y configuración de las prácticas:
+
+- permitir que las acciones de compilar y de ejecutar permitan elegir
+  el template dust de manera clara. Poner más opciones al compile and run.
+Portar la plantilla a utilizar a nivel de boton y no de practica. Migrar el
+jade al servidor.
+
+
+- mejorar la parte de hacer un log de lo que va pasando, y decidir qué
+  cosas salen en un posible log en el lado cliente, este log NO iría
+  en un status bar de una línea (qeu se quitó provisionalmente) sino
+  que se podría abrir un histórico de los logs (reemplaza el status
+  bar)
+
+- Script para profesor vago. Crear un sistema para subir prácticas que el
+  profesor "vago" solo tenga que centrarse en editar el markdown. Fácil i
+rápido.
+
+
+- Utilización de 2 BD (producción y prueba) para poder prober las practicas
+  antes de subirlas del todo.
+
+- interfaz para el profesor. La idea es reutilizar el menu acordeon de
+  grupos y prácticas y así al elegir una práctica salen los alumnos,
+  al elegir un alumno se carga su práctica pero los codemirror serían
+  no editables, podría salir un textarea para añadir comentarios del
+  profesor. Joan ha propuesto que se pueda generar un enorme pdf con
+  las prácticas de todos los alumnos usando algo similar a la opción
+  de imprimir.
+
+
+- Que el profesor pueda añadir comentarios sobre las bloques del alumno.
+
+- Función de poder importar/exportar en el lado cliente la practica del
+  alumno.
+
+
+- averiguar cómo lanzar pty.fork para que el terminal funcione pero se
+  lance gdb en lugar del proceso directamente
+
+
+Cosas de deployment y escalabilidad:
+  Esta claro que para que sea usable habría que añadir algunas funcionalidades
+más y pulir cosas. Pero también Catalin ha comentado que hay que tener en
+cuenta cosas que puedan suponer un problema cuando lo use mucha gente. Yo a
+priori veo los siguientes problemas que habría que resolver en este sentido:
+
+    - El tratamiento del inicio de sesión, según Catalin si estás en un
+      navegador y tienes varias prácticas abiertas. Si cierras las prácticas o
+abres otro navegador se realizan peticiones a saco sobrecargando el servidor.
+O algo por el estilo. Catalin comentó que habría que corregirlo, creo que él
+ya sabe cómo, lo que pasa que es bastante faena para algo que no supone una
+funcionalidad nueva en la aplicación.
+
+    - Ejecución de programas y sobrecarga de servidores. Ahora mismo cuando
+      se lanza un run y se abre la terminal, el usuario compila y tiene una
+instancia de su programa ejecutándose. Qué pasa si hay muchos usuarios?, se
+pueden encolar las compilaciones, pero y las ejecuciones? Supongo que el tema
+de compilación se puede poner un relojito (+ timeout rollo: sobrecarga del
+sistema, prueba más tarde) y hacer toda la lógica de colas y comunicación con
+el servidor.
+      Con la ejecución es parecido, puesto que los programas pueden tardar
+varios segundos en ejecutarse (algorítmica/E/S). Con esto digo que habría que
+discutir bien como hacerlo y llevarlo a cabo.
+

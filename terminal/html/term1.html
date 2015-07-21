@@ -1,0 +1,290 @@
+<html>
+<head>
+	<title>termlib Text Import Sample</title>
+	
+	<script type="text/javascript" src="../js/lib/termlib.js"></script>
+	<script type="text/javascript" src="../js/lib/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript">
+	// *** text import sample ***
+	// mass:werk, N.Landsteiner 2007
+	var term;
+	
+	function termOpen() {
+		if ((!term) || (term.closed)) {
+			term = new Terminal(
+				{
+					x: 0,
+					y: 0,
+					termDiv: 'termDiv',
+					bgColor: '#232e45',
+					greeting: '%+r **** termlib.js import sample **** %-r%n%n * any text is simply echoed%n * for imports use the links at the left%n * type "exit" to quit.%n ',
+					handler: termHandler,
+					exitHandler: termExitHandler,
+	                                ps: ""
+				}
+			);
+			term.open();
+			
+			// dimm UI text
+			var mainPane = (document.getElementById)?
+				document.getElementById('mainPane') : document.all.mainPane;
+			if (mainPane) mainPane.className = 'lh15 dimmed';
+		}
+	}
+
+	function termHandler() {
+		// default handler + exit
+		this.newLine();
+		<!-- if (this.lineBuffer.search(/^\s*exit\s*$/i) == 0) { -->
+		<!-- 	this.close(); -->
+		<!-- 	return; -->
+		<!-- } -->
+		<!-- else if (this.lineBuffer != '') { -->
+			
+	
+		<!-- } -->
+		this.prompt();
+	}
+
+	function termExitHandler() {
+		// reset the UI
+		var mainPane = (document.getElementById)?
+			document.getElementById('mainPane') : document.all.mainPane;
+		if (mainPane) mainPane.className = 'lh15';
+	}
+	
+	
+	// demo hooks
+	
+	
+	var useMultiLineImport=false;
+	
+	function testMultiLine(funcFlag) {
+		if ((!term) || (term.closed)) {
+			alert('Please open a terminal first!');
+			return;
+		}
+		// set flag for handler
+		// if true, we'll use importMultiLineText(), else importEachLine()
+		useMultiLineImport=funcFlag;
+		
+		// set global keylock (else no key stroke will reach the form element)
+		TermGlobals.keylock = true;
+		
+		// and show the multiline prompt
+		TermGlobals.setVisible('promptDiv', true);
+		document.forms.promptForm.content.focus();
+		// input will by handled by promptHandler
+	}
+	
+	function promptHandler(text) {
+		// hide the dialog
+		TermGlobals.setVisible('promptDiv', false);
+		
+		// reset keylock and import the text
+		TermGlobals.keylock = false;
+		if (text) {
+			if (useMultiLineImport) {
+				TermGlobals.importMultiLine(text);
+			}
+			else {
+				TermGlobals.importEachLine(text);
+			}
+		}
+	}
+	
+	
+	var CircularQueueItem = function(value, next, back) {
+	    this.next = next;
+	    this.value = value;
+	    this.back = back;
+	    return this;
+	};
+	
+	var CircularQueue = function(queueLength){
+	    /// <summary>Creates a circular queue of specified length</summary>
+	    /// <param name="queueLength" type="int">Length of the circular queue</type>
+	    
+	  this._back = new CircularQueueItem(undefined, undefined, undefined);
+	  this._front = this._back;
+	    var item = this._back;
+	    this.size = 0
+	    for(var i = 0; i < queueLength - 1; i++)
+	    {
+	        item.next = new CircularQueueItem(undefined, undefined, item);
+	        item = item.next;
+	    }
+	    item.next = this._front;
+	    this._front.back = item;
+	}
+	
+	CircularQueue.prototype.push = function(value){
+	    /// <summary>Pushes a value/object into the circular queue</summary>
+	    /// <param name="value">Any value/object that should be stored into the queue</param>
+	    this._back.value = value;
+	    this._back = this._back.next;
+	    this.size += 1;
+	};
+	
+	CircularQueue.prototype.pop = function(){
+	    /// <summary>Gets the last pushed value/object from the circular queue</summary>
+	    /// <returns>Returns the last pushed value/object from the circular queue</returns>
+	    if (this.size == 0)
+	      return null;
+	    value = this._front.value;
+	    this._front = this._front.next;
+	    this.size -= 1;
+	    return value;
+	};
+	
+	var queue = new CircularQueue(1024); 
+	
+	var output_buffer = "";
+	var flag = false;
+	
+	
+	function printTerm(text){
+	  term.type(text);
+	  term.prompt();
+	}
+	
+	
+	
+	preRun = function(){
+	
+	  input_f = function (){
+	    console.log("He llegado hasta aqui"+queue.size);
+	    car = queue.pop();
+	    return car; 
+	  }
+	  FS.init(input_f, null)
+	
+	}
+	
+	var Module = {
+	  'noFSInit': true,
+	  'preRun': preRun,
+	  'print': printTerm,
+	};
+	
+	
+</script>
+	
+<style type="text/css">
+  body,p,a,td {
+    font-family: courier,fixed,swiss,sans-serif;
+    font-size: 12px;
+    color: #cccccc;
+  }
+  .lh15 {
+    line-height: 15px;
+  }
+
+  .term {
+    font-family: "Courier New",courier,fixed,monospace;
+    font-size: 12px;
+    color: #94aad6;
+    background: none;
+    letter-spacing: 1px;
+  }
+  .term .termReverse {
+    color: #232e45;
+    background: #95a9d5;
+  }
+
+  a,a:link,a:visited {
+    text-decoration: none;
+    color: #77dd11;
+  }
+  a:hover {
+    text-decoration: underline;
+    color: #77dd11;
+  }
+  a:active {
+    text-decoration: underline;
+    color: #eeeeee;
+  }
+
+  a.termopen,a.termopen:link,a.termopen:visited {
+    text-decoration: none;
+    color: #77dd11;
+    background: none;
+  }
+  a.termopen:hover {
+    text-decoration: none;
+    color: #222222;
+    background: #77dd11;
+  }
+  a.termopen:active {
+    text-decoration: none;
+    color: #222222;
+    background: #eeeeee;
+  }
+
+  table.inventory td {
+    padding-bottom: 20px !important;
+  }
+
+  tt {
+    font-family: courier,fixed,monospace;
+    color: #ccffaa;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .dimmed,.dimmed *,.dimmed * * {
+    background-color: #222222 !important;
+    color: #333333 !important;
+  }
+
+  @media print {
+    body { background-color: #ffffff; }
+    body,p,a,td,li,tt {
+      color: #000000;
+    }
+    pre,.prop {
+      color: #000000;
+    }
+    h1 {
+      color: #000000;
+    }
+    a,a:link,a:visited {
+      color: #000000;
+    }
+    a:hover {
+      color: #000000;
+    }
+    a:active {
+      color: #000000;
+    }
+    table.inventory {
+      display: none;
+    }
+  }
+
+</style>
+
+<script type="text/javascript" src="../js/emscripten/pf.js"></script>
+
+<script>
+	mundo = cwrap('mundo')
+</script>
+
+</head>
+
+
+
+<body bgcolor="#222222" link="#77dd11" text="#cccccc" alink="#eeeeee" vlink="#77dd11"
+  topmargin="0" bottommargin="0" leftmargin="0" rightmargin="0" marginheight="0" marginwidth="0">
+
+
+  <div id="termDiv" style="position:relative; width:500px; height:500px"></div>
+
+  <script type="text/javascript">
+    termOpen();
+    </script>
+
+   <a href="javascript:mundo()">Click aqui</a>
+  </body>
+</html>
+

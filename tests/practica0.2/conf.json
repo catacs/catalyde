@@ -1,0 +1,10 @@
+{
+          "status": {
+			  "func_suma" : "true"
+			, "func_resta": "true"
+	  }
+	, "dusts":{
+			  "func_suma":  "p1.dust"
+			, "func_resta": "p1.dust"
+	  }
+}

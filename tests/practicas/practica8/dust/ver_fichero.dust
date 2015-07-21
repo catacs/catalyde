@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define NOMFICHERO "poranyo.txt"
+#define TAM 1000
+
+int main() {
+  char cadena[TAM];
+  FILE *fd = fopen(NOMFICHERO,"r");
+  if (fd == NULL)
+    printf("No se ha encontrado el fichero \"%s\"\n",NOMFICHERO);
+  else {
+    printf("Contenido del fichero \"%s\":\n",NOMFICHERO);
+    while (fgets(cadena, TAM, fd))
+      printf("%s",cadena);
+  }
+  return 0;
+}
+

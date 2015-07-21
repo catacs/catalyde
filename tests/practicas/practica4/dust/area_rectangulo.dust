@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+{?funcion_area_rectangulo}
+{#load blockid=id.funcion_area_rectangulo /}
+{:else}{~n}
+float area_rectangulo(float base, float altura) {
+  return base*altura;
+}
+{/funcion_area_rectangulo}
+
+int main() {
+  float base, altura, area;
+  fprintf(stdout,"Introduce la base: ");
+  fscanf(stdin,"%f",&base);
+
+{?pedir_altura}
+{#load blockid=id.pedir_altura /}
+{:else}{~n}
+  fprintf(stdout,"Introduce la altura: ");
+  fscanf(stdin,"%f",&altura);
+{/pedir_altura}
+  
+  area = area_rectangulo(base,altura);
+  fprintf(stdout,"El area es: %f\n",area);
+  return 0;
+}
+

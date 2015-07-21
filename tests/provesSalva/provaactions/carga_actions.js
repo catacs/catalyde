@@ -1,0 +1,6 @@
+var fs = require("fs")
+var contenido = fs.readFileSync("actions.js","utf8")
+console.log(contenido)
+var x = eval(contenido)
+console.log("resultado: ",x)
+x.run("hola")

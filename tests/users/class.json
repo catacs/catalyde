@@ -1,0 +1,56 @@
+{
+    "users":
+    [
+        {     "fname": "Joan"
+            , "lname": "Pastor"
+            , "type":  "student"
+            , "groups": []
+            , "email": "jpastor@mail.com"
+            , "password": "1"
+        },
+        {
+              "fname": "Catalin"
+            , "lname": "Stanciu"
+            , "type":  "student"
+            , "groups": []
+            , "email": "catalin@mail.com"
+            , "password": "1"
+        
+        },
+        {
+              "fname": "Salva"
+            , "lname": "España"
+            , "type":  "teacher"
+            , "groups": []
+            , "email": "saes@mail.com"
+            , "password": "1"
+        },
+ 	{
+              "fname": "Carles"
+            , "lname": "Garcia"
+            , "type":  "student"
+            , "groups": []
+            , "email": "cgarcia@mail.com"
+            , "password": "1"
+        },
+ 	{
+              "fname": "Pepe"
+            , "lname": "Ramon"
+            , "type":  "student"
+            , "groups": []
+            , "email": "pramon@mail.com"
+            , "password": "1"
+        },
+ 	{
+              "fname": "John"
+            , "lname": "Espadan"
+            , "type":  "student"
+            , "groups": []
+            , "email": "joespa@mail.com"
+            , "password": "1"
+        }
+    ]
+
+
+
+}

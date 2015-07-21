@@ -1,0 +1,166 @@
+
+# Declaración de vectores
+
+## Ejemplos:
+
+	!c
+	float notas[4]; /* casillero que contiene 4 float */
+	int numeros[8]; /* casillero que contiene 8 int */
+	char s[20]; /* esto ya lo hemos venido utilizando,
+	               una cadena es un vector de tipo char */
+	
+### El tamaño debe ser un valor constante conocido por el compilador, no puede usarse una variable:
+
+	!c
+	#define N 100
+	int i;
+	char nombre[N]; /* poner N es equivalente a poner 100 */
+	/* ESO QUE VIENE AHORA ESTA MAL, PARA QUE NO LO HAGAS: */
+	fprintf(stdout,"Talla del vector: ");
+	fscanf(stdin,"%d",&i);
+	int alturas[i]; /* ERROR, ESTO NO ESTA PERMITIDO!!!! */
+	
+### La creación de vectores de tamaño solamente conocido en tiempo de ejecución queda fuera de los objetivos de esta asignatura.
+
+---
+---
+
+# Inicialización de vectores
+
+Los elementos de un vector pueden inicializarse en su declaración.
+Para ello, se da una lista de constantes separadas por comas y delimitadas por llaves (pueden ser menos que el total de elementos del vector, con lo que sólo se inicializan los primeros elementos).
+Esta forma de inicializar sólo es posible en la declaración del vector.
+Ejemplos:
+double alturas[10] = {1.8, 1.6, 1.75, 1.45};
+float notas[7] = {5.5, 9.4, 4.1, 3.2, 8.1};
+int numeros[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+char s[20] = {'H', 'o', 'l', 'a', '\0'};
+
+Inicialización de cadenas (sólo en la declaración)
+
+	!c
+	char saludo1[]="HOLA";
+	char saludo2[10]="HOLA";
+	char saludo3[10]={'H', 'O', 'L', 'A', '\0'};
+
+---
+
+Los vectores pasados como argumento a funciones siempre se pasan por referencia. (¡Ojo! no sus elementos. Si se quiere pasar un único elemento por referencia hay que usar el &)
+
+## Ejemplos:
+
+	!c
+	char s[20]; int n[10];
+	int f1(int v[20]); /* Recibe un vector de 20 enteros */
+	char f2(int v[]); /* Recibe un vector de enteros */
+	gets(s); /* Lectura de una cadena */
+	fscanf(stdin,"\n%c", &s[0]);/* Lectura de un carácter */
+	fscanf(stdin,"%d", &n[0]); /* Lectura de un número */
+    s[2] = f2(n);
+
+Ejercicio: Escribir un programa que calcule la suma de dos vectores de N componentes tras haberlos leído por teclado.
+
+
+---
+
+
+---
+
+# Ejercicio: producto escalar de 2 vectores
+
+---
+
+# Cadenas
+
+Una cadena no es más que un vector de caracteres.
+
+En C se sigue la convención de que las cadenas acaban con el carácter fin de cadena, que es el número cero, representado por `'\0'`.
+
+Es decir, en C un vector de cadenas de talla `N` puede guardar desde la cadena vacía hasta cadenas de longitud `N-1` (una de las casillas se reserva para el `'\0'`)
+
+Declaración de cadenas:
+
+	!c
+	char s[100], nombre[100], calle[41];
+
+Acceso a cadenas
+
+	!c
+	printf("%s\n", saludo1);
+	s[0]='H';s[1]='O';s[2]='L';s[3]='A';s[4]='\0';
+	saludo1[1] = 'E'; printf("%c\n", saludo1[1]);
+
+---
+
+# Funciones estándar para cadenas
+
+(Su declaración está en la cabecera string.h )
+
+- `strlen` devuelve la longitud de cadena (sin incluir el `'\0'`).
+
+	    !c
+	    longitud = strlen(cadena);
+
+- `strcpy` copia la cadena origen en la cadena destino.
+
+	    !c
+		strcpy(destino, origen);
+
+- `strcat` añade la cadena origen a la cadena destino.
+
+	    !c
+	    strcat(destino, origen);
+
+- `strcmp` compara dos cadenas y devuelve un número que será cero si son iguales, positivo si el primer carácter diferente es mayor (alfabéticamente) en `cadena1` o negativo si este primer carácter es mayor en `cadena2`.
+
+	    !c
+	    resultado = strcmp(cadena1, cadena2);
+
+---
+
+# Función `strlen`
+
+La función `strlen`
+
+
+
+
+---
+
+# Ejercicio: El juego del ahorcado
+
+
+
+---
+
+
+---
+
+
+---
+
+
+---
+
+    !c
+	int main() {
+	  char cadena[MAX];
+	  float num;
+	  int i;
+	  fprintf(stdout,"Escribe un numero: ");
+	  fscanf(stdin,"%f",&num);
+	  sprintf(cadena,"Cuadrado de %f es %f\n",num,num*num);
+	  /* todavia no ha salido nada por pantalla */
+	  for (i=0; cadena[i]!='\0'; i=i+1) {
+         fprintf(stdout,"%c\n",cadena[i]); /* imprime la cadena en vertical */
+	  }
+	  getch();
+	  return 0;
+	}
+
+
+---
+
+![Ejemplo cadena](figuras/nombre.svg)
+
+

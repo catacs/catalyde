@@ -1,0 +1,387 @@
+\documentclass[portrait]{a0poster}
+\setlength{\textwidth}{83cm} % Error en "a0poster": 87cm para esta dimensión
+                             % en la orientación "portrait"
+%\setlength{\textheight}{105cm}
+\usepackage{multicol}
+\setlength{\columnsep}{4cm}
+\newlength{\anchofiliacion}
+\setlength{\anchofiliacion}{39.5cm}
+
+\usepackage{tikz}
+\usepackage{calc}
+\input{TikzShapes/corpus_shape}
+
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{pifont}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{xspace}
+
+\graphicspath{{figures/}}
+
+% Algunos colores...
+\definecolor{ctextotit}{rgb}{0.00,0.00,1.00}
+\definecolor{cfondoparte}{rgb}{0.80,0.80,1.00}
+\definecolor{cbordeparte}{rgb}{0.00,0.00,1.00}
+\definecolor{cfondosubparte}{rgb}{0.80,0.80,0.80}
+\definecolor{cbordesubparte}{rgb}{0.20,0.20,0.20}
+\definecolor{cmarcado}{rgb}{0.90,0.90,0.90}
+\definecolor{cnota}{rgb}{0.60,0.60,0.60}
+\definecolor{ccarflecha}{rgb}{0.00,0.00,1.00}
+\definecolor{cflechaMLP}{rgb}{0.75,0.75,1.00}
+\definecolor{cenfasis}{rgb}{1.00,0.00,0.00}
+\definecolor{cmarcamiitem}{rgb}{1.00,0.00,0.00}
+\definecolor{cmarcaitemlista}{rgb}{0.00,0.00,1.00}
+\definecolor{cmarcaitemsublista}{rgb}{0.00,0.00,1.00}
+
+% Para poder conectar nodos en diferentes imágenes TikZ...
+\tikzstyle{every picture}+=[remember picture]
+
+% Para marcar una zona de texto con un color y luego poder dibujar líneas entre zonas marcadas...
+\newsavebox{\cajamarcado}
+\newcommand{\nombreMarcado}{}
+\newenvironment{marcado}[2]{\renewcommand{\nombreMarcado}{#1}\begin{lrbox}{\cajamarcado}%
+\begin{minipage}{#2}}{\end{minipage}%
+\end{lrbox}\noindent%
+\tikz \node[fill=cmarcado, inner xsep=0pt] (\nombreMarcado) {\usebox{\cajamarcado}};}
+
+% Notas conectadas con una flecha a un punto del texto principal...
+\newcommand{\nota}[4][1ex]{\makebox[0pt][l]{%\hspace{0.1em}%
+\raisebox{#1}[0pt][0pt]{%
+\tikz \draw[<-, cnota, line width=3pt] (0,0)--(#2,#3) node
+[shape=rectangle, draw=cnota, right, inner sep=3pt, rounded corners]
+{\textrm{\strut\rule{0.5em}{0pt}#4\rule{0.5em}{0pt}}};}}}
+
+% Un carácter flecha...
+\newcommand{\flecha}{\textcolor{ccarflecha}{\ding{233}}}
+
+% Para dar títulos a partes del póster...
+\newcommand{\colapsacentra}[1]{\makebox[0pt]{%
+\begin{tabular}[c]{c}
+#1
+\end{tabular}}}
+\newcommand{\parte}[1]{\bigskip%
+\centerline{%
+\colapsacentra{\tikz \draw [top color=cfondoparte,
+                            rounded corners,
+                            shading=axis,
+                            shading angle=0,
+                            draw=cbordeparte] (0,0) rectangle(\columnwidth, 2cm);}%
+\colapsacentra{\textbf{\Large#1}}}%
+\bigskip}
+\newcommand{\subparte}[1]{\medskip%
+\centerline{%
+\colapsacentra{\tikz \draw [top color=cfondosubparte,
+                            rounded corners,
+                            shading=axis,
+                            shading angle=0,
+                            draw=cbordesubparte] (0,0) rectangle(0.75\columnwidth, 1.5cm);}%
+\colapsacentra{\textbf{\large#1}}}%
+\medskip}
+
+% Incluir una figura dando su anchura o altura...
+\newcommand{\figuraancho}[2]{\resizebox{#1}{!}{\includegraphics{#2}}}
+\newcommand{\figuraalto}[2]{\resizebox{!}{#1}{\includegraphics{#2}}}
+\newcommand{\figuratikzancho}[2]{\resizebox{#1}{!}{\input{TikzFigs/#2}}}
+\newcommand{\figuratikzalto}[2]{\resizebox{!}{#1}{\input{TikzFigs/#2}}}
+
+% Marca para ítems fuera de lista...
+\newcommand{\miitem}{\noindent\makebox[0pt][r]{\textcolor{cmarcamiitem}{$\rhd$} }\ignorespaces{}}
+
+% Lista con ítems, nivel 1...
+\newenvironment{lista}{\begin{list}%
+{\textcolor{cmarcaitemlista}{$\bullet$}}%
+{\setlength{\leftmargin}{3cm}}%
+}{
+\end{list}}
+
+% Lista con ítems, nivel 2...
+\newenvironment{sublista}{\begin{list}%
+{\textcolor{cmarcaitemsublista}{$\circ$}}%
+{\setlength{\leftmargin}{3cm}}%
+}{
+\end{list}}
+
+% Destacar coloreando...
+\renewcommand{\emph}[1]{\textcolor{cenfasis}{#1}}
+
+\renewcommand\refname{\parte{Referencias}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\thispagestyle{empty}
+\sffamily{}\large
+%\vfill{}
+
+\newlength{\anchologo}
+\setlength{\anchologo}{7cm}
+
+\begin{center}
+
+ \  \\
+ \  \\
+
+%\centerline{%
+%\begin{tabular}[c]{c@{\protect\rule{0.5\columnsep}{0cm}}c@{\protect\rule{\columnsep}{0cm}}c@{\protect\rule{\columnsep}{0cm}}c@{\protect\rule{0.5\columnsep}{0cm}}c}
+\begin{tabular}[c]{c@{\protect\rule{\columnsep}{0cm}}c@{\protect\rule{\columnsep}{0cm}}c@{\protect\rule{0.5\columnsep}{0cm}}c}
+\begin{tabular}{c}
+\figuraancho{\anchologo}{Logos/logoUPV.png}
+\end{tabular} &
+\begin{tabular}[b]{c}
+\Huge\textbf{\textcolor{ctextotit}{Catalyde}}\\\\
+\Huge\textbf{\textcolor{ctextotit}{herramienta para enseñar programación}}
+\end{tabular} &
+\begin{tabular}{c}
+\figuraancho{\anchologo}{Logos/logoDSIC.png}
+\end{tabular} &
+\end{tabular}\\
+% }
+\end{center}
+
+\vspace{-3cm}
+
+\centerline{%
+\Large
+\begin{tabular}[b]{c}
+\textbf{Catalin~Stanciu, Joan~Pastor, Salvador~Espa{\~n}a}\\
+Departamento de Sistemas Informáticos y Computación \\
+Universidad Politécnica de Valencia
+\end{tabular}}
+
+\vspace{4cm}
+
+\begin{multicols}{2}
+
+\parte{Motivación}
+
+Es bien sabido que aprender a programar requiere el desarrollo de
+habilidades por medio de la práctica.
+
+Históricamente, la pedagogía de la programación se ha planteado el
+desarrollo de lenguajes para tal fin (ej. Logo) y/o de entornos
+orientados más a este fin que al uso ``profesional'' (ej. Bluej).
+
+Presentamos el resultado de un PFC cuyo objetivo es proporcionar una
+herramienta de aprendizaje a la programación para ser implantado en
+asignaturas de primeros cursos donde la elección del lenguaje de
+programación 
+
+herramienta para aprender a programar vía web de modo que el profesor
+puede elaborar contenidos y el alumno juega con ellos
+programando. Dicho así suena muy general, pero la idea es que el
+alumno tiene un boletín con la explicación y pedazos de código a
+modificar que puede habilitar o deshabilitar. Cuando los deshabilita
+el entorno ejecuta un código oculto que ha creado el profesor. De este
+modo, el alumno puede probar el programa final y luego ir abordando
+pequeñas partes sin tener que esperar al final para ver cómo
+funciona. También tiene botones de check que pasan el trozo
+correspondiente por una batería de casos de prueba y también permite
+personalizar los errores de compilación para adaptarlos al contexto,
+definir funcionalidades javascript (por ejemplo, la idea es que el
+alumno trabaje con una matriz char[8][8] que representa un tablero de
+ajedrez y que al modificarla se cambie un representación del tablero
+en bonito en la pantalla, o tener la famosa tortuga de logo, etc...).
+
+
+\miitem ¿Por qué una herramienta para aprender a programar?
+\begin{lista}
+\item El alumno puede centrarse en un determinado aspecto.
+\item hola
+\item \textbf{Distinta perspectiva:} los conocimientos impartidos no
+  se van a complementar en materias posteriores. De ahí el interés en
+  la parte algorítmica, que en la ETSINF se estudia en asignaturas
+  posteriores.
+\end{lista}
+\miitem Nos hemos centramos en asignaturas de primero donde se imparte
+el lenguaje C (por ejemplo, en la Escuela Técnica Superior de
+Ingeniería del Diseño (ETSID)), aunque es posible utilizarlo con otros
+lenguajes de programación.
+
+\vspace{8mm}
+\begin{center}
+\includegraphics[scale=1]{bicis.pdf}
+\end{center}
+\vspace{8mm}
+
+\miitem Se describen aquellas acciones y metodologías aplicadas en el
+grado encaminadas a conseguir los objetivos marcados.
+
+\miitem Esta asignatura ya existía antes de la implantación del grado,
+así que podemos comparar la misma asignatura en ingeniería y en grado:
+\begin{lista}
+\item Los contenidos no han variado, basta con adaptar la
+  asignatura a los nuevos títulos.
+%% \item Un análisis de la situación de la asignatura ayuda a aplicar de
+%%   manera más efectiva las acciones de innovación para la mejora del
+%%   proceso de enseñanza-aprendizaje.
+\item Se implantó un curso piloto durante 1 año y ahora disponemos de
+  la experiencia de un curso con el grado, por lo que es posible
+  comparar los resultados antes y después de la implantación del grado.
+\end{lista}
+
+\miitem Finalmente, se analizan los resultados obtenidos por la
+aplicación de las distintas acciones de innovación realizadas.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{8mm}
+\parte{Motivación}
+
+\miitem hola
+
+\miitem En los planes antiguos, la materia de la asignatura de INF
+estaba incluida en la asignatura de Fundamentos de Informática (FIN),
+cuyos contenidos eran prácticamente los mismos. En los nuevos títulos
+de grado la asignatura se integra en el modulo básico dentro de la
+materia de Informática, siendo ésta la única asignatura asignada a
+dicha materia. Con 6 ECTS, su impartición se realiza en el primer
+curso, no siendo necesario ningún prerrequisito específico para ser
+cursada.
+
+\vspace{8mm}
+\begin{center}
+\includegraphics[scale=0.75]{screenshot.png}
+\end{center}
+\vspace{8mm}
+
+\miitem A diferencia de la ETSINF, donde los alumnos empiezan
+aprendiendo Java, los alumnos de INF aprenden a programar en C
+llegando a utilizar estructuras de control, funciones, ficheros,
+vectores, cadenas de caracteres y matrices. La resolución de problemas
+incluye el cálculo de medias, máximos, operaciones con vectores,
+etc. La elección de C viene dada por la importancia de este lenguaje
+en la ingeniería.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\parte{Ampliaciones futuras}
+
+\miitem Modo examen,
+\begin{lista}
+\item utilizar el mismo entorno que el usado normalmente en las prácticas,
+\item no hace falta tener que subir un conjunto de ficheros como ocurre actualmente con entornos
+\item el profesor tiene acceso al desarrollo del alumno a lo largo del examen
+\item formas de controlar las copias: control de la ip, entorno en pantalla completa y con detección de la pérdida del foco de la aplicación, compatible con otras herramientas complementarias (ej: monitorización de la máquina con captura periódica de la pantalla)
+\end{lista}
+
+\miitem Trabajo colaborativo, permitir que varios alumnos trabajen en
+grupo o que si varios alumnos se sientan en un mismo puesto puedan
+compartir el trabajo realizado en dicha sesión, actualmente están
+obligados a entrar con la cuenta de uno de ellos
+
+\miitem Modo evaluación: para que el profesor pueda navegar más cómodamente inspeccionando las prácticas realizadas por los alumnos, visualizar estadísticas, etc.
+
+\miitem Modo para que el profesor pueda editar e introducir los nuevos
+contenidos más cómodamente. Actualmente los contenidos se crean de
+manera offline
+
+
+%% [1]  J. Damian Segrelles, Miguel Angel Salido, Adriana Susana Giret. METODOLOGÍAS ACTIVAS PARA LA ADECUACIÓN DE LA ASIGNATURA
+%% FUNDAMENTOS DE INFORMÁTICA AL PLAN BOLÓNIA. Actas del CUIEET 2010 (2010).
+	
+%% Metodologías Activas en la Enseñanza de Informática en la
+%% Licenciatura en Matemáticas. Miguel A. Salido, Adriana Giret,
+%% Montserrat Abril. IEEE-RITA (Latin-American Learning Technologies
+%% Journal), ISSN: 1932-8540, vol 2, nº 2, pp 73-78, 2007.
+
+\miitem Número medio de alumnos matriculados en grupos de teoría y de
+prácticas, tasas de asistencia y de aprobado antes y después de
+implantar el grado:
+
+%% \begin{center}
+%% \begin{tabular}{|l|c|c|c|c|} \toprule
+%%  & \multicolumn{2}{|c|}{Ingeniería Industrial} & 	\multicolumn{2}{c|}{Grado} \\  \midrule
+%%  & ~Matriculados & Aptos~ & ~Matriculados &	Aptos~\\  \midrule
+%% ~Electrónicos & 1 & 2 & 3 & 4 \\
+%% ~Mecánicos & 1 & 2 & 3 & 4 \\
+%% ~Eléctricos & 1 & 2 & 3 & 4 \\
+%% \bottomrule
+%% \end{tabular}
+%% \end{center}
+
+\vspace{5mm}
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|c|} \cline{2-7}
+\multicolumn{1}{c|}{} & \multicolumn{3}{c|}{Ingeniería Industrial} & \multicolumn{3}{c|}{Grado} \\  \cline{2-7}
+\multicolumn{1}{c|}{} & ~Matriculados & \multicolumn{2}{c|}{Aptos} & ~Matriculados & \multicolumn{2}{c|}{Aptos} \\  \hline
+~Electrónicos & 190.6 & 79   & 41.5\% & 172 & 134 & 77.9\% \\
+~Mecánicos    & 249.3 & 66.3 & 26.6\% & 167 & 109 & 65.3\% \\
+~Eléctricos   & 131.6 & 27.6 & 20.9\% &  86 & 66  & 76.6\% \\
+\hline
+\end{tabular}
+\end{center}
+\vspace{5mm}
+
+\miitem Como se observa en la tabla anterior, la tasa de rendimiento
+académico se ha incrementado considerablemente en todas las
+titulaciones del centro. El porcentaje de aprobados con respecto a
+número de matriculados ha aumentado considerablemente (si bien es
+cierto que la asignatura FIN, al estar en extinción, tiene un sesgo,
+pero son valores representativos). Además el porcentaje de no
+presentados se ha reducido sustancialmente llegando hasta el 5\% de no
+presentados en algunos grupos.
+
+%% \miitem La tasa de rendimiento académico se ha incrementado considerablemente en todas las titulaciones del centro. El porcentaje de aprobados con respecto a número de matriculados ha pasado de un 26.6\% a un 65.3\% en mecánica; de un 41.5\% a un 77.9\% en electrónica; y de un 20.9\% a un 76.7\% en electricidad. Además el porcentaje de no presentados se ha reducido sustancialmente llegando hasta el 5\% de no presentados en algunos grupos.
+
+\miitem Los datos publicados en la tabla anterior se corresponden con los resultados promedios de los cursos académicos 2008/2009, 2009/2010 y 2010/2011 en el caso de ingeniería y del curso 2010/2011 en el caso del grado. Por ello el curso 2010/2011 de Ingeniería se corresponde a un curso sin docencia asociada.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parte{Conclusiones}
+
+\miitem Las mejoras son evidentes, pero a costa de un esfuerzo
+excesivo por parte del personal docente:
+\begin{lista}
+\item Los grupos siguen siendo numerosos con alrededor de 70 alumnos en
+  algunos de ellos y hasta 110 en algún grupo.
+\item El número de exámenes \emph{a preparar} de forma individual se
+  dispara no solamente por el aumento de actos de evaluación, sino por
+  el hecho de realizar dichas evaluaciones de manera individual para
+  cada grupo de teoría y/o de prácticas. Además, como cada grupo
+  realiza exámenes diferentes, se pierde equidad entre personas de
+  grupos diferentes.
+\item El profesorado emplea más tiempo preparando exámenes. Esto
+  proporciona una realimentación al profesor, aunque la realimentación
+  del alumno es escasa si ésta se limita a conocer la nota de la
+  evaluación: es necesario que el alumno es\-tu\-diase los fallos
+  cometidos, lo que requeriría un esfuerzo adicional.
+\end{lista}
+
+\miitem Los resultados son mejores pero no se ponen los medios
+necesarios para alcanzarlos:
+\begin{lista}
+\item La docencia mejoraría para alumnos y para profesores
+  con grupos más reducidos.
+\item Si el centro ofreciese mecanismos para sincronizar las
+  evaluaciones de diferentes grupos y especialidades, se podría
+  reducir de forma significativa el esfuerzo, recursos y logística en
+  preparar y ejecutar las pruebas de evaluación. Por ejemplo, en la
+  ETSINF se dedica un día para estos menesteres.
+\end{lista}
+
+%% \miitem Aunque no es relevante desde el punto de vista docente, el
+%% incremento del número de evaluaciones ha producido un aumento
+%% significativo del consumo de papel, ya que antes se podían contestar
+%% múltiples preguntas en una misma página y ahora cada ``minute paper''
+%% consume un mínimo de una página aunque solamente requiera unas pocas
+%% líneas.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{thebibliography}{20}
+
+\bibitem{Damian2010}
+J. Damian Segrelles, Miguel A. Salido, Adriana Giret
+\newblock Metodologías activas para la adecuación de la asignatura Fundamentos de Informática al plan Bolonia.
+\newblock {\em Actas del CUIEET 2010}, 2010.
+\end{thebibliography}
+
+\end{multicols}
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% ispell-local-dictionary: "american"
+%%% TeX-master: t
+%%% End:

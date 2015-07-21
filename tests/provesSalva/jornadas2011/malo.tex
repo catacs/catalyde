@@ -1,0 +1,433 @@
+\documentclass[portrait]{a0poster}
+\setlength{\textwidth}{83cm} % Error en "a0poster": 87cm para esta dimensión
+                             % en la orientación "portrait"
+\usepackage{multicol}
+\setlength{\columnsep}{4cm}
+\newlength{\anchofiliacion}
+\setlength{\anchofiliacion}{39.5cm}
+
+\usepackage{tikz}
+\usepackage{calc}
+\input{TikzShapes/corpus_shape}
+
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{pifont}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{url}
+\usepackage{xspace}
+
+\graphicspath{{figures/}}
+
+% Algunos colores...
+\definecolor{ctextotit}{rgb}{0.00,0.00,1.00}
+\definecolor{cfondoparte}{rgb}{0.80,0.80,1.00}
+\definecolor{cbordeparte}{rgb}{0.00,0.00,1.00}
+\definecolor{cfondosubparte}{rgb}{0.80,0.80,0.80}
+\definecolor{cbordesubparte}{rgb}{0.20,0.20,0.20}
+\definecolor{cmarcado}{rgb}{0.90,0.90,0.90}
+\definecolor{cnota}{rgb}{0.60,0.60,0.60}
+\definecolor{ccarflecha}{rgb}{0.00,0.00,1.00}
+\definecolor{cflechaMLP}{rgb}{0.75,0.75,1.00}
+\definecolor{cenfasis}{rgb}{1.00,0.00,0.00}
+\definecolor{cmarcamiitem}{rgb}{1.00,0.00,0.00}
+\definecolor{cmarcaitemlista}{rgb}{0.00,0.00,1.00}
+\definecolor{cmarcaitemsublista}{rgb}{0.00,0.00,1.00}
+
+% Para poder conectar nodos en diferentes imágenes TikZ...
+\tikzstyle{every picture}+=[remember picture]
+
+% Para marcar una zona de texto con un color y luego poder dibujar líneas entre zonas marcadas... 
+\newsavebox{\cajamarcado}
+\newcommand{\nombreMarcado}{}
+\newenvironment{marcado}[2]{\renewcommand{\nombreMarcado}{#1}\begin{lrbox}{\cajamarcado}%
+\begin{minipage}{#2}}{\end{minipage}%
+\end{lrbox}\noindent%
+\tikz \node[fill=cmarcado, inner xsep=0pt] (\nombreMarcado) {\usebox{\cajamarcado}};}
+
+% Notas conectadas con una flecha a un punto del texto principal...
+\newcommand{\nota}[4][1ex]{\makebox[0pt][l]{%\hspace{0.1em}%
+\raisebox{#1}[0pt][0pt]{%
+\tikz \draw[<-, cnota, line width=3pt] (0,0)--(#2,#3) node
+[shape=rectangle, draw=cnota, right, inner sep=3pt, rounded corners]
+{\textrm{\strut\rule{0.5em}{0pt}#4\rule{0.5em}{0pt}}};}}}
+
+% Un carácter flecha...
+\newcommand{\flecha}{\textcolor{ccarflecha}{\ding{233}}}
+
+% Para dar títulos a partes del póster...
+\newcommand{\colapsacentra}[1]{\makebox[0pt]{%
+\begin{tabular}[c]{c}
+#1
+\end{tabular}}}
+\newcommand{\parte}[1]{\bigskip%
+\centerline{%
+\colapsacentra{\tikz \draw [top color=cfondoparte,
+                            rounded corners,
+                            shading=axis,
+                            shading angle=0,
+                            draw=cbordeparte] (0,0) rectangle(\columnwidth, 2cm);}%
+\colapsacentra{\textbf{\Large#1}}}%
+\bigskip}
+\newcommand{\subparte}[1]{\medskip%
+\centerline{%
+\colapsacentra{\tikz \draw [top color=cfondosubparte,
+                            rounded corners,
+                            shading=axis,
+                            shading angle=0,
+                            draw=cbordesubparte] (0,0) rectangle(0.75\columnwidth, 1.5cm);}%
+\colapsacentra{\textbf{\large#1}}}%
+\medskip}
+
+% Incluir una figura dando su anchura o altura...
+\newcommand{\figuraancho}[2]{\resizebox{#1}{!}{\includegraphics{#2}}}
+\newcommand{\figuraalto}[2]{\resizebox{!}{#1}{\includegraphics{#2}}}
+\newcommand{\figuratikzancho}[2]{\resizebox{#1}{!}{\input{TikzFigs/#2}}}
+\newcommand{\figuratikzalto}[2]{\resizebox{!}{#1}{\input{TikzFigs/#2}}}
+
+% Marca para ítems fuera de lista...
+\newcommand{\miitem}{\noindent\makebox[0pt][r]{\textcolor{cmarcamiitem}{$\rhd$} }\ignorespaces{}}
+
+% Lista con ítems, nivel 1...
+\newenvironment{lista}{\begin{list}%
+{\textcolor{cmarcaitemlista}{$\bullet$}}%
+{\setlength{\leftmargin}{3cm}}%
+}{
+\end{list}}
+
+% Lista con ítems, nivel 2...
+\newenvironment{sublista}{\begin{list}%
+{\textcolor{cmarcaitemsublista}{$\circ$}}%
+{\setlength{\leftmargin}{3cm}}%
+}{
+\end{list}}
+
+% Destacar coloreando... 
+\renewcommand{\emph}[1]{\textcolor{cenfasis}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\argmax}{\mathop{\mbox{argmax}}}
+\newcommand{\online}{online\xspace}
+\newcommand{\offline}{offline\xspace}
+\newcommand{\bimodal}{bimodal\xspace}
+\newcommand{\State}{\textsc{state}\xspace}
+
+\begin{document}
+\thispagestyle{empty}
+\sffamily{}\large
+%\ \vfill{}
+
+\newlength{\anchologo}
+\setlength{\anchologo}{8cm}
+
+\centerline{%
+\begin{tabular}[c]{c}
+\begin{tabular}[c]{c@{\protect\rule{\columnsep}{0cm}}c@{\protect\rule{\columnsep}{0cm}}c}
+\figuraancho{\anchologo}{Logos/logoUPV} &
+\begin{tabular}[b]{c}
+\Huge\textbf{\textcolor{ctextotit}{Adaptacion al grado de la asignatura de}}\\\\
+\Huge\textbf{\textcolor{ctextotit}{ informática en otras titulaciones}}
+\end{tabular} &
+\figuraancho{\anchologo}{Logos/logoDSIC}
+\end{tabular}\bigskip
+\\
+\bigskip\bigskip
+\Large
+\begin{tabular}[b]{c}
+%\begin{tabular}[c]{c@{\protect\rule{\columnsep}{0cm}}c}
+%\rule{\anchofiliacion}{0cm} & \rule{\anchofiliacion}{0cm} \\ 
+\textbf{M.~Salido, D.~Segrelles, S.~Espa{\~n}a, D.~Guerrero,\\
+  J.~Martin, P~Ruiz}\\
+Departamento de Sistemas Informáticos y Computación \\
+%& Departament de Llenguatges i Sistemes Informàtics\\
+Universidad Politécnica de Valencia 
+\\
+E-46071 Valencia, SPAIN 
+\end{tabular}
+\end{tabular}}
+
+\vspace{1.5cm}
+
+\begin{multicols}{2}
+
+\parte{The problem}
+
+\miitem Handwriting recognition: \offline
+and \online handwriting recognition. \\
+
+\noindent\begin{tabular}{p{18cm}@{\qquad}p{18cm}}
+An \offline handwriting
+recognition system extracts the information from previously scanned
+text images 
+&
+ ... whereas online systems receive information captured while
+the text is being written (stylus and sensitive
+tablets).
+\\
+\begin{center}\includegraphics[scale=0.3]{texto}\end{center}
+&
+\vspace*{-1.5cm}\begin{center}\includegraphics[scale=5]{imagenonline2}\end{center}
+\\
+
+\vspace*{-1.5cm}Offline systems are applicable to a wider range of tasks, given that
+\online recognition require the data acquisition to be made with
+specific equipment at the time of writing. 
+& 
+\vspace*{-1.5cm}Online systems are
+more reliable due to the additional information available, such as the
+order, direction and velocity of the strokes.
+\end{tabular}
+
+\medskip
+
+\miitem Recognition performance of current automatic \offline handwriting
+transcription systems: far from being perfect. $\to$
+Growing interest in assisted transcription systems,
+which are more efficient than correcting by hand an automatic
+transcription.  
+\medskip
+
+\miitem A recent approach to interactive transcription
+involves multi-modal recognition, where the user can supply an online
+transcription of some of the words: \State{} system.
+
+\medskip
+
+\begin{center}
+\includegraphics[scale=0.65]{Wacom}
+\includegraphics[scale=0.7]{fotograma2}
+\end{center}
+\begin{center}
+\url{http://state.dlsi.uji.es/state/Home.html}
+\end{center}
+%\begin{center}\includegraphics[scale=0.8]{fotograma2}\end{center}
+
+\bigskip
+\bigskip
+
+\parte{The bimodal contest}
+
+\miitem Description of our \bimodal engine, which entered the
+``Bi-modal Handwritten Text Recognition'' contest organized during the
+2010 ICPR: Hidden
+Markov Models hybridized with neural networks (HMM/ANN) for both
+\offline and \online input. 
+
+\miitem $N$-best word hypothesis scores for
+both the \offline and the \online samples are combined using a
+log-linear combination, achieving very satisfying results.
+
+\bigskip
+\bigskip
+\parte{The bimodal corpus}
+
+\miitem BiMod-IAM-PRHLT corpus: bimodal dataset of \online and \offline isolated handwritten
+words (a vocabulary of 519 words), extracted from IAM corpora.
+
+\miitem Writers of the \online and \offline samples are generally
+different.  
+
+\miitem The \offline samples are presented as grey-level images,
+and the \online samples are sequences of coordinates describing the
+trajectory of an electronic pen. 
+
+\miitem Basic statistics of the biMod-IAM-PRHLT corpus and their
+    standard partitions:
+
+\medskip
+\begin{center}
+\noindent\begin{tabular}{p{9cm}@{\qquad}p{12.5cm}@{\qquad}p{9cm}}
+\includegraphics[scale=0.7]{1-original.png} 
+\includegraphics[scale=0.7]{a01-020u-09-00-original-House.png}
+\includegraphics[scale=0.7]{a06-064-01-00-original-anything.png}
+&   
+\begin{tabular}{lrr} \toprule
+    \multicolumn{1}{l}{Running words} &
+    \multicolumn{1}{c}{Online}  &
+    \multicolumn{1}{c}{Offline}  
+\\\midrule
+%Word clases (vocabulary) &	519 &	519\\
+Training set&	8\,342 &	14\,409\\
+Validation set&	519 &	519\\
+(Hidden) test set&	519 &	519\\ \midrule
+Total &	9\,380 &	15\,447\\
+\bottomrule
+\end{tabular}
+& 
+\includegraphics[scale=0.7]{k10-114z-03_always_3.png}
+\includegraphics[scale=0.7]{a01-013z-04_House_18.png}
+\includegraphics[scale=0.7]{g10-332z-03_anything_26.png}
+\end{tabular}
+\end{center}
+
+\phantom{\parte{kkk}\parte{kkk}\parte{kkk}}
+
+%\miitem Examples of word samples from the \bimodal corpus: left, \offline images, and right, \online samples:
+
+%\begin{center}\begin{tabular}{c@{\quad\quad\quad\quad}c}
+%\includegraphics[scale=0.8]{1-original.png} &
+%\includegraphics[scale=0.8]{k10-114z-03_always_3.png}\\
+%\includegraphics[scale=0.8]{a01-020u-09-00-original-House.png} &
+%\includegraphics[scale=0.8]{a01-013z-04_House_18.png} \\
+%\includegraphics[scale=0.8]{a06-064-01-00-original-anything.png} &
+%\includegraphics[scale=0.8]{g10-332z-03_anything_26.png} \\
+%\end{tabular}\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\parte{Offline and online preprocessing}
+\parte{Bimodal handwriting recognition engine}
+
+%\miitem Preprocessing example of an \offline sample (left), and an
+%  \online sample (right)
+
+\begin{center}
+  \begin{tabular}{c@{\quad}c@{\quad}c}
+    \includegraphics[scale=0.52]{preproceso-offline.pdf} &
+    \includegraphics[scale=0.47]{preproceso-online.pdf} &
+  \includegraphics[width=0.45\columnwidth]{figura_hibridos}\\
+Offline preprocessing & Online preprocessing & HMM/ANN recognition system
+\end{tabular}%\medskip
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\parte{Bimodal handwriting recognition engine: HMM/ANN optical models}
+%\parte{Bimodal handwriting recognition engine}
+
+%\miitem The recognition system is based on HMM/ANN
+%optical models for both \offline and \online recognition:
+
+%\begin{center} \includegraphics[width=0.3\columnwidth]{figura_hibridos}\end{center}
+
+\miitem \textbf{Off-line} HMM/ANN configuration:
+\begin{lista}
+\item \mbox{7-state} HMM/ANN using a MLP with two
+hidden layers of sizes 192 and 128
+\item MLP input: current frame plus a context of 4 frames at each side
+\item Models trained with the training partition of the
+IAM-DB 
+\end{lista}
+
+\miitem \textbf{On-line} HMM/ANN configuration:
+\begin{lista}
+\item Same HMMs topologies and
+MLP, but 
+\item MLP input wider context:  12 feature frames at both sides
+\item Models  trained with the training partition of the
+IAM-online DB
+\end{lista}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\parte{Bimodal system}
+\miitem {Bimodal system}
+
+\begin{enumerate}
+\item Scores of the 100 most probable word hypothesis for
+the \offline sample using the \offline preprocessing and HMM/ANN
+optical models. 
+\item Same process  applied to the \online sample.
+\item The final score for each \bimodal sample is computed from these lists by means
+of a log-linear combination of the scores computed by both the
+\offline and \online HMM/ANN classifiers:
+
+\[
+\hat{c}=\argmax_{1\le c\le C} ((1-\alpha) \log P(x_{\text{off-line}}|c)
++ \alpha \log P(x_{\text{on-line}}|c))
+\]
+
+\item Combination
+coefficients  estimated by exhaustive scanning over validation set. 
+\end{enumerate}
+
+%\miitem Bimodal recognition engine summary:
+
+\begin{center}
+\begin{tabular}{@{~}l@{\qquad}l@{\quad}l@{~}}\toprule
+Bimodal system                  & offline   & online    \\ \midrule
+\# input features per frame&  60       &    8      \\
+\# HMM states     &   7       &    7      \\
+MLP hidden layers' size   & 192-128   & 192-128   \\
+MLP input context (left-current-right) & 4-1-4     & 12-1-12   \\
+Combination coefficient       &   (1-$\alpha$)=0.55    &   $\alpha$=0.45    \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+\parte{Experimental results}
+
+
+
+
+\begin{center}
+\begin{tabular}{llcccc} \toprule
+\multicolumn{2}{c}{} & \multicolumn{2}{c}{Unimodal} & 	\multicolumn{2}{c}{Bimodal} \\  \midrule
+\multicolumn{2}{c}{System} & ~Offline & Online~ & ~Combination &	Relative improv.~\\  \midrule
+
+~Validation   & Baseline & 27.6 & 6.6 & 4.0 & 39\% \\
+             & HMM/ANN & 12.7 & 2.9 & 1.9 & 34\% \\  \midrule
+~(Hidden) Test& HMM/ANN & 12.7 & 3.7 & 1.5 & 59\% \\ 
+\bottomrule
+\end{tabular}
+\end{center}
+
+\miitem Performance of the \bimodal recognition engine: close to 60\% of improvement is achieved with the \bimodal system when compared to using only the \online system for the test set.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\parte{Conclusions}
+
+\miitem Perfect transcription for most handwriting tasks cannot be achieved: human intervention  needed to correct it $\to$ Assisted transcription
+systems aim to minimize  human correction effort. 
+
+\miitem Integration
+of \online input into the \offline transcription system can help in
+this process (\State{}
+system).  
+
+%\miitem This work presents our \bimodal recognition engine and tests it in the ``Bi-modal
+%Handwritten Text Recognition'' contest organized during the 2010 ICPR.
+
+\miitem Hybrid HMM/ANN optical models perform very well for both \offline and
+\online data, and their naive combination is able to greatly
+outperform each system.   
+
+\miitem More exhaustive
+experimentation is needed, with a larger corpus, in order to obtain
+more representative conclusions.
+
+% As a future work we plan to fully
+%integrate it in the assisted transcription system.
+
+%\begin{center}\includegraphics[scale=0.8]{fotograma2}\end{center}
+
+
+%\parte{Acknowledgments}
+\newlength{\altologo}
+\setlength{\altologo}{3.5cm}
+\newlength{\logosep}
+\setlength{\logosep}{1cm}
+
+\begin{marcado}{agradecimientos}{\columnwidth}
+\centerline{%
+\figuraalto{\altologo}{Logos/logoMiCInn}\qquad SD-TEAM (TIN2008-06856-C05-02)\qquad\qquad\qquad\qquad
+}
+%\rule{\logosep}{0cm}%
+%\figuraalto{\altologo}{Logos/logoMIPRCV}\rule{\logosep}{0cm}%
+%\figuraalto{\altologo}{Logos/logoGVA}\rule{\logosep}{0cm}%
+%\figuraalto{\altologo}{Logos/logoFCCB}}
+\end{marcado}
+
+\end{multicols}
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% ispell-local-dictionary: "american"
+%%% TeX-master: t
+%%% End: 

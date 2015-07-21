@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int segundos_dia(int hora, int minutos, int segundos) {
+  int resultado;
+{?cuerpo_funcion_segundos_dia}
+{#load blockid=id.cuerpo_funcion_segundos_dia /}
+{:else}{~n}
+resultado = (hora*60+minutos)*60+segundos;
+return resultado;
+{/cuerpo_funcion_segundos_dia}
+}
+
+{?funcion_pedir_int}
+{#load blockid=id.funcion_pedir_int /}
+{:else}{~n}
+int pedir_int(char mensaje[]) {
+  int numero;
+  fprintf(stdout,"Introduce %s: ",mensaje);
+  fscanf(stdin,"%d",&numero);
+  return numero;
+}
+{/funcion_pedir_int}
+
+
+{?programa_intervalo}
+{#load blockid=id.programa_intervalo /}
+{:else}{~n}
+int main() {
+  int total, h, m, s;
+  h = pedir_int("la hora");
+  m = pedir_int("los minutos");
+  s = pedir_int("los segundos");
+  total = segundos_dia(h,m,s);
+  printf("Han pasado %d segundos desde las 00:00:00"
+         " hasta las %02d:%02d:%02d\n", total,h,m,s);
+  return 0;
+}
+{/programa_intervalo}
+

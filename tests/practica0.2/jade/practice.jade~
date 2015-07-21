@@ -1,0 +1,54 @@
+!!! 5
+html  
+    head
+    link(rel='stylesheet', href='/css/practice.css')
+    link(rel='stylesheet', href='/css/code/vs.css')
+    link(rel='stylesheet', href='/codemirror/lib/codemirror.css')
+    link(rel='stylesheet', href='/codemirror/lib/codemirror.css')
+    script(src='/codemirror/lib/codemirror.js')
+    script(src='/js/mirrorframe.js')
+    script(src='/codemirror/mode/clike/clike.js')
+     
+    body
+     title=title
+     h1=title
+     
+     div#blocks
+      - if (exList.length > 0)
+        each exercise in exList
+            - if (exercise.type == 'MarkDown')
+                  div(id="div-#{exercise._id}", class="mdBox")
+                      :markdown
+                              !{md(exercise.content)}
+            - else
+                  - if(exercise.type == 'Code')
+                        - if(exercise.editable == true)
+                              div(id="div-#{exercise._id}", class="codeBox editable")
+                                div(id="buttons")
+                                    each but in exercise.buttons
+                                      input(type="image", src="/img/#{but.action}.png",  value="#{but.name}", data-tag="#{exercise.b_tag}",data-action="#{but.action}", onclick="window.parent.ui.hitButton(this);")
+                                textarea(id='#{exercise._id}') #{exercise.content} 
+                        - else 
+                              div(id="div-#{exercise._id}", class="codeBox not-editable")
+                                textarea(id='#{exercise._id}') #{exercise.content} 
+                  - else
+                              - if(exercise.type == 'Text')
+                                     - if(exercise.editable == true)
+                                            div(id="div-#{exercise._id}", class="textBox editable")
+                                                textarea(id='#{exercise._id}', rows='10') #{exercise.content}
+                                     - else  
+                                            div(id="div-#{exercise._id}", class="textBox not-editable")
+                                                textarea(id='#{exercise._id}', rows='10') #{exercise.content} 
+                              - else
+                                     p Exercise type not supported.
+      - else
+        p There are no exercises yet!
+      - if (exList.length > 0)
+           script
+              var textarea;
+              var mycodemirror = {};
+           each exercise in exList
+              - if(exercise.type == 'Code')
+                  script
+                      textarea= document.getElementById("#{exercise._id}")
+                      mycodemirror["#{exercise._id}"] = new MirrorFrame(textarea, {lineNumbers: true,mode: "text/x-csrc", readOnly: ! #{exercise.editable} });

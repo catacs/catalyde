@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int suma(int a, int b)
+{
+	{?func_suma }
+		{#load blockid=id.func_suma /}
+	{:else}
+		return a+b;
+	{/func_suma}
+
+
+}
+
+
+int resta(int a, int b)
+{
+
+	{?func_resta }
+		{#load blockid=id.func_resta /}
+	{:else}
+		return a-b;
+	{/func_resta}
+	
+}
+int main()
+{
+	int a=10,b=5;
+	
+	printf("Suma: %d\n",suma(a,b));
+	print("Resta: %d\n",resta(a,b));
+	
+	return 0;
+
+
+}

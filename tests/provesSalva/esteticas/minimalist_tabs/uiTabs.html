@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title>jQuery UI Tabs Styling</title>
+<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/south-street/ui.all.css" rel="stylesheet">
+<style type="text/css">
+@import "css/demo.css";
+
+pre {
+	clear: none;
+}
+div.showCode {
+	margin-left: 8em;
+}
+.tabs {
+	margin-top: 0.5em;
+}
+.ui-tabs-panel p {
+	margin-top: 0em;
+}
+
+#tabs-min {
+	background: transparent;
+	border: none;
+}
+#tabs-min .ui-widget-header {
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid #c0c0c0;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+}
+#tabs-min .ui-state-default {
+	background: transparent;
+	border: none;
+}
+#tabs-min .ui-state-active {
+	background: transparent url(img/uiTabsArrow.png) no-repeat bottom center;
+	border: none;
+}
+#tabs-min .ui-state-default a {
+	color: #c0c0c0;
+}
+#tabs-min .ui-state-active a {
+	color: #459E00;
+}
+
+</style>
+<!--[if IE]>
+<style type="text/css">
+div.showCode {
+	font-size: 0.8em;
+}
+</style>
+<![endif]-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/demo.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('div.tabs').tabs();
+});
+</script>
+</head>
+<body>
+
+<div id="tabs-min" class="tabs">
+	<ul>
+		<li><a href="#tabs-min-1" name="tabs-min">First</a></li>
+		<li><a href="#tabs-min-2">Second</a></li>
+		<li><a href="#tabs-min-3">Third</a></li>
+	</ul>
+	<div id="tabs-min-1">
+		<p>Minimalist tabs.</p>
+	</div>
+	<div id="tabs-min-2">
+		<p>Nunc eleifend iaculis nibh, sed semper nisl feugiat nec. Duis pretium,
+			felis nec ornare posuere, leo erat ullamcorper nisl, a lacinia dolor urna vel quam!</p>
+	</div>
+	<div id="tabs-min-3">
+		<p>Pellentesque ac elit et nulla posuere convallis quis ut dolor. Pellentesque egestas
+			pellentesque blandit. Morbi quis sapien nec lacus consectetur vestibulum.</p>
+	</div>
+</div>
+
+</body>
+</html>

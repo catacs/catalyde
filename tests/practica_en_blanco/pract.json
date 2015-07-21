@@ -1,0 +1,6 @@
+{
+  "title" : "En blanco",
+  "longtitle": "Poner a prueba el sandbox",
+  "practice": "pract.md",
+  "dustTemplates" : ["p1.dust", "p2.dust", "p3.dust", "p4.dust", "p5.dust"]
+}

@@ -1,0 +1,134 @@
+import url(http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,700,700italic);
+* {
+  margin: 0;
+  padding: 0;
+  line-height: 100%;
+}
+
+body {
+  counter-reset: figcaption; /* start figcaption counter */
+  background: #eee;
+  color: #222;
+  width: 700px;
+  margin: 50px auto;
+  font-family: "Open Sans";
+}
+
+/* I used counters() to get figcaption counter
+   state. This will/should fallback
+   to "Fig. :" for older browsers.*/
+
+figcaption {
+  counter-increment: figcaption;
+}
+
+figcaption::before {
+  content: "Fig. :";
+  content: "Fig. " counters(figcaption, "") ":";
+  font-style: italic;
+}
+
+/* center all figure content */
+
+figure *:first-child {
+  margin: 0 auto;
+  text-align: left;
+}
+
+/* ===== Some styling ===== */
+
+/* General things */
+
+body p, body figure {
+  margin-bottom: 0.5em;
+}
+
+body h1 {
+  position: relative;
+  font-weight: 400;
+  display: inline;
+  background: #eee;
+  padding-right: 10px;
+
+}
+body h1::after {
+  content: "";
+  background: url(data:image/gif;base64,R0lGODlhAQABAIABAMPDw////yH+EUNyZWF0ZWQgd2l0aCBHSU1QACwAAAAAAQABAAACAkQBADs=);
+  background-repeat: repeat-x;
+  background-position: center;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 700px;
+  
+}
+
+body a {
+
+  color: #222;
+}
+body p {
+    line-height: 140%;
+}
+
+/* figure styling */
+
+figure {
+  text-align: center;
+  padding: 1em 0 0.5em 0;
+}
+
+figcaption {
+  background: #c3c3c3;
+  padding: 7px 9px;
+  border-radius: 3px;
+  margin-top: 10px;
+  display: inline-block;
+  font-size: smaller;
+}
+
+/* Let images behave like blocks, styling */
+
+figure>img {
+  display: block;
+  padding: 2px;
+  border: 1px solid #a1a1a1;
+}
+
+/* Table styling */
+
+table {
+  border-collapse: collapse;
+  
+}
+
+table, td {
+  border: 1px solid #a1a1a1;
+}
+
+th {
+  background: #888;
+  color: white;
+  border: 1px solid #666;
+  
+}
+
+th, td {
+  padding: 10px;
+}
+
+/* Code block styling */
+
+pre>code {
+  display: block;
+  background: #222;
+  color: #fff;
+  width: 500px;
+  font-family: "DejaVu Sans Mono", Courier, monospaced;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+}
+

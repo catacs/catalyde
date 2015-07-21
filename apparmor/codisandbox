@@ -1,0 +1,8 @@
+#include <tunables/global>
+/catalyde/route/sandbox/** {
+   #include <abstractions/base>
+   /home/sespana/treball/pfc/Catalin/editorcopia/editor/sandbox/** rw,
+   set rlimit data <= 100M,
+   set rlimit stack <= 100M,
+   set rlimit cpu <= 5s,
+}

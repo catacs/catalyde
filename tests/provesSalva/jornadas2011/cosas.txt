@@ -1,0 +1,51 @@
+Título: "Adaptacion al grado de la asignatura de informática en otras titulaciones"
+
+La idea es:
+
+ - explicar la asignatura de informática en titulaciones ajenas a esta materia:
+
+   * distinta motivación y background
+
+   * no hay asignaturas simultáneas ni previas, ni prerequisitos
+
+   * el objetivo es más de algoritmia que en la programación en sí (saber modelar un problema y las pautas para resolverlo)
+
+----------------------------------------------------------------
+
+objetivo a explicar en el poster:
+
+con el grado, tanto la tasa de asistencia como la tasa de aptos es mayor, manteniendo los contenidos de la materia
+
+----------------------------------------------------------------
+
+en la ingeniería se hacían 3 actos de evaluación (1er parcial, febrero, junio), mientras que en grado son 11 actos de evaluación, de ahí la necesidad (que no se está dando) de grupos reducidos.
+
+
+
+----------------------------------------------------------------
+
+El diseño del poster:
+
+
+  3 partes:
+
+ - motivación
+
+ - objetivos
+
+ - resultados (comparativos entre ingeniería y grado)
+
+conclusiones: 
+
+----------------------------------------------------------------------
+
+imágenes
+
+http://praktikum2011etsid.blogs.upv.es/files/2011/06/1-300x224.jpg
+
+http://www.bloodshed.net/images/devcpp5_scr.jpg
+
+
+----------------------------------------------------------------------
+
+

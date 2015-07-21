@@ -1,0 +1,50 @@
+{
+    "groups":
+    [
+        {     
+              "description": "admin"
+            , "practices":  []
+        },
+        {
+             
+              "description": "Teoria 1"
+            , "practices":  []
+        
+        },
+        {
+              
+              "description": "Practica 1"
+            , "practices":  []
+        }
+    ],
+    "users":
+    [
+        {     "fname": "admin"
+            , "lname": "admin"
+            , "type":  "admin"
+            , "groups": ["admin","Teoria 1"]
+            , "email": "admin@mail.com"
+            , "password": "123456"
+        },
+        {
+              "fname": "Catalin"
+            , "lname": "Stanciu"
+            , "type":  "student"
+            , "groups": ["Teoria 1"]
+            , "email": "catalin@mail.com"
+            , "password": "1"
+        
+        },
+        {
+              "fname": "Teacher"
+            , "lname": "Ramon"
+            , "type":  "teacher"
+            , "groups": []
+            , "email": "tr@mail.com"
+            , "password": "1"
+        }
+    ]
+
+
+
+}

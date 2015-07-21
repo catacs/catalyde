@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+void pedir_vector_int(char nom[],int v[], int n) {
+  int i;
+  for (i=0; i<n; i=i+1) {
+    fprintf(stdout,"Introduce %s[%d]: ",nom,i);
+	fscanf(stdin,"%d",&v[i]);
+  }
+}
+
+{?funcion_iguales}
+{#load blockid=id.funcion_iguales /}
+{:else}{~n}
+int iguales(int v1[], int v2[], int n) {
+  int i;
+  for (i=0; i<n; i=i+1)
+    if (v1[i] != v2[i])
+      return 0;
+  return 1;
+}
+{/funcion_iguales}
+
+#define N 5
+int main() {
+  int a[N], b[N];
+  pedir_vector_int("a",a,N);
+  pedir_vector_int("b",b,N);
+
+{?condicional_iguales}
+{#load blockid=id.condicional_iguales /}
+{:else}{~n}
+ if (iguales(a,b,N))
+{/condicional_iguales}
+    printf("Los dos vectores son iguales\n");
+  else
+    printf("Los dos vectores son diferentes\n");
+  return 0;
+}
+

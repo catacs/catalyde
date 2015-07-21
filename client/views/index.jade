@@ -1,0 +1,78 @@
+!!! 5
+html
+  head(lang="en")
+    title #{title}
+    link(rel='stylesheet', href='/css/ui-custom-theme/jquery-ui-1.8.23.custom.css')
+    link(rel='stylesheet', href='/css/style.css')
+    
+    //
+       External Dependencies 
+    script(src='socket.io/socket.io.js')
+    //
+       we can load jquery from google CDN because it's better () 
+    script(src='/js/external/jquery-1.7.2.min.js')
+    script(src='/js/external/jquery-ui-1.8.22.custom.min.js')
+    script(src='/js/external/ui.tabs.closable.min.js')
+    script(src='/js/external/modernizr-2.0.6.js')
+    script(src='/js/external/transformjs.1.0.beta.2.js')
+    script(src='/js/external/termlib.js')
+    script(src='/js/external/termclient.js')
+    script(src='/js/external/jquery.easydate-0.2.4.js')
+    
+    script(src='/js/ServerConnection.js')
+    script(src='/js/EditorPool.js')
+    script(src='/js/UserInterfaceController.js')
+    script(src='/js/aceditor.js')
+    script(src='/js/PracticeViewer.js')
+    //    script(src='/js/fullscreen.js')
+
+
+  body
+    b.vignette
+    
+    #options
+      ul#menu
+        #menu-left
+          li#app-name.menu-label #{title}
+        #menu-center
+          li.menu-dropdown Archivos
+             ul
+                 li#save.menu-button Guarda actual
+                 li#save-all.menu-button Guardarlo todo
+          li.menu-dropdown Opciones
+             ul
+                 li#print.menu-button Imprimir actual
+                 li#setfullscreen.menu-button P. completa
+        #menu-right
+          li#user-name.menu-label #{currentUser.name.first+' '+currentUser.name.last} 
+          li#about.menu-button Acerca de
+          li#signout.menu-button Salir
+    #main
+        #container
+          div.drop-shadow.curved.curved-vt-2
+            #sidebar
+              ul
+                  #practice-label Prácticas
+                  #practice-tree
+                    ul#group-list
+
+              ul
+                  #practice-label Índice
+
+              ul
+                li#search.root
+                  img(src='img/search.png')
+                  | Results
+                  #search-results
+          div.contentdrop-shadow.curved.curved-vt-2
+              #content
+                #tabs-pan
+                  ul.noSelect
+
+    //#status-bar
+    #terminal
+    #inform-popup
+    #loading.invisible
+        p
+            img(id="load-animation",src="/img/ajax-loader-bar.gif")
+    #compilation

@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 ie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 ie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 ie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="viewport" content="width=device-width">
+	
+	
+	<title>Simple jQuery Dropdowns | CSS-Tricks</title>
+
+	<link rel="shortcut icon" href="http://cdn.css-tricks.com/favicon.ico">
+	<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+	<!-- <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="CSS-Tricks Search"> -->
+	<!-- <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://feeds.feedburner.com/CssTricks"> -->
+	<!-- <link rel="author" href="https://plus.google.com/101987072260327250694/posts"> -->
+
+	<base href="http://css-tricks.com">
+	
+	
+<!-- This site is optimized with the Yoast WordPress SEO plugin v1.2.5 - http://yoast.com/wordpress/seo/ -->
+<meta name="description" content="There are lots of dropdown menus already out there. I&#039;m not really trying to reinvent the wheel here, but I wanted to try to do something slightly diff"/>
+<link rel="canonical" href="http://css-tricks.com/simple-jquery-dropdowns/" />
+<!-- / Yoast WordPress SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="CSS-Tricks &raquo; Simple jQuery Dropdowns Comments Feed" href="http://css-tricks.com/simple-jquery-dropdowns/feed/" />
+<link rel='stylesheet' id='wp-polls-css'  href='http://cdn.css-tricks.com/wp-content/plugins/wp-polls/polls-css.css?ver=2.63' type='text/css' media='all' />
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js?ver=3.4.1'></script>
+<link rel='shortlink' href='http://wp.me/p28635-AO' />
+<style type="text/css">
+.wp-polls .pollbar {
+	margin: 1px;
+	font-size: 13px;
+	line-height: 15px;
+	height: 15px;
+	background-image: url('http://cdn.css-tricks.com/wp-content/plugins/wp-polls/images/default/pollbg.gif');
+	border: 1px solid #ffffff;
+}
+</style>
+		
+	<!--[if !IE]><!-->
+	<script src="//use.typekit.com/rnr2kxn.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
+	<script src="/prettify/prettify-may2012.js"></script>
+	<link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-9/style.css?v=9.5">
+	<!--<![endif]-->
+	
+	<!--[if gte IE 8]>
+	<script src="http://use.typekit.com/rnr2kxn.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
+	<script src="/prettify/prettify.js"></script>
+	<link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-9/style.css?v=9.5">
+	<![endif]-->
+	
+	<!--[if lte IE 7]>
+	<link rel="stylesheet" href="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-9/css/ie6.0.3.css">
+	<![endif]-->
+
+			<script src='http://cdn.css-tricks.com/wp-includes/js/comment-reply.js'></script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	<script src="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-9/js/fitspondernizer.js"></script>
+<!-- Art Direction Styles -->
+
+
+
+</head>
+
+<body class="single single-post postid-2282 single-format-standard loading">
+
+	<script>
+	(function(){
+	  var bsa = document.createElement('script');
+	     bsa.type = 'text/javascript';
+	     bsa.async = true;
+	     bsa.src = '//s3.buysellads.com/ac/bsa.js';
+	  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+	})();
+	</script>
+
+	<div id="page-wrap">
+	
+		<header>
+		
+			<div class="inside">
+			
+				<a href="/" id="logo">
+					<h1 class="screen-reader-text">CSS-Tricks</h1>
+					<div id="tag">A Web Design Community</div>
+					<div id="slogan">
+						<span>Making</span>
+						<hr />
+						<span>Websites</span>
+						<hr />
+						<span>Better</span>
+						<hr />
+						<em>Since 2007</em>
+					</div>
+				</a>
+			
+				<nav class="main-nav-wrap">
+					<ul class="main-nav group">
+						<li class="articles"><a href="/">Articles <span>The blog</span></a></li>
+						<li class="forums"><a href="/forums/">Forums <span>Get &amp; give help</span></a></li>
+						<li class="snippets"><a href="/snippets/">Snippets <span>Clip and save</span></a></li>
+						<li class="videos"><a href="/video-screencasts/">Videos <span>Watch and learn</span></a></li>
+						<li class="almanac"><a href="/almanac/">Almanac <span>Reference guide</span></a></li>
+						<li class="gallery"><a href="/gallery/">Gallery <span>Ooooh Aaaah</span></a></li>
+						<li class="downloads"><a href="/downloads/">Downloads <span>Just a seed</span></a></li>
+						<li class="deals"><a href="/deals/">Deals <span>Save bucks</span></a></li>
+					</ul>
+				</nav>
+				
+				<div class="top-ad-treehouse" id="top-ad-treehouse">
+				  <a href="https://teamtreehouse.com/subscribe/plans/?cid=988" class="the-frog" id="the-frog">
+						<div class="treehouse-frog">
+							<div class="left-eye">
+								<span></span>
+							</div>
+							<div class="right-eye">
+								<span></span>
+							</div>
+							<div class="nostril-left"></div>
+							<div class="nostril-right"></div>
+							<div class="mouth-wrap">
+								<div class="mouth-top"></div>
+								<div class="mouth-bottom"></div>
+							</div>
+						</div>
+				  </a>
+				  <a class="ad-treehouse-text" href="https://teamtreehouse.com/subscribe/plans/?cid=988">
+						<div class="ad-treehouse-title">What do you want to <br>learn today?</div>
+						<div class="ad-treehouse-desc"><strong>Treehouse</strong> is the best place to learn web design,<br> web development, and iOS.</div>
+					</a>
+				</div>
+			
+			</div><!-- end inside -->
+		
+		</header>
+
+		<section id="main-content">
+		
+			<div class="inside group">
+<div id="juice" class="group">
+
+	<div class="inside" class="group">
+
+	    
+		<article class="post hentry" id="post-2282">
+
+			<h1>Simple jQuery Dropdowns</h1>
+			
+			<p class="author-byline">by: Chris Coyier</p>
+			
+			<div class="date-bubble">
+				<span>Feb</span>
+				<span>25</span>
+				<span>2009</span>
+			</div>
+		  
+		  			<div class="comment-bubble">
+				<a href="http://css-tricks.com/simple-jquery-dropdowns/#comments" class="comments-link"  title="Comment on Simple jQuery Dropdowns">55</a>			</div>
+			
+			<div class="entry-content">
+				<p><img src="http://css-tricks.com/wp-content/csstricks-uploads/dropdownspic.jpg" width="570" height="338" alt="" title="" /></p>
+<p>There are lots of dropdown menus already out there. I'm not really trying to reinvent the wheel here, but I wanted to try to do something slightly different by making them as dead simple as possible. Very stripped down code and minimal styling, yet still have all the functionality typically needed. Here are the features:</p>
+<ul>
+<li>Cross-browser compatible (even IE 6)</li>
+<li>Multi-level and retains "trail"</li>
+<li>Very minimal styling (easy to adapt)</li>
+<li>Very minimal JavaScript (short bit of jQuery)</li>
+</ul>
+<p>&nbsp;</p>
+<p><a href="http://css-tricks.com/examples/SimplejQueryDropdowns/" class="button">View Demo</a> &emsp; <a href="http://css-tricks.com/examples/SimplejQueryDropdowns.zip" class="button">Download Files</a></p>
+<p>&nbsp;</p>
+<p>I think it worked out pretty well. All my testing shows them working pretty well. Please let me know if you find any problems and we can try to address them. There was only really one CSS tweak needed for IE, which was to use inline-block on the submenu list items to prevent the weird spacing pseduo-line-break IE likes to do.</p>
+<p>Each "level" is clearly marked in the CSS file, so it should be pretty easy to identify what is what and apply your own custom styling.</p>
+<h3>hoverIntent</h3>
+<p>The demo and download comes with two "versions", one with <a href="http://plugins.jquery.com/project/hoverIntent">hoverIntent</a> and one without. I couldn't decide which one I liked better so I just left both in. On one hand, hoverIntent is nice because it prevents the menus from opening if you just quickly mouse over them (like the mouse just happened to cross them but you clearly weren't intending to use the menu at that time). On the other hand, it makes the menu feel a bit sluggish.</p>
+			</div>
+
+				
+			
+			
+			<div class="end-of-article-stuff entry-unrelated">
+			
+				<div class="eoa-row group">
+			
+					<div class="sharing sharing-twitter">
+						<div>
+		      		<a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a>
+		      	</div>
+		      </div>
+		      
+		      <div class="sharing sharing-google-plus">
+		      	<div>
+			      	<div class="g-plusone" data-size="medium" data-count="true"></div>
+			      </div>
+		      </div>
+		      
+		      <div class="sharing sharing-facebook">
+		      	<div>
+			      	<div id="fb-root"></div>
+			      	<div class="fb-like" data-send="false" data-layout="button_count" data-width="1" data-show-faces="false" data-action="recommend"></div>
+	      		</div>
+	      	</div>
+	      	
+	      </div>
+		      
+		      <script>
+		      (function(doc, script) {
+				    var js, 
+				        fjs = doc.getElementsByTagName(script)[0],
+				        frag = doc.createDocumentFragment(),
+				        add = function(url, id) {
+				            if (doc.getElementById(id)) {return;}
+				            js = doc.createElement(script);
+				            js.src = url;
+				            id && (js.id = id);
+				            frag.appendChild( js );
+				        };
+				        
+					    // Google+ button
+					    add('https://apis.google.com/js/plusone.js');
+					    // Facebook SDK
+					    add('//connect.facebook.net/en_US/all.js#xfbml=1&appId=200103733347528', 'facebook-jssdk');
+					    // Twitter SDK
+					    add('//platform.twitter.com/widgets.js');
+					
+					    fjs.parentNode.insertBefore(frag, fjs);
+					}(document, 'script'));
+				</script>
+	      
+	      <div class="eoa-row">
+	      	<div class="sharing previous-article">
+	      		<div>
+							<strong>Previous Blog Post: </strong>
+							&laquo; <a href="http://css-tricks.com/joomla-template-design-book-giveaway-resources/" rel="prev">Joomla Template Design Book Giveaway &#038; Resources</a>						</div>
+					</div>
+	      </div>
+	      
+	    </div>
+
+		</article>
+		
+		<div id="bsap_1250418" class="bsarocks entry-unrelated bsap_3469a2a501a9e18091036aa0c89f9dcb"></div>
+		
+					<section id="comments">
+
+
+	
+	<h4>
+		<a href='http://css-tricks.com/simple-jquery-dropdowns/feed/'><span class='comments-rss-link'>Subscribe to</span></a>		The Thread
+	</h4>
+	
+	<div id="comment-stats">
+		<div id="happy-comments"></div>
+		<div id="sad-comments"></div>
+	</div>
+
+	<ol class="commentlist group">
+	
+		
+		<li class="comment even thread-even depth-1 group" id="li-comment-52815">
+			
+			<div id="comment-52815" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/e9df505622d77677ac6f877c975b384b?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">William Hernandez</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52815"><time pubdate datetime="2009-02-25T08:12:11+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Very cool Chris.<br />
+With this type of jQuery menus, do we have to worry if the user has javascript turned off?  If they do, then what?</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-odd thread-alt depth-1 group" id="li-comment-52843">
+			
+			<div id="comment-52843" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/9bafaa62f0ce8d23ae40123a4a9944ed?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">Neil Hyde</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52843"><time pubdate datetime="2009-02-25T09:32:05+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Works great Chris &#8211; thanks for the info!</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-even depth-1 group" id="li-comment-52848">
+			
+			<div id="comment-52848" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/ede1970a59ebac149c52edea1127aeb8?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://blog.technicallycoordinated.com/' rel='external nofollow' class='url'>Brett Shegogue</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52848"><time pubdate datetime="2009-02-25T09:44:10+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>I think I am going to vote for the one without hoverIntent.  The sluggish feel just detracts from the menu, IMHO.  I guess it depends on users mouse moving speeds though!  Thanks, I will probably be using this in the future</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-odd thread-alt depth-1 group" id="li-comment-52851">
+			
+			<div id="comment-52851" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/7ef3b6094b98780b1dccf9782cb8c69b?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">Matt</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52851"><time pubdate datetime="2009-02-25T10:01:43+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Nice work, i know this is a &#8220;simple&#8221; dropdown menu, but my only point to consider is:</p>
+<p>Some menu items go 3 levels deep e.g.: &#8220;Game-practice Equiptment &gt;&gt; Soccer &gt;&gt; Soccer Goals&#8221;. This is conveniently in the middle of the screen. However &#8211; if the the LAST &lt;li&gt; item (books-videos) goes 3 levels deep the menu expand left off the screen and causes horizontal scrolling :( (yes even at 1024&#215;768)</p>
+<p>Im not sure how you difficult it would be to make the dropdowns expand out to the left (instead of the right) if them menu will go cuase horizontal scrolling?</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		<ul class='children'>
+
+		<li class="comment even depth-2 group" id="li-comment-52860">
+			
+			<div id="comment-52860" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=68' class='avatar avatar-68 photo avatar-default' height='68' width='68' /><div class="comment-author"><a href='http://jason-boyle.com' rel='external nofollow' class='url'>Jason Boyle</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52860"><time pubdate datetime="2009-02-25T11:02:23+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Wouldn&#8217;t left expanding menus be the opposite of what the user would expect when using them? I know it would bother me because it would feel like reading right to left (or the opposite for languages that do read right to left ;-) ).</p>
+<p>Couldn&#8217;t you just leave that last section of the menu non-nested or better yet, not have the main menu go over that far to the right? I noticed this functionality as well when changing the browser window size on my Mac while testing this code&#8230;but everything has limitations.</p>
+<p>Cool menu Chris! Have you written any WordPress plug-ins that use jQuery yet?</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+</ul>
+</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-52858">
+			
+			<div id="comment-52858" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=68' class='avatar avatar-68 photo avatar-default' height='68' width='68' /><div class="comment-author"><a href='http://jayj.dk' rel='external nofollow' class='url'>Jayj</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52858"><time pubdate datetime="2009-02-25T10:26:31+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Thanks!</p>
+<p>Just what I needed, but if you had published before would I&#8217;ve saved many hours xD</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-52862">
+			
+			<div id="comment-52862" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/8d79bd6a2a28eef2ffacc1397d2e5256?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://www.morganprecision.com' rel='external nofollow' class='url'>Eugene</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52862"><time pubdate datetime="2009-02-25T11:49:12+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Thank you, thank you, thank you! This is great! The code is so much simpler than many of the others out there.</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-52863">
+			
+			<div id="comment-52863" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/3ff9c2544554b13c6c7877e76684751b?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">Lee Smith</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52863"><time pubdate datetime="2009-02-25T11:57:11+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p><a href="http://users.tpg.com.au/j&#95;birch/plugins/superfish/" rel="nofollow">Superfish</a> rocks!</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-52882">
+			
+			<div id="comment-52882" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/a0a31bd1e5ffa4dd7aef0ca5aa847383?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">Raya</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52882"><time pubdate datetime="2009-02-25T14:02:33+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Good work.<br />
+I was looking for such solution a month ago and its crazy but true that you can&#8217;t find a simple dropdown indeed.</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-52883">
+			
+			<div id="comment-52883" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/8c7eec30b05454cbebf61bdb139d9f84?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">dmathews</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52883"><time pubdate datetime="2009-02-25T14:04:47+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Excellent work! thanks for sharing.</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-52891">
+			
+			<div id="comment-52891" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/48246eea9ba540e6493f063343a7ce69?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://www.bjarniwark.com' rel='external nofollow' class='url'>Bjarni</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52891"><time pubdate datetime="2009-02-25T15:38:07+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Nice work, beautifully crafted : )</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-52907">
+			
+			<div id="comment-52907" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/798910d9a509292dc9f40415008d5cda?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">Jur</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52907"><time pubdate datetime="2009-02-25T17:39:32+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>I think Suckerfish is the leading standard concerning dropdown UL menu&#8217;s. But you just perfected  it bij adding childs of childs.</p>
+<p>(is it childs or children in css? :p )</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-52910">
+			
+			<div id="comment-52910" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/f69da6621ba20c818df8704de2405b92?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://www.madebycool.co.nz' rel='external nofollow' class='url'>Made By Cool</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52910"><time pubdate datetime="2009-02-25T18:33:16+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>I got a horizontal scroll bar in IE6</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-52912">
+			
+			<div id="comment-52912" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/3c97dfa4a939fd5c0b90af2d1a2cd2ff?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://www.uibuzz.com' rel='external nofollow' class='url'>Peter Witham</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52912"><time pubdate datetime="2009-02-25T19:21:33+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Chris, this like everything else I have seen from you is excellent. Also want to say thank you for the Podcasts, superb content to learn from.</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-52917">
+			
+			<div id="comment-52917" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/8677c9f7c0f6d947bf318c1430d00bfd?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://www.thecssninja.com/' rel='external nofollow' class='url'>Ryan</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52917"><time pubdate datetime="2009-02-25T20:43:29+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Wow 65kb of unnecessary JavaScript when this can easily be accomplished with css <a href="http://www.cssplay.co.uk/menus/dd&#95;valid.html" rel="nofollow">http://www.cssplay.co.uk/menus/dd&#095;valid.html</a> </p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		<ul class='children'>
+
+		<li class="comment odd alt depth-2 group" id="li-comment-53058">
+			
+			<div id="comment-53058" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/2d254b848c3e7a081b0a2e4e8101870f?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://none.' rel='external nofollow' class='url'>Tom</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53058"><time pubdate datetime="2009-02-27T16:55:09+00:00">02/27/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>You claim to be CSS only yet it appears you have to use XHTML. What is the logical difference between using XHTML or jQuery to support CSS? This menu is elegant in its simplicity. But the author here has manners and does not &#8216;mark&#8217; on your web sight.</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even depth-2 group" id="li-comment-53107">
+			
+			<div id="comment-53107" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/8677c9f7c0f6d947bf318c1430d00bfd?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://www.thecssninja.com/' rel='external nofollow' class='url'>Ryan</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53107"><time pubdate datetime="2009-03-01T03:07:30+00:00">03/01/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>You have got to be kidding me right? How else would you propose you do a website, or drop down menu, without xhtml? Saying something is using css only doesn&#8217;t literally mean it is just css, xhtml is the base structure of any website. The fact that you don&#8217;t see the benefit of using a pure css solution over the inclusion of 65kb of bloated javascript scares me and makes me think you have no idea what you are talking about. </p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+</ul>
+</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-52918">
+			
+			<div id="comment-52918" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/c84ec436a6a1e33109c4fdac47ca008b?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://www.kenya-portals.com/' rel='external nofollow' class='url'>CyberFox</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52918"><time pubdate datetime="2009-02-25T20:55:46+00:00">02/25/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Chris, You are the best!</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-52957">
+			
+			<div id="comment-52957" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/5a07fdba68e4fa57bfece96e41272d6b?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://www.prop-14.com' rel='external nofollow' class='url'>Randy</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52957"><time pubdate datetime="2009-02-26T10:17:19+00:00">02/26/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>I like it, nice job, but personally I am getting tired of drop-down menus. I prefer a nice big footer holding all this &#8220;extra&#8221; content. There are NO browser/accessibility issues and it looks more modern. Do you (or anyone) agree?</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-52960">
+			
+			<div id="comment-52960" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/c9bc97e916c707e2450830c41b1cdecb?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">Sarah</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-52960"><time pubdate datetime="2009-02-26T11:19:00+00:00">02/26/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>I&#8217;ve been working on something very similar, but noticed that there are some issues with jQuery hover() and Firefox (both 2 and 3) where if you hover over the menu and it covers text fields or text areas, and then exit the menu on one of these elements, the menu doesn&#8217;t go away. It sticks around.</p>
+<p>Little video: <a href="http://screencast.com/t/TH2D2cdx81" rel="nofollow">http://screencast.com/t/TH2D2cdx81</a><br />
+Ticket for jQuery: <a href="http://dev.jquery.com/ticket/3730" rel="nofollow">http://dev.jquery.com/ticket/3730</a></p>
+<p>I found that to get around it, I basically wrote extra css to use the :hover psuedo class for these objects and then had to update my js to do some browser sniffing. I don&#8217;t like that option, but we use a lot of form elements and it&#8217;s really annoying when the menus don&#8217;t go away!</p>
+<p>I see the same issue with your code when I download it and add some text fields below it. </p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-53004">
+			
+			<div id="comment-53004" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/9448e985bd876af1cba1d84e16d783d1?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://winchester.storageking.co.uk/' rel='external nofollow' class='url'>Suzanne</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53004"><time pubdate datetime="2009-02-27T02:30:24+00:00">02/27/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>drop down menus are ok on some sites but i dont think they suit all&#8230;</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-53020">
+			
+			<div id="comment-53020" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/d922f66576c5aa44f64aa9065733f687?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">mayo</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53020"><time pubdate datetime="2009-02-27T06:43:33+00:00">02/27/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>very nice, thank you !!</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-53022">
+			
+			<div id="comment-53022" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=68' class='avatar avatar-68 photo avatar-default' height='68' width='68' /><div class="comment-author"><a href='http://www.ryersonphotography.com' rel='external nofollow' class='url'>benryerson</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53022"><time pubdate datetime="2009-02-27T07:28:09+00:00">02/27/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Great post, Chris, thank you.  Your tutorials are invaluable for those of us who are still learning.</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-53062">
+			
+			<div id="comment-53062" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/4e5b7f48013313c45129783592ad8ebe?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://www.przyroda.org.pl' rel='external nofollow' class='url'>Sklep Zoologiczny</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53062"><time pubdate datetime="2009-02-27T17:21:16+00:00">02/27/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>It can be done with pure CSS.</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-53079">
+			
+			<div id="comment-53079" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/fd1db0819aaa8c4b5b60a3696a54c5f8?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">kirie</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53079"><time pubdate datetime="2009-02-28T08:33:38+00:00">02/28/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>I always hate drop down menu on website, but nice tutorial thx :)</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-53087">
+			
+			<div id="comment-53087" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/aa812b794061a58edce5e034ca8cb460?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://mercenarydesign.blogspot.com' rel='external nofollow' class='url'>elcodigodebarras</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53087"><time pubdate datetime="2009-02-28T16:13:56+00:00">02/28/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>A new surprise every day&#8230;<br />
+Thanks Chris&#8230;</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-53139">
+			
+			<div id="comment-53139" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/b350ed3b06a88bb9289318e6d2b3ef03?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://bertrandgermain.free.fr/blog/' rel='external nofollow' class='url'>battle_benny</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53139"><time pubdate datetime="2009-03-02T04:04:15+00:00">03/02/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Too bad it lacks some basic accessibility (like using tab key to navigate in sub menus), but it&#8217;s a great menu, easy to setup for any website.</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-53143">
+			
+			<div id="comment-53143" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/5baf92b5a0740c2c0af49ddf8ddf7131?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://websemantics.co.uk/' rel='external nofollow' class='url'>mike foskett</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53143"><time pubdate datetime="2009-03-02T05:08:56+00:00">03/02/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Hi Chris,</p>
+<p>Cannot say I agree with the article presented.<br />
+This is CSS-Tricks not jQuery overrides.<br />
+Let&#8217;s face it there are better CSS only drop-down methods, albeit less simple and JavaScript is required to get IEv6 to fully comply.</p>
+<p>From an accessibility perspective the article should add a proviso that all root navigation links reference a page where the extended (dropdown) links are listed in full without a JavaScript requirement.</p>
+<p>I&#8217;ll forgive you if you provide the CSS only version too.</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-53147">
+			
+			<div id="comment-53147" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/5f34a6c69828cf3a8390f7baab782516?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">Angela</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53147"><time pubdate datetime="2009-03-02T06:04:37+00:00">03/02/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>I&#8217;m glad you wrote a post like this..there&#8217;s a lot of dropdown samples out there but not all of them are good. Eventhough this one has some issues I think with the bug fixing it will be perfect soon.I&#8217;m gonna test it right now :)</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-53163">
+			
+			<div id="comment-53163" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/3a531c8eab7f2d3b2974393ec87cd925?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">Eric</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53163"><time pubdate datetime="2009-03-02T09:32:50+00:00">03/02/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>For the extra line breaks in IE6, this can be fixed by removing whitespace in your markup.</p>
+<p>For example,</p>
+<p><code>&lt;li&gt;&lt;/li&gt;<br />
+&lt;li&gt;&lt;/li&gt;<br />
+</code></p>
+<p>can be written as </p>
+<p><code>&lt;li&gt;&lt;/li<br />
+&gt;&lt;li&gt;&lt;/li<br />
+&gt;<br />
+</code></p>
+<p>and it will remove the line break. It looks funny, but it&#8217;s valid and works.</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-53244">
+			
+			<div id="comment-53244" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/6a0d1ac47df04cab44780bfd0dbb4aec?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">Libby</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53244"><time pubdate datetime="2009-03-04T07:31:23+00:00">03/04/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Really useful, thanks very much!</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-53342">
+			
+			<div id="comment-53342" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/91fabd9f8cac05d1200b378490bfd06a?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://www.dxweb.com.br' rel='external nofollow' class='url'>Eduardo Faria</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53342"><time pubdate datetime="2009-03-06T18:38:59+00:00">03/06/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>jQuery helps a lot when you have to do some amazing stuffs with our sites&#8230;</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-53399">
+			
+			<div id="comment-53399" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/49d2fa6ccc0a96b00cf2a9a7c7051940?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">ys</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53399"><time pubdate datetime="2009-03-08T22:41:20+00:00">03/08/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>hey!</p>
+<p>I have a problem with my ul menu level2 appearing UNDER MY content.</p>
+<p>a screenshot: <a href="http://i43.tinypic.com/23sg4zk.gif" rel="nofollow">http://i43.tinypic.com/23sg4zk.gif</a></p>
+<p>how do i solve that?</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		<ul class='children'>
+
+		<li class="comment odd alt depth-2 group" id="li-comment-53443">
+			
+			<div id="comment-53443" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/3160619f1c6c1164df6c375fa59dcdd9?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://fondalashay.com' rel='external nofollow' class='url'>Fonda</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53443"><time pubdate datetime="2009-03-09T13:59:58+00:00">03/09/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>I am having the same problem as well.</p>
+<p><a href="http://i40.tinypic.com/2epu0wn.gif" rel="nofollow">http://i40.tinypic.com/2epu0wn.gif</a></p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment byuser comment-author-chriscoyier-2 bypostauthor even depth-2 group" id="li-comment-56856">
+			
+			<div id="comment-56856" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/8081b26e05bb4354f7d65ffc34cbbd67?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://chriscoyier.net' rel='external nofollow' class='url'>Chris Coyier</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-56856"><time pubdate datetime="2009-06-02T13:17:59+00:00">06/02/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p><strong>Chris Dornfeld writes in:</strong></p>
+<p>The solution is to add this CSS rule:</p>
+<pre><code>ul.dropdown {
+               z-index: 1;
+}</code></pre>
+<p>Without the z-index, any other layers on the page that use positioning<br />
+will appear on top of the menus.</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+</ul>
+</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-53588">
+			
+			<div id="comment-53588" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/49ff2ef601d22522ba161c52f383af3d?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://www.yimgo.com' rel='external nofollow' class='url'>antonio</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53588"><time pubdate datetime="2009-03-12T04:43:34+00:00">03/12/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>This menu it&#8217;s fantastic</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-53601">
+			
+			<div id="comment-53601" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/6acb82ee1ce4e27ae73226cf867a2621?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">glenn</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53601"><time pubdate datetime="2009-03-12T10:14:31+00:00">03/12/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>I&#8217;m experiencing some weirdness, perhaps someone has an answer to. Using this menu, the sub-menu appears over a flash .swf. It&#8217;s not a problem with transparency, as I&#8217;ve already set the wmode to transparent. But when viewing the menu on a mac (only) in Safari v.3 and 4, and FF v.4 the menu acts very strange, with parts disappearing on rollover and such. No problems with browsers on a PC.</p>
+<p>Here&#8217;s the link, any ideas?<br />
+<a href="http://geigercomputers.com/pm/projects/pbgroup/wood-pivot-window.html" rel="nofollow">http://geigercomputers.com/pm/projects/pbgroup/wood-pivot-window.html</a></p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-53732">
+			
+			<div id="comment-53732" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/c6566c228bde1cdaba111ed90f0ac49c?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://www.webfolio.net.au' rel='external nofollow' class='url'>Oliver Giam</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53732"><time pubdate datetime="2009-03-14T22:56:03+00:00">03/14/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>that&#8217;s very elegant solution yet simplify the CSS. Well done and thank you Chris.</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-53814">
+			
+			<div id="comment-53814" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/98c31121f2534664762297ba01d6b498?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">Matthijs Groen</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53814"><time pubdate datetime="2009-03-17T03:54:48+00:00">03/17/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Thanks for the nice menu&#8217;s! I use jQuery in all my projects, so this source is really nice to know! <em>Thanks!</em></p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-55290">
+			
+			<div id="comment-55290" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/0f88e270b7de9ed76fb7c7f616601264?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">Michael</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-55290"><time pubdate datetime="2009-04-16T16:06:49+00:00">04/16/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>I&#8217;m stuck at the library&#8230;viewing your new design in ie6 and it still looks great&#8230;nice work.</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-55532">
+			
+			<div id="comment-55532" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/d8c38cb7f0ede5dea14893eac79d0977?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author">Melanie</div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-55532"><time pubdate datetime="2009-04-24T19:04:37+00:00">04/24/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>hi chris thank for your aticle. I need your help. I would like use my sub menu width background at 100%; but i&#8217;dont want overflow page-wrap:800px;</p>
+<p><a href="http://www.surplus-inventaire.com/mel/SimplejQueryDropdowns/index-hoverIntent.html" rel="nofollow">http://www.surplus-inventaire.com/mel/SimplejQueryDropdowns/index-hoverIntent.html</a></p>
+<p>I need my sub menu 100% but inside width in border blue.</p>
+<p>sorry form my english</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment odd alt thread-even depth-1 group" id="li-comment-53017">
+			
+			<div id="comment-53017" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://0.gravatar.com/avatar/0d1d9ca0d48d00862287a1e807ddceae?s=68&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://www.face-id.be' rel='external nofollow' class='url'>Jeroen</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-53017"><time pubdate datetime="2009-02-27T05:53:53+00:00">02/27/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Same here with Firefox</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+
+		<li class="comment even thread-odd thread-alt depth-1 group" id="li-comment-55338">
+			
+			<div id="comment-55338" class="comment-body group">
+									
+				<div class="comment-author-wrap vcard">
+					<img alt='' src='http://1.gravatar.com/avatar/f5a928bbd3ef994c875834658d9ae794?s=68&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D68&amp;r=R' class='avatar avatar-68 photo' height='68' width='68' /><div class="comment-author"><a href='http://graphicriver.net/user/kiziel?ref=kiziel' rel='external nofollow' class='url'>kiziel</a></div> <div class="comment-time"><a href="http://css-tricks.com/simple-jquery-dropdowns/#comment-55338"><time pubdate datetime="2009-04-18T00:06:31+00:00">04/18/2009</time></a></div>									</div><!-- .comment-author .vcard -->
+
+				
+				<div class="comment-content">
+					<p>Haha, nice reply. Agree.</p>
+					<div class="reply">
+											</div><!-- .reply -->
+				</div>
+
+			</article><!-- #comment-## -->
+
+		</li>
+	
+	</ol>
+
+		
+
+
+<div id="thread-closed">
+		This comment thread is closed. If you have important information 
+		to share, you can always <a style="white-space: nowrap;" href="/contact/">contact me</a>.
+</div>
+
+
+</section>			
+
+		
+	
+	</div><!--inside-->
+
+</div><!--juice-->
+
+<aside class="entry-unrelated">
+
+  <div class="inside">
+    
+    <form role="search" method="get" id="searchform" action="/search-results/">
+      <div>
+        <label class="screen-reader-text" for="s">Search for: </label>
+        <input type="text" value="" name="q" id="s">
+        <input type="submit" id="searchsubmit" value="Search">
+      </div>
+    </form>
+		
+		<div id="browse-archives">
+			<em>Or...</em>
+			<a href="/archives/">
+
+			 <span>B</span><span>r</span><span>o</span><span>w</span><span>s</span><span>e</span>
+			 <span>A</span><span>r</span><span>c</span><span>h</span><span>i</span><span>v</span><span>e</span><span>s</span>
+
+			 </a>
+		</div>
+
+    <h4>Training</h4>
+  	
+  	<div class="sidebar-box group sidebar-ad-treehouse">
+  	
+  		<a href="https://teamtreehouse.com/subscribe/plans/?cid=988">
+
+    		<p class="treehouse-ad-intro">CSS-Tricks is brought to you in part by <strong>Treehouse</strong>. If you want to improve your skills as a web worker, you should be on Treehouse. I can't recommend it enough. <img src="/images/treehouse-logo-mini.png" class="mini-treehouse-logo" alt=""></p>
+    		
+    		<img src="/images/treehouse-sidebar-ad3.png" class="large-treehouse-ad" alt="">
+    		
+    		<p>Just some of what you can learn: Accessibility, HTML5, CSS3, Design, JavaScript, jQuery, Responsive Web Design, UX, Version Control, WordPress, and iOS.</p>
+  		
+  		</a>
+  		
+  	</div>
+  	
+  	<div class="sidebar-box">
+    	<h4>Subscribe!</h4>
+      <ul id="subscribe-main">
+        <li class="rss"><a href="http://feeds.feedburner.com/CssTricks"><span>RSS Feed</span></a></li>
+        <li class="email"><a href="http://feedburner.google.com/fb/a/mailverify?uri=CssTricks&amp;loc=en_US"><span>Email Subscription</span></a></li>
+        <li class="itunes"><a href="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=273881728"><span>iTunes Large</span></a></li>
+        
+        <li class="itunes"><a href="http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=299818542"><span>iTunes Mobile</span></a></li>
+        <li class="rss"><a href="http://feeds.feedburner.com/CSS-TricksSnippets"><span>Snippets Feed</span></a></li>
+        <li class="rss"><a href="http://feeds.feedburner.com/CSS-Tricks-Forums"><span>Forums Feed</span></a></li>    
+        <li class="rss"><a href="http://feeds.feedburner.com/CSS-Tricks-Screencasts"><span>Screencast Large</span></a></li>
+        <li class="rss"><a href="http://feeds.feedburner.com/CSS-Tricks-Screencasts-iPhone"><span>Screencast Mobile</span></a></li>
+      </ul>
+      <a href="#" id="more">more options</a>
+    </div>
+  	
+  	<div class="sidebar-box">
+  		<h4>What's Awesome?</h4>
+  		<ul>
+  			<li><a href="/examples/AnythingSlider/">jQuery AnythingSlider</a></li>
+  			<li><a href="/perfect-full-page-background-image/">Full Page Background Images</a></li>
+  			<li><a href="/examples/ButtonMaker/">CSS3 Button Maker</a></li>
+  			<li><a href="/the-css-box-model/">The CSS Box Model</a></li>
+  			<li><a href="/examples/Circulate/">jQuery Circulate Plugin</a></li>
+  			<li><a href="/examples/ThePrintliminator/">The Printliminator</a></li>
+  			<li><a href="/examples/HSLaExplorer/">HSLa Explorer</a></li>
+  		</ul>
+  	</div>
+  		
+  	<div class="sidebar-box">
+  	   <div id="bsap_1241308" class="bsarocks bsap_3469a2a501a9e18091036aa0c89f9dcb"></div>
+    </div>
+  	
+  	<div class="sidebar-box level-based-learning">
+  		<h4>Level-Based Learning</h4>
+  		<ul>
+  			<li><a href="/category/beginner/">Beginner Foundations</a></li>
+  			<li><a href="/category/intermediate/">Intermediate Ideas</a></li>
+  			<li><a href="/category/advanced/">Advanced Concepts</a></li>
+  		</ul>
+  	</div>
+  	
+  	<div class="sidebar-box">
+  	<h4>Services I Like</h4>
+    	<ul class="shoutouts group">
+    		<li>
+    		    <a href="http://typekit.com/"><strong>Fonts</strong>
+    		    <em>by</em>
+    				Typekit</a>
+    		</li>
+    		<li>
+    				<a href="http://www.mediatemple.net/#a_aid=4e25c84480ed2"><strong>Hosting</strong>
+    				<em>by</em>
+    				Media Temple</a>
+    		</li>
+    		<li> 
+    				<a href="http://www.netdna.com/"><strong>CDN</strong>
+    				<em>by</em>
+    				NetDNA</a>
+    		</li>
+    		<li> 
+    				<a href="http://aremysitesup.com/aff/aKkdTG"><strong>Monitoring</strong>
+    				<em>by</em>
+    				Are My Sites Up?</a>
+    		</li>
+    	</ul>
+  	
+  	</div>
+  	
+  	<div class="sidebar-box">
+  		<h4>Poll</h4>
+  		  			<div id="polls-38" class="wp-polls">
+	<form id="polls_form_38" class="wp-polls-form" action="/simple-jquery-dropdowns/" method="post">
+		<p style="display: none;"><input type="hidden" id="poll_38_nonce" name="wp-polls-nonce" value="66b32956d9" /></p>
+		<p style="display: none;"><input type="hidden" name="poll_id" value="38" /></p>
+		<h5>Do you listen to music while you work?</h5>
+
+<div id="polls-38-ans" class="wp-polls-ans">
+
+<ul class="wp-polls-ul group">
+		<li><input type="radio" id="poll-answer-224" name="poll_38" value="224" /> <label for="poll-answer-224">Always</label></li>
+		<li><input type="radio" id="poll-answer-225" name="poll_38" value="225" /> <label for="poll-answer-225">Never</label></li>
+		<li><input type="radio" id="poll-answer-226" name="poll_38" value="226" /> <label for="poll-answer-226">It's not my choice</label></li>
+		<li><input type="radio" id="poll-answer-227" name="poll_38" value="227" /> <label for="poll-answer-227">Sometimes (randomly)</label></li>
+		<li><input type="radio" id="poll-answer-228" name="poll_38" value="228" /> <label for="poll-answer-228">Sometimes (depends on situation)</label></li>
+		</ul>
+
+<p class="voting-buttons">
+
+<input type="button" name="vote" value="   Vote   " class="button" onclick="poll_vote(38);" onkeypress="poll_result(38);" /> &nbsp; <a href="#ViewPollResults" class="button" onclick="poll_result(38); return false;" onkeypress="poll_result(38); return false;" title="View Results Of This Poll">View Results</a>
+
+</p>
+
+</div>
+	</form>
+</div>
+<div id="polls-38-loading" class="wp-polls-loading"><img src="http://cdn.css-tricks.com/wp-content/plugins/wp-polls/images/loading.gif" width="16" height="16" alt="Loading ..." title="Loading ..." class="wp-polls-image" />&nbsp;Loading ...</div>
+  		  	</div>
+  	
+  </div>
+				
+</aside>
+ 			</div><!--inside-->
+ 			
+			<div id="footer-boxes" class="group">
+				
+				<a class="footer-box" id="f-diw" href="http://digwp.com">
+					<h5>DigWP</h5>
+					<p>A book and blog co-authored by Jeff Starr and myself about the World's most popular publishing platform.</p>
+				</a>
+				
+				<a class="footer-box" id="f-qod" href="http://quotesondesign.com">
+					<h5>Quotes on Design</h5>
+					<p>Design, like Art, can be an elusive word to define and an awfully fun thing to have opinions about.</p>
+				</a>
+				
+				<a class="footer-box" id="f-htmlipsum" href="http://html-ipsum.com">
+					<h5>HTML-Ipsum</h5>
+					<p>One-click copy to clipboard access to <em>Lorem Ipsum</em> text that comes wrapped in a variety of HTML.</p>
+				</a>
+				<a class="footer-box last" id="f-bookshelf" href="/bookshelf/">
+					<h5>Bookshelf</h5>
+					<p>Hey Chris, what books do you recommend? These, young fertile mind, these.</p>
+				</a>
+				
+			</div><!--footer boxes -->
+ 			
+		</section><!--main content-->	
+		
+		<footer class="entry-unrelated">
+		
+		  <span class="f1"></span>
+		  <span class="f2"></span>
+		  <span class="f3"></span>
+		  <span class="f4"></span>
+		  <span class="f5"></span>
+		
+		  <div class="inside">
+
+  			<section class="group">
+  			
+          <div class="footer-link-group footer-link-group-1">
+            <ul>
+      			 <li>&copy;2007-2012 CSS-Tricks / Chris Coyier</li>
+      			 <li><small>Any downloadable example or tutorial you find on this site you are free to use for whatever you want, with or without attribution. *This website may or may not contain any CSS or Tricks.</small></li>
+      			 <li class="footer-contact">
+      			   <a href="/contact/">
+      			     Contact
+      			     <img src="http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-9/images/meee.png" alt="" id="meee">
+              </a>
+            </li>
+      		  </ul>
+          </div>
+  
+           <div class="footer-link-group footer-link-group-2">
+      		   <ul>
+      		    <li><a href="http://www.smashingmagazine.com/network-posts/">Smashing Network</a></li>
+      			  <li><a href="http://chriscoyier.net">ChrisCoyier.net</a></li>
+      			  <li><a href="http://www.lynda.com/home/DisplayCourse.aspx?lpk2=67160&amp;utm_medium=affiliate&amp;utm_source=ldc_affiliate&amp;utm_content=524&amp;utm_campaign=CD2269&amp;bid=524&amp;aid=CD2269&amp;opt=">Lynda.com</a></li>
+      			  <li><a href="http://wufoo.com">Wufoo</a><!--  &middot; <a href="http://surveymonkey.com">SurveyMonkey</a> --></li>
+      			</ul>
+    			</div>
+    			
+    			 <div class="footer-link-group footer-link-group-3">
+            <ul>
+              <li><a href="https://github.com/chriscoyier">GitHub</a></li>
+              <li><a href="https://plus.google.com/101987072260327250694/posts">Google+</a></li>
+              <li><a href="http://dribbble.com/chriscoyier">Dribbble</a></li>
+              <li><a href="http://forrst.com/people/chriscoyier/posts">Forrst</a></li>
+            </ul>
+          </div>
+          
+           <div class="footer-link-group footer-link-group-4">
+              <ul>
+                <li><a href="http://twitter.com/chriscoyier">@chriscoyier</a></li>
+                <li><a href="http://twitter.com/real_css_tricks">@real_CSS_Tricks</a></li>                        
+                <li><a href="http://www.youtube.com/realcsstricks">YouTube</a></li>
+                <li><a href="http://www.facebook.com/CSSTricks">Facebook</a></li>
+              </ul>
+          </div>
+        
+       </section><!--group-->
+                  
+      </div><!--inside-->
+      
+		</footer>	
+		
+	</div><!--page wrap -->
+	
+	<script src='http://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-9/js/css-tricks.js'></script>
+	
+		<div style="display:none">
+	<div class="grofile-hash-map-e9df505622d77677ac6f877c975b384b">
+	</div>
+	<div class="grofile-hash-map-9bafaa62f0ce8d23ae40123a4a9944ed">
+	</div>
+	<div class="grofile-hash-map-ede1970a59ebac149c52edea1127aeb8">
+	</div>
+	<div class="grofile-hash-map-7ef3b6094b98780b1dccf9782cb8c69b">
+	</div>
+	<div class="grofile-hash-map-d41d8cd98f00b204e9800998ecf8427e">
+	</div>
+	<div class="grofile-hash-map-d41d8cd98f00b204e9800998ecf8427e">
+	</div>
+	<div class="grofile-hash-map-8d79bd6a2a28eef2ffacc1397d2e5256">
+	</div>
+	<div class="grofile-hash-map-3ff9c2544554b13c6c7877e76684751b">
+	</div>
+	<div class="grofile-hash-map-a0a31bd1e5ffa4dd7aef0ca5aa847383">
+	</div>
+	<div class="grofile-hash-map-8c7eec30b05454cbebf61bdb139d9f84">
+	</div>
+	<div class="grofile-hash-map-48246eea9ba540e6493f063343a7ce69">
+	</div>
+	<div class="grofile-hash-map-798910d9a509292dc9f40415008d5cda">
+	</div>
+	<div class="grofile-hash-map-f69da6621ba20c818df8704de2405b92">
+	</div>
+	<div class="grofile-hash-map-3c97dfa4a939fd5c0b90af2d1a2cd2ff">
+	</div>
+	<div class="grofile-hash-map-8677c9f7c0f6d947bf318c1430d00bfd">
+	</div>
+	<div class="grofile-hash-map-2d254b848c3e7a081b0a2e4e8101870f">
+	</div>
+	<div class="grofile-hash-map-c84ec436a6a1e33109c4fdac47ca008b">
+	</div>
+	<div class="grofile-hash-map-5a07fdba68e4fa57bfece96e41272d6b">
+	</div>
+	<div class="grofile-hash-map-c9bc97e916c707e2450830c41b1cdecb">
+	</div>
+	<div class="grofile-hash-map-9448e985bd876af1cba1d84e16d783d1">
+	</div>
+	<div class="grofile-hash-map-d922f66576c5aa44f64aa9065733f687">
+	</div>
+	<div class="grofile-hash-map-d41d8cd98f00b204e9800998ecf8427e">
+	</div>
+	<div class="grofile-hash-map-4e5b7f48013313c45129783592ad8ebe">
+	</div>
+	<div class="grofile-hash-map-fd1db0819aaa8c4b5b60a3696a54c5f8">
+	</div>
+	<div class="grofile-hash-map-aa812b794061a58edce5e034ca8cb460">
+	</div>
+	<div class="grofile-hash-map-b350ed3b06a88bb9289318e6d2b3ef03">
+	</div>
+	<div class="grofile-hash-map-5baf92b5a0740c2c0af49ddf8ddf7131">
+	</div>
+	<div class="grofile-hash-map-5f34a6c69828cf3a8390f7baab782516">
+	</div>
+	<div class="grofile-hash-map-3a531c8eab7f2d3b2974393ec87cd925">
+	</div>
+	<div class="grofile-hash-map-6a0d1ac47df04cab44780bfd0dbb4aec">
+	</div>
+	<div class="grofile-hash-map-91fabd9f8cac05d1200b378490bfd06a">
+	</div>
+	<div class="grofile-hash-map-49d2fa6ccc0a96b00cf2a9a7c7051940">
+	</div>
+	<div class="grofile-hash-map-3160619f1c6c1164df6c375fa59dcdd9">
+	</div>
+	<div class="grofile-hash-map-8081b26e05bb4354f7d65ffc34cbbd67">
+	</div>
+	<div class="grofile-hash-map-49ff2ef601d22522ba161c52f383af3d">
+	</div>
+	<div class="grofile-hash-map-6acb82ee1ce4e27ae73226cf867a2621">
+	</div>
+	<div class="grofile-hash-map-c6566c228bde1cdaba111ed90f0ac49c">
+	</div>
+	<div class="grofile-hash-map-98c31121f2534664762297ba01d6b498">
+	</div>
+	<div class="grofile-hash-map-0f88e270b7de9ed76fb7c7f616601264">
+	</div>
+	<div class="grofile-hash-map-d8c38cb7f0ede5dea14893eac79d0977">
+	</div>
+	<div class="grofile-hash-map-0d1d9ca0d48d00862287a1e807ddceae">
+	</div>
+	<div class="grofile-hash-map-f5a928bbd3ef994c875834658d9ae794">
+	</div>
+	</div>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var pollsL10n = {"ajax_url":"http:\/\/css-tricks.com\/wp-admin\/admin-ajax.php","text_wait":"Your last request is still being processed. Please wait a while ...","text_valid":"Please choose a valid poll answer.","text_multiple":"Maximum number of choices allowed: ","show_loading":"1","show_fading":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://cdn.css-tricks.com/wp-content/plugins/wp-polls/polls-js.js?ver=2.63'></script>
+
+	<script src="http://stats.wordpress.com/e-201232.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:1.5',blog:'31482551',post:'2282'});
+	var load_cmc = function(){linktracker_init(31482551,2282,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script>
+	<script>
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-68528-29']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+		})();
+
+    var google_conversion_id = 1017883234;
+    var google_conversion_language = "en";
+    var google_conversion_format = "3";
+    var google_conversion_color = "ffffff";
+    var google_conversion_label = "BsxVCM7ImAMQ4tSu5QM";
+    var google_conversion_value = 0;
+
+	</script>
+  <script src="//www.googleadservices.com/pagead/conversion.js">
+  <noscript>
+    <div style="display:inline;">
+      <img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1017883234/?value=0&amp;label=BsxVCM7ImAMQ4tSu5QM&amp;guid=ON&amp;script=0">
+    </div>
+  </noscript>
+
+	
+</body>
+
+</html>
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using disk: enhanced
+Database Caching 6/65 queries in 0.102 seconds using apc
+Object Caching 1976/2186 objects using apc
+Content Delivery Network via cdn.css-tricks.com
+
+Served from: css-tricks.com @ 2012-08-10 10:32:31 -->

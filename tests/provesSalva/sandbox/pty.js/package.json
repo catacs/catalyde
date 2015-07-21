@@ -1,0 +1,43 @@
+{
+  "name": "pty.js",
+  "description": "Pseudo terminals for node.",
+  "author": {
+    "name": "Christopher Jeffrey"
+  },
+  "version": "0.1.2",
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chjj/pty.js.git"
+  },
+  "homepage": "https://github.com/chjj/pty.js",
+  "bugs": {
+    "url": "https://github.com/chjj/pty.js/issues"
+  },
+  "keywords": [
+    "pty",
+    "tty",
+    "terminal"
+  ],
+  "scripts": {
+    "test": "node test",
+    "preinstall": "node-waf clean || (exit 0); node-waf configure build"
+  },
+  "tags": [
+    "pty",
+    "tty",
+    "terminal"
+  ],
+  "_id": "pty.js@0.1.2",
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "_engineSupported": true,
+  "_npmVersion": "1.1.4",
+  "_nodeVersion": "v0.6.12",
+  "_defaultsLoaded": true,
+  "_from": "pty.js@0.1.2"
+}

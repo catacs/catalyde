@@ -1,0 +1,11 @@
+{ "users":
+    [
+        {     "fname": "Wichu"
+            , "lname": "Angelito"
+            , "type":  "admin"
+            , "groups": []
+            , "email": "wichan@mail.com"
+            , "password": "1"
+        }
+     ]
+}

@@ -1,0 +1,29 @@
+#include <stdio.h>
+#define PI 3.141592
+
+/* entre parentesis un argumento: pasamos una cadena */
+float pedir_float(char mensaje[]) {
+  float numero;
+  fprintf(stdout,"Introduce %s: ",mensaje);
+  fscanf(stdin,"%f",&numero);
+  return numero;
+}
+
+float volumen_cilindro(float r, float a) {
+{?cuerpo_funcion_volumen_cilindro}
+{#load blockid=id.cuerpo_funcion_volumen_cilindro /}
+{:else}{~n}
+return PI*r*r*a;
+{/cuerpo_funcion_volumen_cilindro}
+}  
+
+int main() {
+  float r,a,v;
+  r = pedir_float("el radio del cilindro");
+  a = pedir_float("la altura del cilindro");
+  v = volumen_cilindro(r,a); /* anyadir arriba */
+  fprintf(stdout,"El volumen de un cilindro de radio %f "
+	  "y altura %f es %f\n",r,a,v);
+  return 0;
+}
+

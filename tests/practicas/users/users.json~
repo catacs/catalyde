@@ -1,0 +1,498 @@
+{
+  "groups":
+  [
+    {     
+      "description": "admin"
+      , "practices":  []
+    },
+    {
+      "description": "Teoria 1"
+      , "practices":  []
+      
+    },
+    {
+      "description": "Practica 1"
+      , "practices":  []
+    }
+  ],
+  "users":
+  [
+    { "fname": "admin"
+      , "lname": "admin"
+      , "type":  "admin"
+      , "groups": ["admin","Teoria 1"]
+      , "email": "admin@mail.com"
+      , "password": "aloa7Quu"
+    },
+    { "fname": "Miguel Angel"
+      , "lname": "Salido"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "msalido@dsic.upv.es"
+      , "password": "iQu4fee7"
+    },
+    { "fname": "Oscar"
+      , "lname": "Sapena"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "osapena@dsic.upv.es"
+      , "password": "poolahJ3"
+    },
+    { "fname": "David"
+      , "lname": "Guerrero Lopez"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "dguerrer@dsic.upv.es"
+      , "password": "iefeim2A"
+    },
+    { "fname": "Pako"
+      , "lname": "Zamora"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "fzamora@dsic.upv.es"
+      , "password": "Yo5Viebe"
+    },
+    { "fname": "Pedro"
+      , "lname": "Ruiz"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "pruiz@dsic.upv.es"
+      , "password": "heeyi8Sh"
+    },
+    { "fname": "Damian"
+      , "lname": "Segrelles Quilis"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "dquilis@dsic.upv.es"
+      , "password": "ne0thoNe"
+    },
+    { "fname": "Ramon"
+      , "lname": "Molla"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "rmolla@dsic.upv.es"
+      , "password": "ooCux0Me"
+    },
+    { "fname": "Marcos"
+      , "lname": "Calvo"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "mcalvo@dsic.upv.es"
+      , "password": "Quah7eth"
+    },
+    { "fname": "Jon Ander"
+      , "lname": "Gomez"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "jon@dsic.upv.es"
+      , "password": "Xuoch2Ni"
+    },
+    { "fname": "Fernando"
+      , "lname": "Alvarruiz"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "fbermejo@dsic.upv.es"
+      , "password": "taiY6pah"
+    },
+    { "fname": "Salva"
+      , "lname": "Climent"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "jocliba@gmail.com"
+      , "password": "aeBah3Oo"
+    },
+    { "fname": "Merche"
+      , "lname": "Garcia"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "merc95@gmail.com"
+      , "password": "tia1Zeuw"
+    },
+    { "fname": "Mario"
+      , "lname": "Rodriguez"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "mrodriguez@dsic.upv.es"
+      , "password": "fai3Shee"
+    },
+    { "fname": "Ximo"
+      , "lname": "Planells"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "xplanells@dsic.upv.es"
+      , "password": "sah2Ohva"
+    },
+    { "fname": "Javier"
+      , "lname": "Piris"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "jpiris@dsic.upv.es"
+      , "password": "sah2Ohvc"
+    },
+    { "fname": "Catalin"
+      , "lname": "Stanciu"
+      , "type":  "admin"
+      , "groups": ["Practica 1"]
+      , "email": "ktalin605gmail.com"
+      , "password": "Wahhe6we"
+    },
+    { "fname": "Joan"
+      , "lname": "Pastor"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "jpastor@dsic.upv.es"
+      , "password": "Baer6eik"
+    },
+    { "fname": "Salva"
+      , "lname": "España"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "sespana@dsic.upv.es"
+      , "password": "eeMa2Pai"
+    },
+    { "fname": "Invitado1"
+      , "lname": "Invitado1"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado1@upv.es"
+      , "password": "oeThiek1"
+    },
+    { "fname": "Invitado2"
+      , "lname": "Invitado2"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado2@upv.es"
+      , "password": "uC4sieT3"
+    },
+    { "fname": "Invitado3"
+      , "lname": "Invitado3"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado3@upv.es"
+      , "password": "eX5aifie"
+    },
+    { "fname": "Invitado4"
+      , "lname": "Invitado4"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado4@upv.es"
+      , "password": "zae0Keib"
+    },
+    { "fname": "Invitado5"
+      , "lname": "Invitado5"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado5@upv.es" 
+     , "password": "Vukoef9a"
+    },
+    { "fname": "Invitado6"
+      , "lname": "Invitado6"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado6@upv.es"
+      , "password": "ux9oov9N"
+    },
+    { "fname": "Invitado7"
+      , "lname": "Invitado7"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado7@upv.es"
+      , "password": "Ohz9the6"
+    },
+    { "fname": "Invitado8"
+      , "lname": "Invitado8"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado8@upv.es"
+      , "password": "Ied5jie9"
+    },
+    { "fname": "Invitado9"
+      , "lname": "Invitado9"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado9@upv.es"
+      , "password": "Aeng6ood"
+    },
+    { "fname": "Invitado10"
+      , "lname": "Invitado10"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado10@upv.es"
+      , "password": "geBahs8U"
+    },
+    { "fname": "Invitado11"
+      , "lname": "Invitado11"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado11@upv.es"
+      , "password": "Wahn3em4"
+    },
+    { "fname": "Invitado12"
+      , "lname": "Invitado12"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado12@upv.es"
+      , "password": "puo3Ohk2"
+    },
+    { "fname": "Invitado13"
+      , "lname": "Invitado13"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado13@upv.es"
+      , "password": "riew5Ahn"
+    },
+    { "fname": "Invitado14"
+      , "lname": "Invitado14"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado14@upv.es"
+      , "password": "aX1eesha"
+    },
+    { "fname": "Invitado15"
+      , "lname": "Invitado15"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado15@upv.es"
+      , "password": "ebei9Ul9"
+    },
+    { "fname": "Invitado16"
+      , "lname": "Invitado16"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado16@upv.es"
+      , "password": "sei8Ohfo"
+    },
+    { "fname": "Invitado17"
+      , "lname": "Invitado17"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado17@upv.es"
+      , "password": "loofaiD4"
+    },
+    { "fname": "Invitado18"
+      , "lname": "Invitado18"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado18@upv.es"
+      , "password": "Shaewa5a"
+    },
+    { "fname": "Invitado19"
+      , "lname": "Invitado19"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado19@upv.es"
+      , "password": "oep4ahBu"
+    },
+    { "fname": "Invitado20"
+      , "lname": "Invitado20"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado20@upv.es"
+      , "password": "Oy0kooTh"
+    },
+    { "fname": "Invitado21"
+      , "lname": "Invitado21"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado21@upv.es"
+      , "password": "we1caeFu"
+    },
+    { "fname": "Invitado22"
+      , "lname": "Invitado22"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado22@upv.es"
+      , "password": "Aela5een"
+    },
+    { "fname": "Invitado23"
+      , "lname": "Invitado23"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado23@upv.es"
+      , "password": "Ou5Oocii"
+    },
+    { "fname": "Invitado24"
+      , "lname": "Invitado24"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado24@upv.es"
+      , "password": "ZaiRoh0a"
+    },
+    { "fname": "Invitado25"
+      , "lname": "Invitado25"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado25@upv.es"
+      , "password": "aiSh5iez"
+    },
+    { "fname": "Invitado26"
+      , "lname": "Invitado26"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado26@upv.es"
+      , "password": "iyeiG1Oh"
+    },
+    { "fname": "Invitado27"
+      , "lname": "Invitado27"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado27@upv.es"
+      , "password": "ohcuVai4"
+    },
+    { "fname": "Invitado28"
+      , "lname": "Invitado28"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado28@upv.es"
+      , "password": "Yah5Aesh"
+    },
+    { "fname": "Invitado29"
+      , "lname": "Invitado29"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado29@upv.es"
+      , "password": "Zoth6lae"
+    },
+    { "fname": "Invitado30"
+      , "lname": "Invitado30"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado30@upv.es"
+      , "password": "yuYid2ei"
+    },
+    { "fname": "Invitado31"
+      , "lname": "Invitado31"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado31@upv.es"
+      , "password": "Quai1ain"
+    },
+    { "fname": "Invitado32"
+      , "lname": "Invitado32"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado32@upv.es"
+      , "password": "aiM3ujie"
+    },
+    { "fname": "Invitado33"
+      , "lname": "Invitado33"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado33@upv.es"
+      , "password": "unobo8Ae"
+    },
+    { "fname": "Invitado34"
+      , "lname": "Invitado34"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado34@upv.es"
+      , "password": "iegai2Gi"
+    },
+    { "fname": "Invitado35"
+      , "lname": "Invitado35"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado35@upv.es"
+      , "password": "oer8ESha"
+    },
+    { "fname": "Invitado36"
+      , "lname": "Invitado36"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado36@upv.es"
+      , "password": "Gaquai0e"
+    },
+    { "fname": "Invitado37"
+      , "lname": "Invitado37"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado37@upv.es"
+      , "password": "Eib1neiy"
+    },
+    { "fname": "Invitado38"
+      , "lname": "Invitado38"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado38@upv.es"
+      , "password": "pooh4Rah"
+    },
+    { "fname": "Invitado39"
+      , "lname": "Invitado39"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado39@upv.es"
+      , "password": "uH5eeMou"
+    },
+    { "fname": "Invitado40"
+      , "lname": "Invitado40"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado40@upv.es"
+      , "password": "hiexa0Fi"
+    },
+    { "fname": "Invitado41"
+      , "lname": "Invitado41"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado41@upv.es"
+      , "password": "Hi9ahvoX"
+    },
+    { "fname": "Invitado42"
+      , "lname": "Invitado42"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado42@upv.es"
+      , "password": "Shai0aDo"
+    },
+    { "fname": "Invitado43"
+      , "lname": "Invitado43"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado43@upv.es"
+      , "password": "yahm8iiY"
+    },
+    { "fname": "Invitado44"
+      , "lname": "Invitado44"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado44@upv.es"
+      , "password": "kie0Ahsa"
+    },
+    { "fname": "Invitado45"
+      , "lname": "Invitado45"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado45@upv.es"
+      , "password": "aepuG5zu"
+    },
+    { "fname": "Invitado46"
+      , "lname": "Invitado46"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado46@upv.es"
+      , "password": "tu6shuoB"
+    },
+    { "fname": "Invitado47"
+      , "lname": "Invitado47"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado47@upv.es"
+      , "password": "ahKaem1a"
+    },
+    { "fname": "Invitado48"
+      , "lname": "Invitado48"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado48@upv.es"
+      , "password": "eph3ieYi"
+    },
+    { "fname": "Invitado49"
+      , "lname": "Invitado49"
+      , "type":  "student"
+      , "groups": ["Practica 1"]
+      , "email": "invitado49@upv.es"
+      , "password": "Ijeil5ni"
+    }
+  ]
+
+}
