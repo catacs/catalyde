@@ -2,24 +2,21 @@
 #                  Catalyde TODO document                  #
 ############################################################
 
-############################################################
-#                  Objetivo del documento                  #
-#                                                          #
-# El objetivo de este documento es el de proporcionar      #
-# aquellas funcionalidades o mejoras que se vayan a        #
-# añadir en un futuro en la aplicación.                    #
-#                                                          #
-############################################################
+
+## Objetivo del documento                  
+
+### El objetivo de este documento es el de proporcionar aquellas funcionalidades o mejoras que se vayan a añadir en un futuro en la aplicación.
 
 
-Prioridad Urgente:
+
+## Prioridad Urgente:
 
  - Reorganizar los directorios del proyecto (server, client, doc, contrib).
  - Migrar a las ultimas versiones de los módulos de nodejs.
  - Revisar la documentación a nivel de código.
  - Migrar código a github.
 
-Prioridad Normal:
+## Prioridad Normal:
 
 - Para la clase bloques y derivados añadir un objeto para sustituir el if/else y dejarlo mas elegante.
 - Añadir un panel de opciones para usuario.
@@ -33,4 +30,4 @@ Prioridad Normal:
 - Soporte varios idiomas.
 - Configuración de colores para la terminal, para el editor de código, para la interfaz.
 
-Prioridad Baja:
+## Prioridad Baja:
