@@ -3,6 +3,10 @@ Catalyde
 
 `Catalyde` is a web-based IDE for novel programmers.
 
+[![Demo Catalyde](http://img.youtube.com/vi/WZeIi_7aoME/0.jpg)](http://www.youtube.com/watch?v=WZeIi_7aoME "Demo Catalyde")
+
+
+
 `Catalyde`’s current features:
 
 - HTTPS authentication (for running Catalyde on a public server)
