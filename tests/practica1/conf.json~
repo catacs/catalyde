@@ -1,9 +1,0 @@
-{
-	"title" : "Practica p1",
-	"practice": "pract1.md",
-	"jadeTemplate": "jade/practice.jade",
-	"dustTemplates" : "['dust/p1.dust','dust/p2.dust','dust/p3.dust']"
-	
-
-
-}

@@ -1,8 +1,9 @@
-- Instalar:
+nstalar:
 
 		sudo apt-get install apparmor-utils
 
 - COPIAR usr.bin.gdb A /etc/apparmor.d
+
 		cp usr.bin.gdb /etc/apparmor.d/
 
 - Ejecuta:
@@ -12,6 +13,3 @@
 - Ejecuta: 
 
 		sudo aa-enforce usr.bin.gdb
-
-
-
