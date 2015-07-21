@@ -1,17 +1,22 @@
 
-1. Download the project from svn: svn co https://cafre.dsic.upv.es/svn/editor
+1. Download the project from github: 
+
+		git clone https://github.com/catacs/catalyde.git
 
 2. install node (more details here https://github.com/joyent/node/wiki/Installation)
 	Option 1:
+
 		2.1 Download node from www.node.org/#download (http://nodejs.org/dist/vX.X.X/node-vX.X.X.tar.gz)
 		2.2 >> tar -zxf node-vX.X.X.tar.gz #Download this from nodejs.org
 		2.3 >> cd node-vX.X.X
 
 	Option 2:
+		
 		2.1 >> git clone https://github.com/joyent/node.git
 		2.2 >> cd node
         
-        For Both:
+	For Both:
+
 		2.4 >> ./configure
 		2.5 >> make
 		2.6 >> sudo make install
