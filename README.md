@@ -37,7 +37,7 @@ On a new or existing directory, use the following command to setup a new nide pr
     catalyde init
 
 This command will setup a `workspace` and start server on port 8123. Fire up your web browser
-at `localhost:8123` to use ACEditor. If a directory workspace is present you cas only run 
+at `localhost:8123` to use Catalyde. If a directory workspace is present you cas only run 
 using:
 
     catalyde
